@@ -284,7 +284,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CTDB - Data Source or Cite Reference";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.CTDBFormAddSpecies_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
