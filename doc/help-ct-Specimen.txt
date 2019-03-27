@@ -1,0 +1,11 @@
+Specimen
+
+Manage assistant data related with specimen.
+
+
+标本管理：
+管理 标本 相关的数据。
+
+录入数据前需准备好物种信息，填写采集、保存、制备等信息
+相关的文件独立添加
+

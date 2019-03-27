@@ -1,0 +1,9 @@
+Scan
+
+Manage assistant data related with specimen.
+
+扫描
+
+管理 与 扫描 相关的数据。
+
+录入数据前需填写好标本信息和扫描仪器信息。

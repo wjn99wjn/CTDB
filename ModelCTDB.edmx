@@ -1,0 +1,912 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CTDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbEquipment">
+          <Key>
+            <PropertyRef Name="e_id" />
+          </Key>
+          <Property Name="e_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="e_nameA" Type="nvarchar" MaxLength="50" />
+          <Property Name="e_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="e_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="e_note" Type="nvarchar" MaxLength="1000" />
+          <Property Name="e_description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="e_location" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_in" Type="datetime" Nullable="false" />
+          <Property Name="e_contact" Type="nvarchar" MaxLength="500" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="tbFile">
+          <Key>
+            <PropertyRef Name="f_id" />
+          </Key>
+          <Property Name="f_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f_path" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="f_pid" Type="int" Nullable="false" />
+          <Property Name="date_in" Type="datetime" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="f_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="f_table" Type="nvarchar" MaxLength="20" />
+          <Property Name="f_author" Type="nvarchar" MaxLength="100" />
+          <Property Name="f_filetype" Type="int" />
+          <Property Name="f_md5" Type="nvarchar" MaxLength="50" />
+          <Property Name="open_status" Type="int" Nullable="false" />
+          <Property Name="f_fpid" Type="int" Nullable="false" />
+          <Property Name="sp_id" Type="int" Nullable="false" />
+          <Property Name="ref_id" Type="int" Nullable="false" />
+          <Property Name="date_up" Type="datetime" Nullable="false" />
+          <Property Name="f_count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbLabel">
+          <Key>
+            <PropertyRef Name="label_id" />
+          </Key>
+          <Property Name="label_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="slice_id" Type="int" Nullable="false" />
+          <Property Name="label_note" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="date_in" Type="datetime" Nullable="false" />
+          <Property Name="open_status" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="label_method" Type="nvarchar" MaxLength="50" />
+          <Property Name="label_author" Type="nvarchar" MaxLength="50" />
+          <Property Name="label_file_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="label_structure" Type="nvarchar" MaxLength="50" />
+          <Property Name="label_file_number" Type="int" />
+          <Property Name="scan_id" Type="int" Nullable="false" />
+          <Property Name="sp_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbRef">
+          <Key>
+            <PropertyRef Name="ref_id" />
+          </Key>
+          <Property Name="ref_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="author" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="cite" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="url" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="doc" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="tbScan">
+          <Key>
+            <PropertyRef Name="scan_id" />
+          </Key>
+          <Property Name="scan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="e_id" Type="int" Nullable="false" />
+          <Property Name="sp_id" Type="int" Nullable="false" />
+          <Property Name="scan_tag_SpecimenAlive" Type="int" Nullable="false" />
+          <Property Name="scan_operator" Type="nvarchar" MaxLength="50" />
+          <Property Name="scan_timebegin" Type="datetime" Nullable="false" />
+          <Property Name="scan_timeend" Type="datetime" />
+          <Property Name="scan_para_SourceType" Type="nvarchar" MaxLength="50" />
+          <Property Name="scan_para_Camera" Type="nvarchar" MaxLength="50" />
+          <Property Name="scan_para_SourceVoltage" Type="float" />
+          <Property Name="scan_para_SourceCurrent" Type="float" />
+          <Property Name="scan_para_CameraBinning" Type="nvarchar" MaxLength="50" />
+          <Property Name="scan_para_FilesNumber" Type="int" Nullable="false" />
+          <Property Name="scan_para_ImageFomat" Type="nchar" MaxLength="10" />
+          <Property Name="scan_para_ImagePixelSize" Type="float" />
+          <Property Name="scan_para_Object2Source" Type="float" />
+          <Property Name="scan_para_Camera2Source" Type="float" />
+          <Property Name="scan_para_VerticalObjectPosition" Type="float" />
+          <Property Name="scan_para_Exposure" Type="float" />
+          <Property Name="scan_para_RotationStep" Type="float" />
+          <Property Name="scan_para_LensMultiple" Type="float" />
+          <Property Name="date_in" Type="datetime" Nullable="false" />
+          <Property Name="open_status" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="scan_source_save_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="scan_para_SourcePower" Type="float" />
+          <Property Name="scan_specimen_Body" Type="nvarchar" MaxLength="50" />
+          <Property Name="Abstract" Type="nvarchar" MaxLength="50" />
+          <Property Name="ref_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbSlice">
+          <Key>
+            <PropertyRef Name="slice_id" />
+          </Key>
+          <Property Name="slice_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="scan_id" Type="int" Nullable="false" />
+          <Property Name="slice_para_ReconstructionProgram" Type="nvarchar" MaxLength="50" />
+          <Property Name="slice_para_ResultFileType" Type="varchar" MaxLength="10" />
+          <Property Name="slice_para_PixelSize" Type="float" />
+          <Property Name="slice_para_SliceNumber" Type="int" />
+          <Property Name="open_status" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="date_in" Type="datetime" />
+          <Property Name="slice_save_path" Type="nvarchar" MaxLength="100" />
+          <Property Name="slice_para_CutMethod" Type="nvarchar" MaxLength="50" />
+          <Property Name="Abstract" Type="nvarchar" MaxLength="50" />
+          <Property Name="sp_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbSpecies">
+          <Key>
+            <PropertyRef Name="species_id" />
+          </Key>
+          <Property Name="species_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="species_latin" Type="nvarchar" MaxLength="50" />
+          <Property Name="species_Order" Type="nvarchar" MaxLength="50" />
+          <Property Name="species_Family" Type="nvarchar" MaxLength="50" />
+          <Property Name="species_Genus" Type="nvarchar" MaxLength="50" />
+          <Property Name="species_Species" Type="nvarchar" MaxLength="50" />
+          <Property Name="species_CHN" Type="nvarchar" MaxLength="50" />
+          <Property Name="species_note" Type="nvarchar" MaxLength="500" />
+          <Property Name="species_LSID" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_in" Type="datetime" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="tbSpecimen">
+          <Key>
+            <PropertyRef Name="sp_id" />
+          </Key>
+          <Property Name="sp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="species_id" Type="int" />
+          <Property Name="sp_note" Type="nvarchar" MaxLength="50" />
+          <Property Name="date_in" Type="datetime" Nullable="false" />
+          <Property Name="sp_collector" Type="nvarchar" MaxLength="100" />
+          <Property Name="sp_time" Type="nvarchar" MaxLength="100" />
+          <Property Name="sp_place" Type="nvarchar" MaxLength="100" />
+          <Property Name="sp_spid" Type="nvarchar" MaxLength="50" />
+          <Property Name="sp_dehydrant" Type="nvarchar" MaxLength="50" />
+          <Property Name="sp_dryinstrument" Type="nvarchar" MaxLength="50" />
+          <Property Name="sp_drycirletime" Type="int" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="specimen_sex" Type="int" />
+          <Property Name="specimen_age" Type="nvarchar" MaxLength="50" />
+          <Property Name="specimen_dry_save_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="Abstract" Type="nvarchar" MaxLength="50" />
+          <Property Name="sp_preserve_status" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ref_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbTag">
+          <Key>
+            <PropertyRef Name="tag_id" />
+          </Key>
+          <Property Name="tag_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tag_tag" Type="nvarchar" MaxLength="50" />
+          <Property Name="tag_tagCN" Type="nvarchar" MaxLength="50" />
+          <Property Name="tag_note" Type="nvarchar" MaxLength="500" />
+          <Property Name="date_in" Type="datetime" Nullable="false" />
+          <Property Name="tag_type" Type="int" />
+          <Property Name="tag_pid" Type="int" />
+        </EntityType>
+        <EntityType Name="tbUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="mail" Type="nvarchar" MaxLength="100" />
+          <Property Name="date_in" Type="datetime" />
+          <Property Name="date_up" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vQuick">
+          <Key>
+            <PropertyRef Name="slice_id" />
+          </Key>
+          <Property Name="slice_id" Type="int" Nullable="false" />
+          <Property Name="scan_id" Type="int" />
+          <Property Name="e_id" Type="int" />
+          <Property Name="sp_id" Type="int" />
+          <Property Name="e_nameA" Type="nvarchar" MaxLength="50" />
+          <Property Name="species_note" Type="nvarchar" MaxLength="500" />
+          <Property Name="species_Order" Type="nvarchar" MaxLength="50" />
+          <Property Name="sp_spid" Type="nvarchar" MaxLength="50" />
+          <Property Name="sp_note" Type="nvarchar" MaxLength="50" />
+          <Property Name="scan_timebegin" Type="datetime" />
+          <Property Name="sp_dehydrant" Type="nvarchar" MaxLength="50" />
+          <Property Name="sp_drycirletime" Type="int" />
+          <Property Name="sp_collector" Type="nvarchar" MaxLength="100" />
+          <Property Name="sp_time" Type="nvarchar" MaxLength="100" />
+          <Property Name="sp_place" Type="nvarchar" MaxLength="100" />
+          <Property Name="specimen_sex" Type="int" />
+          <Property Name="specimen_age" Type="nvarchar" MaxLength="50" />
+          <Property Name="scan_specimen_Body" Type="nvarchar" MaxLength="50" />
+          <Property Name="scan_para_CameraBinning" Type="nvarchar" MaxLength="50" />
+          <Property Name="scan_para_SourceVoltage" Type="float" />
+          <Property Name="scan_para_SourceCurrent" Type="float" />
+          <Property Name="scan_para_Exposure" Type="float" />
+          <Property Name="specimen_dry_save_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="scan_source_save_path" Type="nvarchar" MaxLength="200" />
+          <Property Name="slice_save_path" Type="nvarchar" MaxLength="100" />
+          <Property Name="slice_para_SliceNumber" Type="int" />
+        </EntityType>
+        <Association Name="FK_tbLabel_tbSlice">
+          <End Role="tbSlice" Type="Self.tbSlice" Multiplicity="1" />
+          <End Role="tbLabel" Type="Self.tbLabel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSlice">
+              <PropertyRef Name="slice_id" />
+            </Principal>
+            <Dependent Role="tbLabel">
+              <PropertyRef Name="slice_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbScan_tbEquipment">
+          <End Role="tbEquipment" Type="Self.tbEquipment" Multiplicity="1" />
+          <End Role="tbScan" Type="Self.tbScan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEquipment">
+              <PropertyRef Name="e_id" />
+            </Principal>
+            <Dependent Role="tbScan">
+              <PropertyRef Name="e_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbScan_tbSpecimen">
+          <End Role="tbSpecimen" Type="Self.tbSpecimen" Multiplicity="1" />
+          <End Role="tbScan" Type="Self.tbScan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSpecimen">
+              <PropertyRef Name="sp_id" />
+            </Principal>
+            <Dependent Role="tbScan">
+              <PropertyRef Name="sp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbSlice_tbScan">
+          <End Role="tbScan" Type="Self.tbScan" Multiplicity="1" />
+          <End Role="tbSlice" Type="Self.tbSlice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbScan">
+              <PropertyRef Name="scan_id" />
+            </Principal>
+            <Dependent Role="tbSlice">
+              <PropertyRef Name="scan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbSpecimen_tbSpecies">
+          <End Role="tbSpecies" Type="Self.tbSpecies" Multiplicity="0..1" />
+          <End Role="tbSpecimen" Type="Self.tbSpecimen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSpecies">
+              <PropertyRef Name="species_id" />
+            </Principal>
+            <Dependent Role="tbSpecimen">
+              <PropertyRef Name="species_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CTDBModelStoreContainer">
+          <EntitySet Name="tbEquipment" EntityType="Self.tbEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbFile" EntityType="Self.tbFile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbLabel" EntityType="Self.tbLabel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbRef" EntityType="Self.tbRef" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbScan" EntityType="Self.tbScan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbSlice" EntityType="Self.tbSlice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbSpecies" EntityType="Self.tbSpecies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbSpecimen" EntityType="Self.tbSpecimen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbTag" EntityType="Self.tbTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbUser" EntityType="Self.tbUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vQuick" EntityType="Self.vQuick" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vQuick].[slice_id] AS [slice_id], 
+    [vQuick].[scan_id] AS [scan_id], 
+    [vQuick].[e_id] AS [e_id], 
+    [vQuick].[sp_id] AS [sp_id], 
+    [vQuick].[e_nameA] AS [e_nameA], 
+    [vQuick].[species_note] AS [species_note], 
+    [vQuick].[species_Order] AS [species_Order], 
+    [vQuick].[sp_spid] AS [sp_spid], 
+    [vQuick].[sp_note] AS [sp_note], 
+    [vQuick].[scan_timebegin] AS [scan_timebegin], 
+    [vQuick].[sp_dehydrant] AS [sp_dehydrant], 
+    [vQuick].[sp_drycirletime] AS [sp_drycirletime], 
+    [vQuick].[sp_collector] AS [sp_collector], 
+    [vQuick].[sp_time] AS [sp_time], 
+    [vQuick].[sp_place] AS [sp_place], 
+    [vQuick].[specimen_sex] AS [specimen_sex], 
+    [vQuick].[specimen_age] AS [specimen_age], 
+    [vQuick].[scan_specimen_Body] AS [scan_specimen_Body], 
+    [vQuick].[scan_para_CameraBinning] AS [scan_para_CameraBinning], 
+    [vQuick].[scan_para_SourceVoltage] AS [scan_para_SourceVoltage], 
+    [vQuick].[scan_para_SourceCurrent] AS [scan_para_SourceCurrent], 
+    [vQuick].[scan_para_Exposure] AS [scan_para_Exposure], 
+    [vQuick].[specimen_dry_save_path] AS [specimen_dry_save_path], 
+    [vQuick].[scan_source_save_path] AS [scan_source_save_path], 
+    [vQuick].[slice_save_path] AS [slice_save_path], 
+    [vQuick].[slice_para_SliceNumber] AS [slice_para_SliceNumber]
+    FROM [dbo].[vQuick] AS [vQuick]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tbLabel_tbSlice" Association="Self.FK_tbLabel_tbSlice">
+            <End Role="tbSlice" EntitySet="tbSlice" />
+            <End Role="tbLabel" EntitySet="tbLabel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbScan_tbEquipment" Association="Self.FK_tbScan_tbEquipment">
+            <End Role="tbEquipment" EntitySet="tbEquipment" />
+            <End Role="tbScan" EntitySet="tbScan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbScan_tbSpecimen" Association="Self.FK_tbScan_tbSpecimen">
+            <End Role="tbSpecimen" EntitySet="tbSpecimen" />
+            <End Role="tbScan" EntitySet="tbScan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbSlice_tbScan" Association="Self.FK_tbSlice_tbScan">
+            <End Role="tbScan" EntitySet="tbScan" />
+            <End Role="tbSlice" EntitySet="tbSlice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbSpecimen_tbSpecies" Association="Self.FK_tbSpecimen_tbSpecies">
+            <End Role="tbSpecies" EntitySet="tbSpecies" />
+            <End Role="tbSpecimen" EntitySet="tbSpecimen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CTDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CTDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbEquipment" EntityType="CTDBModel.tbEquipment" />
+          <EntitySet Name="tbSpecies" EntityType="CTDBModel.tbSpecies" />
+          <EntitySet Name="vQuick" EntityType="CTDBModel.vQuick" />
+          <EntitySet Name="tbTag" EntityType="CTDBModel.tbTag" />
+          <EntitySet Name="tbUser" EntityType="CTDBModel.tbUser" />
+          <EntitySet Name="tbFile" EntityType="CTDBModel.tbFile" />
+          <EntitySet Name="tbRef" EntityType="CTDBModel.tbRef" />
+          <EntitySet Name="tbLabel" EntityType="CTDBModel.tbLabel" />
+          <EntitySet Name="tbScan" EntityType="CTDBModel.tbScan" />
+          <EntitySet Name="tbSlice" EntityType="CTDBModel.tbSlice" />
+          <EntitySet Name="tbSpecimen" EntityType="CTDBModel.tbSpecimen" />
+          <AssociationSet Name="FK_tbScan_tbEquipment" Association="CTDBModel.FK_tbScan_tbEquipment">
+            <End Role="tbEquipment" EntitySet="tbEquipment" />
+            <End Role="tbScan" EntitySet="tbScan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbLabel_tbSlice" Association="CTDBModel.FK_tbLabel_tbSlice">
+            <End Role="tbSlice" EntitySet="tbSlice" />
+            <End Role="tbLabel" EntitySet="tbLabel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbScan_tbSpecimen" Association="CTDBModel.FK_tbScan_tbSpecimen">
+            <End Role="tbSpecimen" EntitySet="tbSpecimen" />
+            <End Role="tbScan" EntitySet="tbScan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbSlice_tbScan" Association="CTDBModel.FK_tbSlice_tbScan">
+            <End Role="tbScan" EntitySet="tbScan" />
+            <End Role="tbSlice" EntitySet="tbSlice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbSpecimen_tbSpecies" Association="CTDBModel.FK_tbSpecimen_tbSpecies">
+            <End Role="tbSpecies" EntitySet="tbSpecies" />
+            <End Role="tbSpecimen" EntitySet="tbSpecimen" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="tbEquipment">
+          <Key>
+            <PropertyRef Name="e_id" />
+          </Key>
+          <Property Name="e_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="e_nameA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="e_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="e_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="e_note" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="e_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="e_location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_in" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="e_contact" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Guid" />
+          <NavigationProperty Name="tbScan" Relationship="CTDBModel.FK_tbScan_tbEquipment" FromRole="tbEquipment" ToRole="tbScan" />
+        </EntityType>
+        <EntityType Name="tbSpecies">
+          <Key>
+            <PropertyRef Name="species_id" />
+          </Key>
+          <Property Name="species_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="species_latin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="species_Order" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="species_Family" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="species_Genus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="species_Species" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="species_CHN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="species_note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="species_LSID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_in" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Guid" />
+          <NavigationProperty Name="tbSpecimen" Relationship="CTDBModel.FK_tbSpecimen_tbSpecies" FromRole="tbSpecies" ToRole="tbSpecimen" />
+        </EntityType>
+        <EntityType Name="vQuick">
+          <Key>
+            <PropertyRef Name="slice_id" />
+          </Key>
+          <Property Name="slice_id" Type="Int32" Nullable="false" />
+          <Property Name="scan_id" Type="Int32" />
+          <Property Name="sp_id" Type="Int32" />
+          <Property Name="slice_para_SliceNumber" Type="Int32" />
+          <Property Name="e_nameA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="species_note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="species_Order" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_spid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="scan_timebegin" Type="DateTime" Precision="3" />
+          <Property Name="sp_dehydrant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_drycirletime" Type="Int32" />
+          <Property Name="sp_collector" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sp_time" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sp_place" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="specimen_sex" Type="Int32" />
+          <Property Name="specimen_age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="scan_specimen_Body" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="scan_para_CameraBinning" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="scan_para_SourceVoltage" Type="Double" />
+          <Property Name="scan_para_SourceCurrent" Type="Double" />
+          <Property Name="scan_para_Exposure" Type="Double" />
+          <Property Name="specimen_dry_save_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="scan_source_save_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="slice_save_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="e_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbTag">
+          <Key>
+            <PropertyRef Name="tag_id" />
+          </Key>
+          <Property Name="tag_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tag_tag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tag_tagCN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tag_note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="date_in" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="tag_type" Type="Int32" />
+          <Property Name="tag_pid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="date_in" Type="DateTime" Precision="3" />
+          <Property Name="date_up" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbFile">
+          <Key>
+            <PropertyRef Name="f_id" />
+          </Key>
+          <Property Name="f_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f_path" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="f_pid" Type="Int32" Nullable="false" />
+          <Property Name="date_in" Type="DateTime" Precision="3" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="f_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="f_table" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="f_author" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="f_filetype" Type="Int32" />
+          <Property Name="f_md5" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="open_status" Type="Int32" Nullable="false" />
+          <Property Name="f_fpid" Type="Int32" Nullable="false" />
+          <Property Name="sp_id" Type="Int32" Nullable="false" />
+          <Property Name="ref_id" Type="Int32" Nullable="false" />
+          <Property Name="date_up" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="f_count" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbRef">
+          <Key>
+            <PropertyRef Name="ref_id" />
+          </Key>
+          <Property Name="ref_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="author" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <Property Name="cite" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="url" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="doc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Guid" />
+        </EntityType>
+        <EntityType Name="tbLabel">
+          <Key>
+            <PropertyRef Name="label_id" />
+          </Key>
+          <Property Name="label_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slice_id" Type="Int32" Nullable="false" />
+          <Property Name="label_note" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="date_in" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="open_status" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="label_method" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="label_author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="label_file_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="label_structure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="label_file_number" Type="Int32" />
+          <Property Name="scan_id" Type="Int32" Nullable="false" />
+          <Property Name="sp_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbSlice" Relationship="CTDBModel.FK_tbLabel_tbSlice" FromRole="tbLabel" ToRole="tbSlice" />
+        </EntityType>
+        <EntityType Name="tbScan">
+          <Key>
+            <PropertyRef Name="scan_id" />
+          </Key>
+          <Property Name="scan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="e_id" Type="Int32" Nullable="false" />
+          <Property Name="sp_id" Type="Int32" Nullable="false" />
+          <Property Name="scan_tag_SpecimenAlive" Type="Int32" Nullable="false" />
+          <Property Name="scan_operator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="scan_timebegin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="scan_timeend" Type="DateTime" Precision="3" />
+          <Property Name="scan_para_SourceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="scan_para_Camera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="scan_para_SourceVoltage" Type="Double" />
+          <Property Name="scan_para_SourceCurrent" Type="Double" />
+          <Property Name="scan_para_CameraBinning" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="scan_para_FilesNumber" Type="Int32" Nullable="false" />
+          <Property Name="scan_para_ImageFomat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="scan_para_ImagePixelSize" Type="Double" />
+          <Property Name="scan_para_Object2Source" Type="Double" />
+          <Property Name="scan_para_Camera2Source" Type="Double" />
+          <Property Name="scan_para_VerticalObjectPosition" Type="Double" />
+          <Property Name="scan_para_Exposure" Type="Double" />
+          <Property Name="scan_para_RotationStep" Type="Double" />
+          <Property Name="scan_para_LensMultiple" Type="Double" />
+          <Property Name="date_in" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="open_status" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="scan_source_save_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="scan_para_SourcePower" Type="Double" />
+          <Property Name="scan_specimen_Body" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Abstract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ref_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbEquipment" Relationship="CTDBModel.FK_tbScan_tbEquipment" FromRole="tbScan" ToRole="tbEquipment" />
+          <NavigationProperty Name="tbSpecimen" Relationship="CTDBModel.FK_tbScan_tbSpecimen" FromRole="tbScan" ToRole="tbSpecimen" />
+          <NavigationProperty Name="tbSlice" Relationship="CTDBModel.FK_tbSlice_tbScan" FromRole="tbScan" ToRole="tbSlice" />
+        </EntityType>
+        <EntityType Name="tbSlice">
+          <Key>
+            <PropertyRef Name="slice_id" />
+          </Key>
+          <Property Name="slice_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="scan_id" Type="Int32" Nullable="false" />
+          <Property Name="slice_para_ReconstructionProgram" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="slice_para_ResultFileType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="slice_para_PixelSize" Type="Double" />
+          <Property Name="slice_para_SliceNumber" Type="Int32" />
+          <Property Name="open_status" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="date_in" Type="DateTime" Precision="3" />
+          <Property Name="slice_save_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="slice_para_CutMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Abstract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbLabel" Relationship="CTDBModel.FK_tbLabel_tbSlice" FromRole="tbSlice" ToRole="tbLabel" />
+          <NavigationProperty Name="tbScan" Relationship="CTDBModel.FK_tbSlice_tbScan" FromRole="tbSlice" ToRole="tbScan" />
+        </EntityType>
+        <EntityType Name="tbSpecimen">
+          <Key>
+            <PropertyRef Name="sp_id" />
+          </Key>
+          <Property Name="sp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="species_id" Type="Int32" />
+          <Property Name="sp_note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_in" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="sp_collector" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sp_time" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sp_place" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sp_spid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_dehydrant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_dryinstrument" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_drycirletime" Type="Int32" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="specimen_sex" Type="Int32" />
+          <Property Name="specimen_age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="specimen_dry_save_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Abstract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_preserve_status" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ref_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbScan" Relationship="CTDBModel.FK_tbScan_tbSpecimen" FromRole="tbSpecimen" ToRole="tbScan" />
+          <NavigationProperty Name="tbSpecies" Relationship="CTDBModel.FK_tbSpecimen_tbSpecies" FromRole="tbSpecimen" ToRole="tbSpecies" />
+        </EntityType>
+        <Association Name="FK_tbScan_tbEquipment">
+          <End Type="CTDBModel.tbEquipment" Role="tbEquipment" Multiplicity="1" />
+          <End Type="CTDBModel.tbScan" Role="tbScan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEquipment">
+              <PropertyRef Name="e_id" />
+            </Principal>
+            <Dependent Role="tbScan">
+              <PropertyRef Name="e_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbLabel_tbSlice">
+          <End Type="CTDBModel.tbSlice" Role="tbSlice" Multiplicity="1" />
+          <End Type="CTDBModel.tbLabel" Role="tbLabel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSlice">
+              <PropertyRef Name="slice_id" />
+            </Principal>
+            <Dependent Role="tbLabel">
+              <PropertyRef Name="slice_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbScan_tbSpecimen">
+          <End Type="CTDBModel.tbSpecimen" Role="tbSpecimen" Multiplicity="1" />
+          <End Type="CTDBModel.tbScan" Role="tbScan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSpecimen">
+              <PropertyRef Name="sp_id" />
+            </Principal>
+            <Dependent Role="tbScan">
+              <PropertyRef Name="sp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbSlice_tbScan">
+          <End Type="CTDBModel.tbScan" Role="tbScan" Multiplicity="1" />
+          <End Type="CTDBModel.tbSlice" Role="tbSlice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbScan">
+              <PropertyRef Name="scan_id" />
+            </Principal>
+            <Dependent Role="tbSlice">
+              <PropertyRef Name="scan_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbSpecimen_tbSpecies">
+          <End Type="CTDBModel.tbSpecies" Role="tbSpecies" Multiplicity="0..1" />
+          <End Type="CTDBModel.tbSpecimen" Role="tbSpecimen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSpecies">
+              <PropertyRef Name="species_id" />
+            </Principal>
+            <Dependent Role="tbSpecimen">
+              <PropertyRef Name="species_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CTDBModelStoreContainer" CdmEntityContainer="CTDBEntities">
+          <EntitySetMapping Name="tbEquipment">
+            <EntityTypeMapping TypeName="CTDBModel.tbEquipment">
+              <MappingFragment StoreEntitySet="tbEquipment">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="e_contact" ColumnName="e_contact" />
+                <ScalarProperty Name="date_in" ColumnName="date_in" />
+                <ScalarProperty Name="e_location" ColumnName="e_location" />
+                <ScalarProperty Name="e_description" ColumnName="e_description" />
+                <ScalarProperty Name="e_note" ColumnName="e_note" />
+                <ScalarProperty Name="e_type" ColumnName="e_type" />
+                <ScalarProperty Name="e_name" ColumnName="e_name" />
+                <ScalarProperty Name="e_nameA" ColumnName="e_nameA" />
+                <ScalarProperty Name="e_id" ColumnName="e_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSpecies">
+            <EntityTypeMapping TypeName="CTDBModel.tbSpecies">
+              <MappingFragment StoreEntitySet="tbSpecies">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="date_in" ColumnName="date_in" />
+                <ScalarProperty Name="species_LSID" ColumnName="species_LSID" />
+                <ScalarProperty Name="species_note" ColumnName="species_note" />
+                <ScalarProperty Name="species_CHN" ColumnName="species_CHN" />
+                <ScalarProperty Name="species_Species" ColumnName="species_Species" />
+                <ScalarProperty Name="species_Genus" ColumnName="species_Genus" />
+                <ScalarProperty Name="species_Family" ColumnName="species_Family" />
+                <ScalarProperty Name="species_Order" ColumnName="species_Order" />
+                <ScalarProperty Name="species_latin" ColumnName="species_latin" />
+                <ScalarProperty Name="species_id" ColumnName="species_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vQuick">
+            <EntityTypeMapping TypeName="CTDBModel.vQuick">
+              <MappingFragment StoreEntitySet="vQuick">
+                <ScalarProperty Name="slice_para_SliceNumber" ColumnName="slice_para_SliceNumber" />
+                <ScalarProperty Name="slice_save_path" ColumnName="slice_save_path" />
+                <ScalarProperty Name="scan_source_save_path" ColumnName="scan_source_save_path" />
+                <ScalarProperty Name="specimen_dry_save_path" ColumnName="specimen_dry_save_path" />
+                <ScalarProperty Name="scan_para_Exposure" ColumnName="scan_para_Exposure" />
+                <ScalarProperty Name="scan_para_SourceCurrent" ColumnName="scan_para_SourceCurrent" />
+                <ScalarProperty Name="scan_para_SourceVoltage" ColumnName="scan_para_SourceVoltage" />
+                <ScalarProperty Name="scan_para_CameraBinning" ColumnName="scan_para_CameraBinning" />
+                <ScalarProperty Name="scan_specimen_Body" ColumnName="scan_specimen_Body" />
+                <ScalarProperty Name="specimen_age" ColumnName="specimen_age" />
+                <ScalarProperty Name="specimen_sex" ColumnName="specimen_sex" />
+                <ScalarProperty Name="sp_place" ColumnName="sp_place" />
+                <ScalarProperty Name="sp_time" ColumnName="sp_time" />
+                <ScalarProperty Name="sp_collector" ColumnName="sp_collector" />
+                <ScalarProperty Name="sp_drycirletime" ColumnName="sp_drycirletime" />
+                <ScalarProperty Name="sp_dehydrant" ColumnName="sp_dehydrant" />
+                <ScalarProperty Name="scan_timebegin" ColumnName="scan_timebegin" />
+                <ScalarProperty Name="sp_note" ColumnName="sp_note" />
+                <ScalarProperty Name="sp_spid" ColumnName="sp_spid" />
+                <ScalarProperty Name="species_Order" ColumnName="species_Order" />
+                <ScalarProperty Name="species_note" ColumnName="species_note" />
+                <ScalarProperty Name="e_nameA" ColumnName="e_nameA" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="e_id" ColumnName="e_id" />
+                <ScalarProperty Name="scan_id" ColumnName="scan_id" />
+                <ScalarProperty Name="slice_id" ColumnName="slice_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTag">
+            <EntityTypeMapping TypeName="CTDBModel.tbTag">
+              <MappingFragment StoreEntitySet="tbTag">
+                <ScalarProperty Name="tag_pid" ColumnName="tag_pid" />
+                <ScalarProperty Name="tag_type" ColumnName="tag_type" />
+                <ScalarProperty Name="date_in" ColumnName="date_in" />
+                <ScalarProperty Name="tag_note" ColumnName="tag_note" />
+                <ScalarProperty Name="tag_tagCN" ColumnName="tag_tagCN" />
+                <ScalarProperty Name="tag_tag" ColumnName="tag_tag" />
+                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbUser">
+            <EntityTypeMapping TypeName="CTDBModel.tbUser">
+              <MappingFragment StoreEntitySet="tbUser">
+                <ScalarProperty Name="date_up" ColumnName="date_up" />
+                <ScalarProperty Name="date_in" ColumnName="date_in" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbFile">
+            <EntityTypeMapping TypeName="CTDBModel.tbFile">
+              <MappingFragment StoreEntitySet="tbFile">
+                <ScalarProperty Name="f_count" ColumnName="f_count" />
+                <ScalarProperty Name="date_up" ColumnName="date_up" />
+                <ScalarProperty Name="ref_id" ColumnName="ref_id" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="f_fpid" ColumnName="f_fpid" />
+                <ScalarProperty Name="open_status" ColumnName="open_status" />
+                <ScalarProperty Name="f_md5" ColumnName="f_md5" />
+                <ScalarProperty Name="f_filetype" ColumnName="f_filetype" />
+                <ScalarProperty Name="f_author" ColumnName="f_author" />
+                <ScalarProperty Name="f_table" ColumnName="f_table" />
+                <ScalarProperty Name="f_name" ColumnName="f_name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="date_in" ColumnName="date_in" />
+                <ScalarProperty Name="f_pid" ColumnName="f_pid" />
+                <ScalarProperty Name="f_path" ColumnName="f_path" />
+                <ScalarProperty Name="f_id" ColumnName="f_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbRef">
+            <EntityTypeMapping TypeName="CTDBModel.tbRef">
+              <MappingFragment StoreEntitySet="tbRef">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="doc" ColumnName="doc" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="cite" ColumnName="cite" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="ref_id" ColumnName="ref_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbLabel">
+            <EntityTypeMapping TypeName="CTDBModel.tbLabel">
+              <MappingFragment StoreEntitySet="tbLabel">
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="scan_id" ColumnName="scan_id" />
+                <ScalarProperty Name="label_file_number" ColumnName="label_file_number" />
+                <ScalarProperty Name="label_structure" ColumnName="label_structure" />
+                <ScalarProperty Name="label_file_type" ColumnName="label_file_type" />
+                <ScalarProperty Name="label_author" ColumnName="label_author" />
+                <ScalarProperty Name="label_method" ColumnName="label_method" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="open_status" ColumnName="open_status" />
+                <ScalarProperty Name="date_in" ColumnName="date_in" />
+                <ScalarProperty Name="label_note" ColumnName="label_note" />
+                <ScalarProperty Name="slice_id" ColumnName="slice_id" />
+                <ScalarProperty Name="label_id" ColumnName="label_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbScan">
+            <EntityTypeMapping TypeName="CTDBModel.tbScan">
+              <MappingFragment StoreEntitySet="tbScan">
+                <ScalarProperty Name="ref_id" ColumnName="ref_id" />
+                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+                <ScalarProperty Name="scan_specimen_Body" ColumnName="scan_specimen_Body" />
+                <ScalarProperty Name="scan_para_SourcePower" ColumnName="scan_para_SourcePower" />
+                <ScalarProperty Name="scan_source_save_path" ColumnName="scan_source_save_path" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="open_status" ColumnName="open_status" />
+                <ScalarProperty Name="date_in" ColumnName="date_in" />
+                <ScalarProperty Name="scan_para_LensMultiple" ColumnName="scan_para_LensMultiple" />
+                <ScalarProperty Name="scan_para_RotationStep" ColumnName="scan_para_RotationStep" />
+                <ScalarProperty Name="scan_para_Exposure" ColumnName="scan_para_Exposure" />
+                <ScalarProperty Name="scan_para_VerticalObjectPosition" ColumnName="scan_para_VerticalObjectPosition" />
+                <ScalarProperty Name="scan_para_Camera2Source" ColumnName="scan_para_Camera2Source" />
+                <ScalarProperty Name="scan_para_Object2Source" ColumnName="scan_para_Object2Source" />
+                <ScalarProperty Name="scan_para_ImagePixelSize" ColumnName="scan_para_ImagePixelSize" />
+                <ScalarProperty Name="scan_para_ImageFomat" ColumnName="scan_para_ImageFomat" />
+                <ScalarProperty Name="scan_para_FilesNumber" ColumnName="scan_para_FilesNumber" />
+                <ScalarProperty Name="scan_para_CameraBinning" ColumnName="scan_para_CameraBinning" />
+                <ScalarProperty Name="scan_para_SourceCurrent" ColumnName="scan_para_SourceCurrent" />
+                <ScalarProperty Name="scan_para_SourceVoltage" ColumnName="scan_para_SourceVoltage" />
+                <ScalarProperty Name="scan_para_Camera" ColumnName="scan_para_Camera" />
+                <ScalarProperty Name="scan_para_SourceType" ColumnName="scan_para_SourceType" />
+                <ScalarProperty Name="scan_timeend" ColumnName="scan_timeend" />
+                <ScalarProperty Name="scan_timebegin" ColumnName="scan_timebegin" />
+                <ScalarProperty Name="scan_operator" ColumnName="scan_operator" />
+                <ScalarProperty Name="scan_tag_SpecimenAlive" ColumnName="scan_tag_SpecimenAlive" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="e_id" ColumnName="e_id" />
+                <ScalarProperty Name="scan_id" ColumnName="scan_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSlice">
+            <EntityTypeMapping TypeName="CTDBModel.tbSlice">
+              <MappingFragment StoreEntitySet="tbSlice">
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+                <ScalarProperty Name="slice_para_CutMethod" ColumnName="slice_para_CutMethod" />
+                <ScalarProperty Name="slice_save_path" ColumnName="slice_save_path" />
+                <ScalarProperty Name="date_in" ColumnName="date_in" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="open_status" ColumnName="open_status" />
+                <ScalarProperty Name="slice_para_SliceNumber" ColumnName="slice_para_SliceNumber" />
+                <ScalarProperty Name="slice_para_PixelSize" ColumnName="slice_para_PixelSize" />
+                <ScalarProperty Name="slice_para_ResultFileType" ColumnName="slice_para_ResultFileType" />
+                <ScalarProperty Name="slice_para_ReconstructionProgram" ColumnName="slice_para_ReconstructionProgram" />
+                <ScalarProperty Name="scan_id" ColumnName="scan_id" />
+                <ScalarProperty Name="slice_id" ColumnName="slice_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSpecimen">
+            <EntityTypeMapping TypeName="CTDBModel.tbSpecimen">
+              <MappingFragment StoreEntitySet="tbSpecimen">
+                <ScalarProperty Name="ref_id" ColumnName="ref_id" />
+                <ScalarProperty Name="sp_preserve_status" ColumnName="sp_preserve_status" />
+                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+                <ScalarProperty Name="specimen_dry_save_path" ColumnName="specimen_dry_save_path" />
+                <ScalarProperty Name="specimen_age" ColumnName="specimen_age" />
+                <ScalarProperty Name="specimen_sex" ColumnName="specimen_sex" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="sp_drycirletime" ColumnName="sp_drycirletime" />
+                <ScalarProperty Name="sp_dryinstrument" ColumnName="sp_dryinstrument" />
+                <ScalarProperty Name="sp_dehydrant" ColumnName="sp_dehydrant" />
+                <ScalarProperty Name="sp_spid" ColumnName="sp_spid" />
+                <ScalarProperty Name="sp_place" ColumnName="sp_place" />
+                <ScalarProperty Name="sp_time" ColumnName="sp_time" />
+                <ScalarProperty Name="sp_collector" ColumnName="sp_collector" />
+                <ScalarProperty Name="date_in" ColumnName="date_in" />
+                <ScalarProperty Name="sp_note" ColumnName="sp_note" />
+                <ScalarProperty Name="species_id" ColumnName="species_id" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

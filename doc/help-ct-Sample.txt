@@ -1,0 +1,7 @@
+Example
+
+Manage assistant data related with specimen.
+
+示范
+
+管理 标本 相关  二维标本图像、静态三维图、视频等辅助数据。

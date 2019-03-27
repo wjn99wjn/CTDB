@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3043FF7A-65C5-49B5-AD5C-4538578C5908}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CTDB</RootNamespace>
+    <AssemblyName>CTDB</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\CTDBClient\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>th.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CTDBForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CTDBForm1.Designer.cs">
+      <DependentUpon>CTDBForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CTHelper.cs" />
+    <Compile Include="FormEquipment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEquipment.Designer.cs">
+      <DependentUpon>FormEquipment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormQuick.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormQuick.Designer.cs">
+      <DependentUpon>FormQuick.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormScan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormScan.Designer.cs">
+      <DependentUpon>FormScan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLabel.Designer.cs">
+      <DependentUpon>FormLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSlice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSlice.Designer.cs">
+      <DependentUpon>FormSlice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSpecies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSpecies.Designer.cs">
+      <DependentUpon>FormSpecies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTag.Designer.cs">
+      <DependentUpon>FormTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSpecimen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSpecimen.Designer.cs">
+      <DependentUpon>FormSpecimen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRef.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRef.Designer.cs">
+      <DependentUpon>FormRef.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUpload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpload.Designer.cs">
+      <DependentUpon>FormUpload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelCTDB.Context.cs">
+      <DependentUpon>ModelCTDB.Context.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ModelCTDB.cs">
+      <DependentUpon>ModelCTDB.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ModelCTDB.Designer.cs">
+      <DependentUpon>ModelCTDB.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tbEquipment.cs">
+      <DependentUpon>ModelCTDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbFile.cs">
+      <DependentUpon>ModelCTDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbLabel.cs">
+      <DependentUpon>ModelCTDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbRef.cs">
+      <DependentUpon>ModelCTDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbScan.cs">
+      <DependentUpon>ModelCTDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbSlice.cs">
+      <DependentUpon>ModelCTDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbSpecies.cs">
+      <DependentUpon>ModelCTDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbSpecimen.cs">
+      <DependentUpon>ModelCTDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbTag.cs">
+      <DependentUpon>ModelCTDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbUser.cs">
+      <DependentUpon>ModelCTDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ucFileInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucFileInfo.Designer.cs">
+      <DependentUpon>ucFileInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vQuick.cs">
+      <DependentUpon>ModelCTDB.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CTDBForm1.resx">
+      <DependentUpon>CTDBForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEquipment.resx">
+      <DependentUpon>FormEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormQuick.resx">
+      <DependentUpon>FormQuick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormScan.resx">
+      <DependentUpon>FormScan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLabel.resx">
+      <DependentUpon>FormLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSlice.resx">
+      <DependentUpon>FormSlice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSpecies.resx">
+      <DependentUpon>FormSpecies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTag.resx">
+      <DependentUpon>FormTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSpecimen.resx">
+      <DependentUpon>FormSpecimen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRef.resx">
+      <DependentUpon>FormRef.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUpload.resx">
+      <DependentUpon>FormUpload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="ucFileInfo.resx">
+      <DependentUpon>ucFileInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="ModelCTDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelCTDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelCTDB.edmx.diagram">
+      <DependentUpon>ModelCTDB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="doc\help-ct-Specimen.txt" />
+    <Content Include="doc\th.ico" />
+    <Content Include="th.ico" />
+    <None Include="doc\help-ct-Sample.txt" />
+    <None Include="doc\help-ct-Scan.txt" />
+    <None Include="doc\help-ct.txt" />
+    <Content Include="ModelCTDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelCTDB.edmx</DependentUpon>
+      <LastGenOutput>ModelCTDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelCTDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelCTDB.edmx</DependentUpon>
+      <LastGenOutput>ModelCTDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
