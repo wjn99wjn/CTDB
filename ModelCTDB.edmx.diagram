@@ -8,10 +8,10 @@
         <EntityTypeShape EntityType="CTDBModel.tbEquipment" Width="1.875" PointX="0.5" PointY="5" />
         <EntityTypeShape EntityType="CTDBModel.tbSpecies" Width="1.875" PointX="0.5" PointY="0.625" />
         <EntityTypeShape EntityType="CTDBModel.vQuick" Width="2" PointX="9.625" PointY="0.5" />
-        <EntityTypeShape EntityType="CTDBModel.tbTag" Width="1.75" PointX="12.625" PointY="7.25" />
+        <EntityTypeShape EntityType="CTDBModel.tbTag" Width="1.75" PointX="11.75" PointY="7" />
         <EntityTypeShape EntityType="CTDBModel.tbUser" Width="1.75" PointX="12.875" PointY="0.75" />
-        <EntityTypeShape EntityType="CTDBModel.tbFile" Width="1.5" PointX="13" PointY="3" />
-        <EntityTypeShape EntityType="CTDBModel.tbRef" Width="1.5" PointX="9.875" PointY="6.875" />
+        <EntityTypeShape EntityType="CTDBModel.tbFile" Width="1.5" PointX="12.125" PointY="2.75" />
+        <EntityTypeShape EntityType="CTDBModel.tbRef" Width="1.875" PointX="9.625" PointY="6.875" />
         <EntityTypeShape EntityType="CTDBModel.tbLabel" Width="1.5" PointX="7.5" PointY="0.625" />
         <EntityTypeShape EntityType="CTDBModel.tbScan" Width="1.75" PointX="5.125" PointY="0.625" />
         <EntityTypeShape EntityType="CTDBModel.tbSlice" Width="1.5" PointX="7.5" PointY="4.75" />
