@@ -44,6 +44,8 @@ namespace CTDB
         }
 
         public event EventHandler UpdateFile;
+        public event EventHandler OpenFileDialog;
+        public event EventHandler CloseFileDialog;
         //public event EventHandler AddFile;
 
         void refrash()
@@ -85,10 +87,14 @@ namespace CTDB
             if (ParaDatasetID == 0) return;
             if (ParaTable == "") return;
 
+
             FormUpload dlg = new FormUpload();
             dlg.ParaDatasetID = ParaDatasetID;
             dlg.ParaTable = ParaTable;
             dlg.ParaFileType = (cbFileType.SelectedItem as tbTag).tag_id;
+
+
+            if (OpenFileDialog != null) OpenFileDialog(sender, e);
             dlg.ShowDialog();
 
 

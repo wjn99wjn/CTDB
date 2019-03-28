@@ -3,7 +3,7 @@ using System.Collections;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-
+using System.IO;
 namespace CTDB
 {
     public partial class FormScan : Form
@@ -24,6 +24,11 @@ namespace CTDB
             cscSpecimen.DataSource = FormLogin.LoadDataA("tbSpecimen");
             cscSpecimen.DisplayMember = "Abstract";
 
+            cscRef.DataSource = FormLogin.LoadDataF("tbRef");
+            cscRef.DisplayMember = "cite";
+            cscRef.SelectedIndex = 3;
+
+
             ucFileInfo1.ParaTable = "ctdb-scan";
 
             //var q = from c in ct.tbTag where c.tag_pid == 10 select c;
@@ -36,6 +41,9 @@ namespace CTDB
             CTHelper.setControlTag(cscFileType, 51, 52);
             CTHelper.setControlTag(cscSourceType, 76, 75);
             CTHelper.setControlTag(cscCamera, 77, 78);
+            CTHelper.setControlTag(cscCameraBinning, 101, 107);//2x2
+            CTHelper.setControlTag(cscLensMultiple, 105, 102);//0.4
+
             cscTimeBegin.Text = DateTime.Now.ToShortDateString();
 
             //ucFileInfo1.Enabled = false;
@@ -43,7 +51,6 @@ namespace CTDB
             //dataGridView1.DataSource = ct.tbScan.OrderByDescending(s => s.scan_id).ToList<tbScan>();
             //  dataGridView1.DataSource = FormLogin.LoadDataA("tbScan");
             FormLogin.LoadData(dataGridView1, "tbScan", "scan_id|e_id|sp_id|Abstract|scan_para_FilesNumber|UserId");
-
         }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
@@ -82,6 +89,7 @@ namespace CTDB
                 cscCamera2Source.Text = s.scan_para_Camera2Source.ToString();
                 cscObejct2Souce.Text = s.scan_para_Object2Source.ToString();
                 cscVerticalObjectPosition.Text = s.scan_para_VerticalObjectPosition.ToString();
+                cscPixelSize.Text = s.scan_para_PixelSize.ToString();
                 cscRotationStep.Text = s.scan_para_RotationStep.ToString();
                 cscExposure.Text = s.scan_para_Exposure.ToString();
 
@@ -90,6 +98,8 @@ namespace CTDB
 
                 CTHelper.setControl(cscOpenStatus, s.open_status);
                 ucFileInfo1.ParaDatasetID = s.scan_id;
+
+                CTHelper.setControl(cscRef, s.ref_id);
 
                 mitDelete.Enabled = dataGridView1.Rows.Count > 0;
             }
@@ -122,6 +132,7 @@ namespace CTDB
             s.scan_para_Camera2Source = double.Parse(cscCamera2Source.Text);
             s.scan_para_Object2Source = double.Parse(cscObejct2Souce.Text);
             s.scan_para_VerticalObjectPosition = double.Parse(cscVerticalObjectPosition.Text);
+            s.scan_para_PixelSize = double.Parse(cscPixelSize.Text);
             s.scan_para_RotationStep = double.Parse(cscRotationStep.Text);
             s.scan_para_Exposure = double.Parse(cscExposure.Text);
 
@@ -129,6 +140,7 @@ namespace CTDB
             s.scan_source_save_path = "-";
             s.open_status = (cscOpenStatus.SelectedItem as tbTag).tag_id;
             s.date_in = DateTime.Now;
+            s.ref_id = (cscRef.SelectedItem as tbRef).ref_id;
 
             s.UserId = Guid.Parse(CTHelper.GetConfig("userid"));
 
@@ -239,6 +251,7 @@ namespace CTDB
 
         private void ucFileInfo1_UpdateFile(object sender, EventArgs e)
         {
+            this.Show();
             int id = int.Parse(cscID.Text);
             using (CTDBEntities ct = new CTDBEntities())
             {
@@ -249,5 +262,34 @@ namespace CTDB
             }
             refreshDatagridview(id.ToString());
         }
+        private void ucFileInfo1_OpenFileDialog(object sender, EventArgs e) { this.Hide(); }
+
+        private void btnOCR_Click(object sender, EventArgs e)
+        {
+            return;
+            if (!int.TryParse(cscID.Text, out int id)) return;
+            OpenFileDialog d = new OpenFileDialog();
+            d.Title = "挑选参数图";
+            d.Filter = "Photos (*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp";
+            if (d.ShowDialog() == DialogResult.OK)
+            {
+                string md5 = CTHelper.GetMD5Hash(d.FileName);
+                string f = CTHelper.CommonPath("app") + "\\" + md5 + ".pdf";
+                File.Copy(d.FileName, f);
+                string r = CTHelper.UploadAPI(f, id.ToString(), "upload", "ctdb-scanpara", "iozct", CTHelper.GetConfig("userid"));
+                Console.Write(r);
+                if (File.Exists(f)) File.Delete(f);
+
+                if (r == "")
+                {
+                    //update tFile 表
+
+                }
+            }
+        }
+
+
+
+
     }
 }

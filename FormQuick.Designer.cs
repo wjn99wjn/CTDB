@@ -32,8 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormQuick));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mitDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.mitAddFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.mitDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
@@ -106,6 +106,7 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
@@ -129,19 +130,19 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(150, 48);
             // 
-            // mitDelete
-            // 
-            this.mitDelete.Enabled = false;
-            this.mitDelete.Name = "mitDelete";
-            this.mitDelete.Size = new System.Drawing.Size(149, 22);
-            this.mitDelete.Text = "Delete";
-            // 
             // mitAddFile
             // 
             this.mitAddFile.Name = "mitAddFile";
             this.mitAddFile.Size = new System.Drawing.Size(149, 22);
             this.mitAddFile.Text = "Add Slice Files";
             this.mitAddFile.Click += new System.EventHandler(this.mitAddFile_Click);
+            // 
+            // mitDelete
+            // 
+            this.mitDelete.Enabled = false;
+            this.mitDelete.Name = "mitDelete";
+            this.mitDelete.Size = new System.Drawing.Size(149, 22);
+            this.mitDelete.Text = "Delete";
             // 
             // btnOK
             // 
@@ -722,10 +723,8 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(888, 666);
             this.Name = "FormQuick";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CTDB - Quick Operation From";
             this.Load += new System.EventHandler(this.CTDBFormAddSpecies_Load);

@@ -18,7 +18,11 @@ namespace CTDB
         public static void SetColumn(DataGridView dg, string name)
         {
             for (int i = 0; i < dg.ColumnCount; i++)
+            {
                 dg.Columns[i].Visible = name.Contains(dg.Columns[i].Name);
+                if (dg.Columns[i].Visible)
+                    dg.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
+            }
             dg.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dg.AllowUserToOrderColumns = true;
         }
@@ -91,6 +95,8 @@ namespace CTDB
         {
             if (CTHelper.GetConfig("username") != "")
                 tbUser.Text = CTHelper.GetConfig("username");
+            if (CTHelper.GetConfig("userkey") != "")
+                tbPassword.Text = CTHelper.GetConfig("userkey");
         }
 
         private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
@@ -114,6 +120,7 @@ namespace CTDB
                     JObject jouser = JObject.Parse(jo.GetValue("returnUser").ToString());
                     userid = jouser.GetValue("id").ToString();
                     CTHelper.SetConfig("userid", userid);
+                    CTHelper.SetConfig("userkey", tbPassword.Text.Trim());
                     CTHelper.SetConfig("mail", jouser.GetValue("email").ToString());
                     CTHelper.SetConfig("username", user);
                     System.Configuration.ConfigurationManager.RefreshSection("appSettings");

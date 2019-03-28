@@ -33,8 +33,8 @@ namespace CTDB
         public virtual DbSet<tbFile> tbFile { get; set; }
         public virtual DbSet<tbRef> tbRef { get; set; }
         public virtual DbSet<tbLabel> tbLabel { get; set; }
-        public virtual DbSet<tbScan> tbScan { get; set; }
         public virtual DbSet<tbSlice> tbSlice { get; set; }
         public virtual DbSet<tbSpecimen> tbSpecimen { get; set; }
+        public virtual DbSet<tbScan> tbScan { get; set; }
     }
 }

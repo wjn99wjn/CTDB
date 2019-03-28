@@ -199,5 +199,9 @@ namespace CTDB
             ucFileInfo1.btnFileAdd_Click(sender, e);
         }
 
+        private void ucFileInfo1_OpenFileDialog(object sender, EventArgs e) { this.Hide(); }
+        private void ucFileInfo1_UpdateFile(object sender, EventArgs e) { this.Show(); }
+
+
     }
 }

@@ -203,5 +203,9 @@ namespace CTDB
         }
         //help=====
         private void label62_DoubleClick(object sender, EventArgs e) { new About((string)((sender as Label).Tag)).ShowDialog(); }
+
+        private void ucFileInfo1_OpenFileDialog(object sender, EventArgs e) { this.Hide(); }
+        private void ucFileInfo1_UpdateFile(object sender, EventArgs e) { this.Show(); }
+
     }
 }

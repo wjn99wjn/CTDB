@@ -37,6 +37,8 @@
             this.cmitAddFile3D = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.clLabelNo = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.ucFileInfo1 = new CTDB.ucFileInfo();
             this.btnMDScan = new System.Windows.Forms.Button();
             this.clCutMethod = new System.Windows.Forms.ComboBox();
@@ -54,8 +56,6 @@
             this.bsmUpdate = new System.Windows.Forms.Button();
             this.bsmDelete = new System.Windows.Forms.Button();
             this.bsmAdd = new System.Windows.Forms.Button();
-            this.clLabelNo = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.cscSliceNo = new System.Windows.Forms.Label();
             this.clSliceNo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -152,14 +152,34 @@
             this.panel1.Size = new System.Drawing.Size(872, 183);
             this.panel1.TabIndex = 46;
             // 
+            // clLabelNo
+            // 
+            this.clLabelNo.AutoSize = true;
+            this.clLabelNo.Location = new System.Drawing.Point(173, 9);
+            this.clLabelNo.Name = "clLabelNo";
+            this.clLabelNo.Size = new System.Drawing.Size(11, 12);
+            this.clLabelNo.TabIndex = 150;
+            this.clLabelNo.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(102, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 12);
+            this.label2.TabIndex = 149;
+            this.label2.Text = "LabelCount";
+            // 
             // ucFileInfo1
             // 
             this.ucFileInfo1.Location = new System.Drawing.Point(334, 32);
             this.ucFileInfo1.Name = "ucFileInfo1";
             this.ucFileInfo1.ParaDatasetID = 0;
-            this.ucFileInfo1.ParaTable = "";
+            this.ucFileInfo1.ParaTable = "tbSlice";
             this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
             this.ucFileInfo1.TabIndex = 116;
+            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
+            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
             // 
             // btnMDScan
             // 
@@ -217,6 +237,7 @@
             // 
             // clPixelSize
             // 
+            this.clPixelSize.Enabled = false;
             this.clPixelSize.Location = new System.Drawing.Point(156, 121);
             this.clPixelSize.Name = "clPixelSize";
             this.clPixelSize.Size = new System.Drawing.Size(149, 21);
@@ -235,7 +256,7 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(11, 121);
+            this.label43.Location = new System.Drawing.Point(12, 125);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(95, 12);
             this.label43.TabIndex = 106;
@@ -307,24 +328,6 @@
             this.bsmAdd.UseVisualStyleBackColor = true;
             this.bsmAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // clLabelNo
-            // 
-            this.clLabelNo.AutoSize = true;
-            this.clLabelNo.Location = new System.Drawing.Point(173, 9);
-            this.clLabelNo.Name = "clLabelNo";
-            this.clLabelNo.Size = new System.Drawing.Size(11, 12);
-            this.clLabelNo.TabIndex = 150;
-            this.clLabelNo.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(102, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
-            this.label2.TabIndex = 149;
-            this.label2.Text = "LabelCount";
-            // 
             // cscSliceNo
             // 
             this.cscSliceNo.AutoSize = true;
@@ -352,10 +355,8 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(888, 666);
             this.Name = "FormSlice";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CTDB - Slice Images Information";
             this.Load += new System.EventHandler(this.FormSlice_Load);

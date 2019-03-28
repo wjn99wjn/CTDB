@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CTDB
 {
@@ -18,15 +19,28 @@ namespace CTDB
         /// <param name="s"></param>
         void setDBValue(tbRef s)
         {
+            s.UserId = Guid.Parse(CTHelper.GetConfig("userid"));
             s.title = refTitle.Text;
             s.url = refURL.Text;
             s.cite = refCite.Text;
 
             s.author = refAuthor.Text;
             s.year = int.Parse(refYear.Text);
-            s.doc = refDoc.Text;
 
-            s.UserId = Guid.Parse(CTHelper.GetConfig("userid"));
+            s.doc = refDoc.Text;
+            if (File.Exists(s.doc))
+            {
+                string md5 = CTHelper.GetMD5Hash(s.doc);
+                string f = CTHelper.CommonPath("app") + "\\" + md5 + ".pdf";
+                File.Copy(s.doc, f);
+                string r = CTHelper.UploadAPI(f, s.ref_id.ToString(), "upload", "ctdb-ref", "iozct", s.UserId.ToString());
+                Console.Write(r);
+                if (File.Exists(f)) File.Delete(f);
+
+                if (r == "") s.doc = md5;
+            }
+            
+
         }
         private void bSpeciesAdd_Click(object sender, EventArgs e)
         {
@@ -113,6 +127,12 @@ namespace CTDB
             refAuthor.Text = refCite.Text.Replace(title, "#").Split('#')[0].ToString().Trim();
         }
 
-
+        private void refDoc_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog d = new OpenFileDialog();
+            d.Filter = "Document (*.pdf)|*.pdf";
+            if (d.ShowDialog() == DialogResult.OK)
+                refDoc.Text = d.FileName;
+        }
     }
 }

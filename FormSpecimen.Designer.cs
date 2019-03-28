@@ -51,6 +51,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.csmPS = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.csmDriedSpecimenSavePosition = new System.Windows.Forms.TextBox();
             this.csmSex = new System.Windows.Forms.ComboBox();
             this.csmAge = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
@@ -75,8 +77,6 @@
             this.bsmUpdate = new System.Windows.Forms.Button();
             this.bsmDelete = new System.Windows.Forms.Button();
             this.bsmAdd = new System.Windows.Forms.Button();
-            this.csmDriedSpecimenSavePosition = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -193,6 +193,8 @@
             this.ucFileInfo1.ParaTable = "";
             this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
             this.ucFileInfo1.TabIndex = 104;
+            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
+            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
             // 
             // groupBox4
             // 
@@ -314,6 +316,23 @@
             this.label2.Size = new System.Drawing.Size(95, 12);
             this.label2.TabIndex = 105;
             this.label2.Text = "Preserve Status";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(4, 107);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(47, 12);
+            this.label10.TabIndex = 76;
+            this.label10.Text = "Curator";
+            // 
+            // csmDriedSpecimenSavePosition
+            // 
+            this.csmDriedSpecimenSavePosition.Location = new System.Drawing.Point(112, 101);
+            this.csmDriedSpecimenSavePosition.Name = "csmDriedSpecimenSavePosition";
+            this.csmDriedSpecimenSavePosition.Size = new System.Drawing.Size(179, 21);
+            this.csmDriedSpecimenSavePosition.TabIndex = 67;
+            this.csmDriedSpecimenSavePosition.Text = "Zong Le";
             // 
             // csmSex
             // 
@@ -560,23 +579,6 @@
             this.bsmAdd.UseVisualStyleBackColor = true;
             this.bsmAdd.Click += new System.EventHandler(this.bsmAdd_Click);
             // 
-            // csmDriedSpecimenSavePosition
-            // 
-            this.csmDriedSpecimenSavePosition.Location = new System.Drawing.Point(112, 101);
-            this.csmDriedSpecimenSavePosition.Name = "csmDriedSpecimenSavePosition";
-            this.csmDriedSpecimenSavePosition.Size = new System.Drawing.Size(179, 21);
-            this.csmDriedSpecimenSavePosition.TabIndex = 67;
-            this.csmDriedSpecimenSavePosition.Text = "Zong Le";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 107);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(47, 12);
-            this.label10.TabIndex = 76;
-            this.label10.Text = "Curator";
-            // 
             // FormSpecimen
             // 
             this.AcceptButton = this.btnOK;
@@ -586,10 +588,8 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(888, 666);
             this.Name = "FormSpecimen";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CTDB - Specimen Information";
             this.Load += new System.EventHandler(this.CTDBFormSpecimen_Load);

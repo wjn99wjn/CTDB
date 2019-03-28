@@ -292,7 +292,6 @@
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEquipment";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CTDB -  Equipment";
             this.Load += new System.EventHandler(this.CTDBFormAddSpecies_Load);

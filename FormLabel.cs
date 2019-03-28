@@ -148,6 +148,7 @@ namespace CTDB
 
         private void ucFileInfo1_UpdateFile(object sender, EventArgs e)
         {
+            this.Show();
             using (CTDBEntities ct = new CTDBEntities())
             {
                 //更新文件数量
@@ -160,6 +161,7 @@ namespace CTDB
             }
         }
 
+        private void ucFileInfo1_OpenFileDialog(object sender, EventArgs e) { this.Hide(); }
 
     }
 }

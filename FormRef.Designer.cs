@@ -99,6 +99,7 @@
             this.label15.Size = new System.Drawing.Size(53, 12);
             this.label15.TabIndex = 39;
             this.label15.Text = "Document";
+            this.label15.Click += new System.EventHandler(this.refDoc_Click);
             // 
             // label13
             // 
@@ -123,6 +124,7 @@
             this.refDoc.Size = new System.Drawing.Size(348, 21);
             this.refDoc.TabIndex = 32;
             this.refDoc.Text = "-";
+            this.refDoc.Click += new System.EventHandler(this.refDoc_Click);
             // 
             // label5
             // 
@@ -279,9 +281,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimizeBox = false;
             this.Name = "FormRef";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CTDB - Data Source or Cite Reference";
             this.Load += new System.EventHandler(this.CTDBFormAddSpecies_Load);

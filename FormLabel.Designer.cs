@@ -139,6 +139,7 @@
             this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
             this.ucFileInfo1.TabIndex = 114;
             this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
+            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
             // 
             // clbStructure
             // 
@@ -306,10 +307,8 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(888, 666);
             this.Name = "FormLabel";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "CTDB - Label Images / Models Information";
             this.Load += new System.EventHandler(this.FormLabel_Load);
