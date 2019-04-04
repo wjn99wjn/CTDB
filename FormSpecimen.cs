@@ -26,7 +26,7 @@ namespace CTDB
             //this.dataGridView1.AutoGenerateColumns = false;
 
             CTDBEntities ct = new CTDBEntities();
-            csmSpecies.DataSource = FormLogin.LoadDataA("tbSpecies");
+            csmSpecies.DataSource = FormLogin.LoadDataF("tbSpecies");
             csmSpecies.DisplayMember = "species_note";
 
             refreshdata();
@@ -89,6 +89,9 @@ namespace CTDB
 
                 ucFileInfo1.ParaDatasetID = s.sp_id;
                 mitDelete.Enabled = dataGridView1.Rows.Count > 0;
+
+                lbSPcount.Text = ct.tbScan.Where(c => c.sp_id == id).Count<tbScan>().ToString();
+
             }
         }
 

@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using Newtonsoft.Json.Linq;
 
 //using System.Web.Script.Serialization;
 
@@ -16,8 +14,15 @@ namespace CTDB
     {
         public FormSpecies() { InitializeComponent(); }
         private void FormSpecies_Activated(object sender, EventArgs e) { cspeciesNote.Focus(); }
-        private void CTDBFormAddSpecies_Load(object sender, EventArgs e) { refreshdata(sender, e); }
         private void btnOK_Click(object sender, EventArgs e) { this.Close(); }
+
+        private void CTDBFormAddSpecies_Load(object sender, EventArgs e)
+        {
+            CTHelper.setControlTag(cspeciesOrder, 108);
+            cspeciesOrder.DisplayMember = "tag_tag";
+
+            refreshdata(sender, e);
+        }
 
         //operations
         /// <summary> set values </summary>
@@ -79,8 +84,12 @@ namespace CTDB
         private void refreshdata(object sender, EventArgs e, int rowIndex = -1)
         {
             dataGridView1.DataSource = null;
-            CTDBEntities ct = new CTDBEntities();
-            dataGridView1.DataSource = ct.tbSpecies.ToList<tbSpecies>();
+            //CTDBEntities ct = new CTDBEntities();
+            //dataGridView1.DataSource = ct.tbSpecies.ToList<tbSpecies>();
+            dataGridView1.DataSource = FormLogin.LoadDataF("tbSpecies");
+            FormLogin.SetColumn(dataGridView1, "species_id|species_latin|species_Order|species_Family|species_CHN|species_note");
+
+
             if (dataGridView1.DataSource != null)
                 if (rowIndex > 0)
                 {
@@ -94,7 +103,9 @@ namespace CTDB
         {
             if (dataGridView1.SelectedRows.Count == 1)
             {
-                int id = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
+                int rid = dataGridView1.SelectedRows[0].Index;
+                int id = ((dataGridView1.DataSource as ArrayList)[rid] as tbSpecies).species_id;
+
                 CTDBEntities ct = new CTDBEntities();
                 var q = from c in ct.tbSpecies
                         where c.species_id == id
@@ -146,8 +157,30 @@ namespace CTDB
                     //MessageBox.Show(dt.Rows[0][0].ToString());
                     cspeciesCHN.Text = dt.Rows[0]["tag_tag"].ToString();
                     cspeciesLatin.Text = dt.Rows[0]["tag_En"].ToString();
-
                 }
+        }
+        void autoParse(string s)
+        {
+            List<FormItemModel> formDatas = new List<FormItemModel>();
+            formDatas.Add(new FormItemModel() { Key = "src", Value = s });
+            formDatas.Add(new FormItemModel() { Key = "para", Value = "trans" });
+            formDatas.Add(new FormItemModel() { Key = "vcode", Value = "iozName" });
+            string r = CTHelper.PostForm(CTHelper.GetConfig("nameParseUrl"), formDatas);
+
+            
+            Console.Write(r);
+            //MessageBox.Show(r);
+            //cspeciesLatin.Text = cspeciesGenus.Text.Trim() + " " + cspeciesSpecies.Text.Trim();
+
+            //解析
+            JObject jo = JObject.Parse(r);
+            if (jo.GetValue("la") != null)
+            {
+                string[] sl = jo.GetValue("la").ToString().Split(' ');
+                cspeciesGenus.Text = sl[0];
+                if (sl.Length > 1)
+                    cspeciesSpecies.Text = sl[1];
+            }
         }
 
         private void cspeciesNote_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -157,6 +190,12 @@ namespace CTDB
                 autoMatch(cspeciesNote.Text.Trim());
             }
         }
+
+        private void cspeciesLatin_TextChanged(object sender, EventArgs e)
+        {
+            autoParse(cspeciesLatin.Text);
+        }
+
 
     }
 }

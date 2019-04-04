@@ -43,7 +43,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.cspeciesFamily = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.cspeciesOrder = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.bSpeciesAdd = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -52,6 +51,7 @@
             this.cspeciesNote = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Close = new System.Windows.Forms.Button();
+            this.cspeciesOrder = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -96,7 +96,7 @@
             // 
             // cspeciesCHN
             // 
-            this.cspeciesCHN.Location = new System.Drawing.Point(55, 87);
+            this.cspeciesCHN.Location = new System.Drawing.Point(72, 87);
             this.cspeciesCHN.Name = "cspeciesCHN";
             this.cspeciesCHN.Size = new System.Drawing.Size(165, 21);
             this.cspeciesCHN.TabIndex = 40;
@@ -116,38 +116,41 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(5, 64);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 12);
+            this.label13.Size = new System.Drawing.Size(65, 12);
             this.label13.TabIndex = 37;
-            this.label13.Text = "Latin";
+            this.label13.Text = "Latin Full";
             // 
             // cspeciesLatin
             // 
-            this.cspeciesLatin.Location = new System.Drawing.Point(55, 61);
+            this.cspeciesLatin.Location = new System.Drawing.Point(72, 61);
             this.cspeciesLatin.Name = "cspeciesLatin";
             this.cspeciesLatin.Size = new System.Drawing.Size(165, 21);
             this.cspeciesLatin.TabIndex = 35;
             this.cspeciesLatin.Text = "-";
+            this.cspeciesLatin.TextChanged += new System.EventHandler(this.cspeciesLatin_TextChanged);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(240, 142);
+            this.label12.Location = new System.Drawing.Point(5, 118);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(47, 12);
+            this.label12.Size = new System.Drawing.Size(71, 12);
             this.label12.TabIndex = 34;
-            this.label12.Text = "Species";
+            this.label12.Text = "Latin (G+S)";
             // 
             // cspeciesSpecies
             // 
-            this.cspeciesSpecies.Location = new System.Drawing.Point(293, 139);
+            this.cspeciesSpecies.Enabled = false;
+            this.cspeciesSpecies.Location = new System.Drawing.Point(72, 115);
             this.cspeciesSpecies.Name = "cspeciesSpecies";
-            this.cspeciesSpecies.Size = new System.Drawing.Size(104, 21);
+            this.cspeciesSpecies.Size = new System.Drawing.Size(165, 21);
             this.cspeciesSpecies.TabIndex = 33;
             this.cspeciesSpecies.Text = "sp.";
             // 
             // cspeciesGenus
             // 
-            this.cspeciesGenus.Location = new System.Drawing.Point(293, 112);
+            this.cspeciesGenus.Enabled = false;
+            this.cspeciesGenus.Location = new System.Drawing.Point(310, 115);
             this.cspeciesGenus.Name = "cspeciesGenus";
             this.cspeciesGenus.Size = new System.Drawing.Size(104, 21);
             this.cspeciesGenus.TabIndex = 32;
@@ -156,7 +159,8 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(240, 115);
+            this.label5.Enabled = false;
+            this.label5.Location = new System.Drawing.Point(257, 117);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 12);
             this.label5.TabIndex = 31;
@@ -164,7 +168,7 @@
             // 
             // cspeciesFamily
             // 
-            this.cspeciesFamily.Location = new System.Drawing.Point(293, 86);
+            this.cspeciesFamily.Location = new System.Drawing.Point(310, 89);
             this.cspeciesFamily.Name = "cspeciesFamily";
             this.cspeciesFamily.Size = new System.Drawing.Size(104, 21);
             this.cspeciesFamily.TabIndex = 30;
@@ -173,24 +177,16 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(240, 88);
+            this.label10.Location = new System.Drawing.Point(257, 91);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 12);
             this.label10.TabIndex = 29;
             this.label10.Text = "Family";
             // 
-            // cspeciesOrder
-            // 
-            this.cspeciesOrder.Location = new System.Drawing.Point(293, 60);
-            this.cspeciesOrder.Name = "cspeciesOrder";
-            this.cspeciesOrder.Size = new System.Drawing.Size(104, 21);
-            this.cspeciesOrder.TabIndex = 28;
-            this.cspeciesOrder.Text = "-";
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(240, 63);
+            this.label11.Location = new System.Drawing.Point(257, 65);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 12);
             this.label11.TabIndex = 27;
@@ -227,6 +223,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cspeciesOrder);
             this.panel1.Controls.Add(this.lbSPcount);
             this.panel1.Controls.Add(this.cspeciesNote);
             this.panel1.Controls.Add(this.label1);
@@ -236,7 +233,6 @@
             this.panel1.Controls.Add(this.bSpeciesDel);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.cspeciesID);
-            this.panel1.Controls.Add(this.cspeciesOrder);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.cspeciesCHN);
             this.panel1.Controls.Add(this.cspeciesFamily);
@@ -265,7 +261,7 @@
             // 
             // cspeciesNote
             // 
-            this.cspeciesNote.Location = new System.Drawing.Point(55, 32);
+            this.cspeciesNote.Location = new System.Drawing.Point(72, 32);
             this.cspeciesNote.Name = "cspeciesNote";
             this.cspeciesNote.Size = new System.Drawing.Size(342, 21);
             this.cspeciesNote.TabIndex = 0;
@@ -293,6 +289,15 @@
             this.Close.Text = "Close";
             this.Close.UseVisualStyleBackColor = true;
             this.Close.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // cspeciesOrder
+            // 
+            this.cspeciesOrder.FormattingEnabled = true;
+            this.cspeciesOrder.Location = new System.Drawing.Point(310, 61);
+            this.cspeciesOrder.Name = "cspeciesOrder";
+            this.cspeciesOrder.Size = new System.Drawing.Size(104, 20);
+            this.cspeciesOrder.TabIndex = 146;
+            this.cspeciesOrder.Text = "Coleoptera";
             // 
             // FormSpecies
             // 
@@ -329,7 +334,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox cspeciesFamily;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox cspeciesOrder;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button bSpeciesAdd;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -338,5 +342,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbSPcount;
         private System.Windows.Forms.Button Close;
+        private System.Windows.Forms.ComboBox cspeciesOrder;
     }
 }

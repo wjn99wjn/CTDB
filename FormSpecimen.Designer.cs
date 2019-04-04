@@ -39,7 +39,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label63 = new System.Windows.Forms.Label();
-            this.ucFileInfo1 = new CTDB.ucFileInfo();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.csmID = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -77,6 +76,9 @@
             this.bsmUpdate = new System.Windows.Forms.Button();
             this.bsmDelete = new System.Windows.Forms.Button();
             this.bsmAdd = new System.Windows.Forms.Button();
+            this.lbSPcount = new System.Windows.Forms.Label();
+            this.lbScancount = new System.Windows.Forms.Label();
+            this.ucFileInfo1 = new CTDB.ucFileInfo();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -185,19 +187,9 @@
             this.label63.Text = "？";
             this.label63.DoubleClick += new System.EventHandler(this.label62_DoubleClick);
             // 
-            // ucFileInfo1
-            // 
-            this.ucFileInfo1.Location = new System.Drawing.Point(667, 24);
-            this.ucFileInfo1.Name = "ucFileInfo1";
-            this.ucFileInfo1.ParaDatasetID = 0;
-            this.ucFileInfo1.ParaTable = "";
-            this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
-            this.ucFileInfo1.TabIndex = 104;
-            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
-            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
-            // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.lbSPcount);
             this.groupBox4.Controls.Add(this.csmID);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.label3);
@@ -579,6 +571,36 @@
             this.bsmAdd.UseVisualStyleBackColor = true;
             this.bsmAdd.Click += new System.EventHandler(this.bsmAdd_Click);
             // 
+            // lbSPcount
+            // 
+            this.lbSPcount.AutoSize = true;
+            this.lbSPcount.Location = new System.Drawing.Point(222, 0);
+            this.lbSPcount.Name = "lbSPcount";
+            this.lbSPcount.Size = new System.Drawing.Size(11, 12);
+            this.lbSPcount.TabIndex = 98;
+            this.lbSPcount.Text = "0";
+            // 
+            // lbScancount
+            // 
+            this.lbScancount.AutoSize = true;
+            this.lbScancount.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbScancount.Location = new System.Drawing.Point(222, 0);
+            this.lbScancount.Name = "lbScancount";
+            this.lbScancount.Size = new System.Drawing.Size(11, 12);
+            this.lbScancount.TabIndex = 98;
+            this.lbScancount.Text = "0";
+            // 
+            // ucFileInfo1
+            // 
+            this.ucFileInfo1.Location = new System.Drawing.Point(667, 24);
+            this.ucFileInfo1.Name = "ucFileInfo1";
+            this.ucFileInfo1.ParaDatasetID = 0;
+            this.ucFileInfo1.ParaTable = "";
+            this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
+            this.ucFileInfo1.TabIndex = 104;
+            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
+            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
+            // 
             // FormSpecimen
             // 
             this.AcceptButton = this.btnOK;
@@ -657,5 +679,7 @@
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox csmDriedSpecimenSavePosition;
+        private System.Windows.Forms.Label lbSPcount;
+        private System.Windows.Forms.Label lbScancount;
     }
 }
