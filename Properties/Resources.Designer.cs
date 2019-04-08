@@ -144,6 +144,23 @@ namespace CTDB.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tag
+        ///
+        ///Manage assistant data Tag.
+        ///
+        ///
+        ///标签管理：
+        ///管理 数据库一些枚举型的数据标签，包括一些固定方法、术语等标准信息数据，用于组织元数据。
+        ///
+        ///.
+        /// </summary>
+        internal static string help_ct_Tag {
+            get {
+                return ResourceManager.GetString("help_ct_Tag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon th {

@@ -9,32 +9,10 @@ namespace CTDB
     public partial class FormScan : Form
     {
         public FormScan() { InitializeComponent(); }
-        private void CTDBFormScan_Load(object sender, EventArgs e) { refreshdata(sender, e); }
-        private void btnOK_Click(object sender, EventArgs e) { this.Close(); }
-
-        /// <summary>load/ refresh </summary>
-        private void refreshdata(object sender, EventArgs e)
+        private void CTDBFormScan_Load(object sender, EventArgs e)
         {
-            CTDBEntities ct = new CTDBEntities();
-
-            cscEquipment.DataSource = ct.tbEquipment.ToList<tbEquipment>();
-            cscEquipment.DisplayMember = "e_nameA";
-
-            //cscSpecimen.DataSource = ct.tbSpecimen.ToList<tbSpecimen>();
-            cscSpecimen.DataSource = FormLogin.LoadDataA("tbSpecimen");
-            cscSpecimen.DisplayMember = "Abstract";
-
-            cscRef.DataSource = FormLogin.LoadDataF("tbRef");
-            cscRef.DisplayMember = "cite";
-            cscRef.SelectedIndex = 3;
-
-
             ucFileInfo1.ParaTable = "ctdb-scan";
 
-            //var q = from c in ct.tbTag where c.tag_pid == 10 select c;
-            //cscTagSpecimenAlive.DataSource = q.ToList<tbTag>();
-            //cscTagSpecimenAlive.ValueMember = "tag_id";
-            //cscTagSpecimenAlive.DisplayMember = "tag_tag";
             CTHelper.setControlTag(cscTagSpecimenAlive, 10);
             CTHelper.setControlTag(cscTagSpecimenParty, 9);
             CTHelper.setControlTag(cscOpenStatus, 31, 30);
@@ -45,12 +23,33 @@ namespace CTDB
             CTHelper.setControlTag(cscLensMultiple, 105, 102);//0.4
 
             cscTimeBegin.Text = DateTime.Now.ToShortDateString();
+            refreshdata(sender, e);
+        }
+        private void btnOK_Click(object sender, EventArgs e) { this.Close(); }
 
-            //ucFileInfo1.Enabled = false;
+        /// <summary>load/ refresh </summary>
+        private void refreshdata(object sender, EventArgs e, int rowIndex = -1)
+        {
+            CTDBEntities ct = new CTDBEntities();
 
-            //dataGridView1.DataSource = ct.tbScan.OrderByDescending(s => s.scan_id).ToList<tbScan>();
-            //  dataGridView1.DataSource = FormLogin.LoadDataA("tbScan");
+            cscEquipment.DataSource = ct.tbEquipment.ToList<tbEquipment>();
+            cscEquipment.DisplayMember = "e_nameA";
+
+            cscSpecimen.DataSource = FormLogin.LoadDataA("tbSpecimen");
+            cscSpecimen.DisplayMember = "Abstract";
+
+            cscRef.DataSource = FormLogin.LoadDataF("tbRef");
+            cscRef.DisplayMember = "cite";
+            cscRef.SelectedIndex = 3;
+
             FormLogin.LoadData(dataGridView1, "tbScan", "scan_id|e_id|sp_id|Abstract|scan_para_FilesNumber|UserId");
+
+            if (dataGridView1.DataSource != null)
+                if (rowIndex > 0)
+                {
+                    dataGridView1.FirstDisplayedScrollingRowIndex = rowIndex;
+                    dataGridView1.Rows[rowIndex].Selected = true;
+                }
         }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
@@ -182,13 +181,14 @@ namespace CTDB
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            int rowid = CTHelper.GetRowIndex(dataGridView1);
             int id = int.Parse(cscID.Text);
             using (var ct = new CTDBEntities())
             {
                 var s = ct.tbScan.FirstOrDefault(st => st.scan_id == id);
                 setDBValue(s);
                 ct.SaveChanges();
-                refreshdata(null, null);
+                refreshdata(null, null, rowid);
             }
         }
         private void btnDelete_Click(object sender, EventArgs e)

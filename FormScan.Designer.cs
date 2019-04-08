@@ -36,8 +36,12 @@
             this.mitDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cscRef = new System.Windows.Forms.ComboBox();
+            this.ucFileInfo1 = new CTDB.ucFileInfo();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.cscPixelSize = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
             this.cscObejct2Souce = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.cscCamera2Source = new System.Windows.Forms.TextBox();
@@ -68,6 +72,8 @@
             this.cscTagSpecimenAlive = new System.Windows.Forms.ComboBox();
             this.cscTagSpecimenParty = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cscLensMultiple = new System.Windows.Forms.ComboBox();
+            this.cscCameraBinning = new System.Windows.Forms.ComboBox();
             this.cscFileType = new System.Windows.Forms.ComboBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -91,12 +97,6 @@
             this.bsmUpdate = new System.Windows.Forms.Button();
             this.bsmDelete = new System.Windows.Forms.Button();
             this.bsmAdd = new System.Windows.Forms.Button();
-            this.ucFileInfo1 = new CTDB.ucFileInfo();
-            this.cscPixelSize = new System.Windows.Forms.TextBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.cscCameraBinning = new System.Windows.Forms.ComboBox();
-            this.cscLensMultiple = new System.Windows.Forms.ComboBox();
-            this.cscRef = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -182,6 +182,26 @@
             this.panel1.Size = new System.Drawing.Size(872, 335);
             this.panel1.TabIndex = 46;
             // 
+            // cscRef
+            // 
+            this.cscRef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cscRef.FormattingEnabled = true;
+            this.cscRef.Location = new System.Drawing.Point(124, 296);
+            this.cscRef.Name = "cscRef";
+            this.cscRef.Size = new System.Drawing.Size(156, 20);
+            this.cscRef.TabIndex = 145;
+            // 
+            // ucFileInfo1
+            // 
+            this.ucFileInfo1.Location = new System.Drawing.Point(595, 126);
+            this.ucFileInfo1.Name = "ucFileInfo1";
+            this.ucFileInfo1.ParaDatasetID = 0;
+            this.ucFileInfo1.ParaTable = "";
+            this.ucFileInfo1.Size = new System.Drawing.Size(265, 42);
+            this.ucFileInfo1.TabIndex = 144;
+            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
+            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.cscPixelSize);
@@ -199,6 +219,14 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Scanning Parameters";
             // 
+            // cscPixelSize
+            // 
+            this.cscPixelSize.Location = new System.Drawing.Point(198, 77);
+            this.cscPixelSize.Name = "cscPixelSize";
+            this.cscPixelSize.Size = new System.Drawing.Size(62, 21);
+            this.cscPixelSize.TabIndex = 146;
+            this.cscPixelSize.Text = "1.04";
+            // 
             // label33
             // 
             this.label33.AutoSize = true;
@@ -207,6 +235,15 @@
             this.label33.Size = new System.Drawing.Size(131, 12);
             this.label33.TabIndex = 121;
             this.label33.Text = "Object to Source (mm)";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(13, 82);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(95, 12);
+            this.label43.TabIndex = 145;
+            this.label43.Text = "Pixel Size (µm)";
             // 
             // cscObejct2Souce
             // 
@@ -269,7 +306,7 @@
             this.groupBox4.Controls.Add(this.label48);
             this.groupBox4.Location = new System.Drawing.Point(12, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(318, 159);
+            this.groupBox4.Size = new System.Drawing.Size(318, 155);
             this.groupBox4.TabIndex = 142;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Basic Information";
@@ -511,6 +548,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Scaning Parameters";
             // 
+            // cscLensMultiple
+            // 
+            this.cscLensMultiple.FormattingEnabled = true;
+            this.cscLensMultiple.Location = new System.Drawing.Point(132, 15);
+            this.cscLensMultiple.Name = "cscLensMultiple";
+            this.cscLensMultiple.Size = new System.Drawing.Size(55, 20);
+            this.cscLensMultiple.TabIndex = 133;
+            // 
+            // cscCameraBinning
+            // 
+            this.cscCameraBinning.FormattingEnabled = true;
+            this.cscCameraBinning.Location = new System.Drawing.Point(132, 40);
+            this.cscCameraBinning.Name = "cscCameraBinning";
+            this.cscCameraBinning.Size = new System.Drawing.Size(55, 20);
+            this.cscCameraBinning.TabIndex = 132;
+            // 
             // cscFileType
             // 
             this.cscFileType.FormattingEnabled = true;
@@ -726,59 +779,6 @@
             this.bsmAdd.Text = "Add";
             this.bsmAdd.UseVisualStyleBackColor = true;
             this.bsmAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // ucFileInfo1
-            // 
-            this.ucFileInfo1.Location = new System.Drawing.Point(610, 133);
-            this.ucFileInfo1.Name = "ucFileInfo1";
-            this.ucFileInfo1.ParaDatasetID = 0;
-            this.ucFileInfo1.ParaTable = "";
-            this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
-            this.ucFileInfo1.TabIndex = 144;
-            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
-            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
-            // 
-            // cscPixelSize
-            // 
-            this.cscPixelSize.Location = new System.Drawing.Point(198, 77);
-            this.cscPixelSize.Name = "cscPixelSize";
-            this.cscPixelSize.Size = new System.Drawing.Size(62, 21);
-            this.cscPixelSize.TabIndex = 146;
-            this.cscPixelSize.Text = "1.04";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(13, 82);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(95, 12);
-            this.label43.TabIndex = 145;
-            this.label43.Text = "Pixel Size (µm)";
-            // 
-            // cscCameraBinning
-            // 
-            this.cscCameraBinning.FormattingEnabled = true;
-            this.cscCameraBinning.Location = new System.Drawing.Point(132, 40);
-            this.cscCameraBinning.Name = "cscCameraBinning";
-            this.cscCameraBinning.Size = new System.Drawing.Size(55, 20);
-            this.cscCameraBinning.TabIndex = 132;
-            // 
-            // cscLensMultiple
-            // 
-            this.cscLensMultiple.FormattingEnabled = true;
-            this.cscLensMultiple.Location = new System.Drawing.Point(132, 15);
-            this.cscLensMultiple.Name = "cscLensMultiple";
-            this.cscLensMultiple.Size = new System.Drawing.Size(55, 20);
-            this.cscLensMultiple.TabIndex = 133;
-            // 
-            // cscRef
-            // 
-            this.cscRef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cscRef.FormattingEnabled = true;
-            this.cscRef.Location = new System.Drawing.Point(124, 296);
-            this.cscRef.Name = "cscRef";
-            this.cscRef.Size = new System.Drawing.Size(156, 20);
-            this.cscRef.TabIndex = 145;
             // 
             // button1
             // 

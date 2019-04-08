@@ -130,6 +130,9 @@
   <data name="help_ct_Specimen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\doc\help-ct-specimen.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
   </data>
+  <data name="help_ct_Tag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\doc\help-ct-tag.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;gb2312</value>
+  </data>
   <data name="th" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\doc\th.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

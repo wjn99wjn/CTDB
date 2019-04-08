@@ -296,6 +296,28 @@ namespace CTDB
                 setControl(cb, id);
             }
         }
+        /// <summary>获取选定行号</summary>
+        /// <param name="dg"></param>
+        /// <returns></returns>
+        public static int GetRowIndex(DataGridView dg)
+        {
+            if (dg.Rows.Count > 0)
+                if (dg.SelectedRows[0] != null)
+                    return dg.SelectedRows[0].Index;
+            return -1;
+        }
+        /// <summary>获取选定行号</summary>
+        /// <param name="dg"></param>
+        /// <returns></returns>
+        public static void SetRowIndex(DataGridView dg, int rowIndex = -1)
+        {
+            if (dg.DataSource != null)
+                if (rowIndex > 0)
+                {
+                    dg.FirstDisplayedScrollingRowIndex = rowIndex;
+                    dg.Rows[rowIndex].Selected = true;
+                }
+        }
 
 
         /// <summary>   

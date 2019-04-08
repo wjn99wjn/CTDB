@@ -18,7 +18,7 @@ namespace CTDB
 
         private void CTDBFormAddSpecies_Load(object sender, EventArgs e)
         {
-            CTHelper.setControlTag(cspeciesOrder, 108);
+            CTHelper.setControlTag(cspeciesOrder, 108); //load order list
             cspeciesOrder.DisplayMember = "tag_tag";
 
             refreshdata(sender, e);
@@ -29,14 +29,14 @@ namespace CTDB
         /// <param name="s"></param>
         void setDBValue(tbSpecies s)
         {
-            s.species_note = cspeciesNote.Text;
-            s.species_CHN = cspeciesCHN.Text;
-            s.species_latin = cspeciesLatin.Text;
+            s.species_note = cspeciesNote.Text.Trim();
+            s.species_CHN = cspeciesCHN.Text.Trim();
+            s.species_latin = cspeciesLatin.Text.Trim();
 
-            s.species_Order = cspeciesOrder.Text;
-            s.species_Family = cspeciesFamily.Text;
-            s.species_Genus = cspeciesGenus.Text;
-            s.species_Species = cspeciesSpecies.Text;
+            s.species_Order = cspeciesOrder.Text.Trim();
+            s.species_Family = cspeciesFamily.Text.Trim();
+            s.species_Genus = cspeciesGenus.Text.Trim();
+            s.species_Species = cspeciesSpecies.Text.Trim();
 
             s.species_LSID = "-";
             s.date_in = DateTime.Now;
@@ -53,9 +53,7 @@ namespace CTDB
         }
         private void bSpeciesUpdate_Click(object sender, EventArgs e)
         {
-            int rowid = -1;
-            if (dataGridView1.SelectedRows.Count == 1)
-                rowid = dataGridView1.SelectedRows[0].Index;
+            int rowid = CTHelper.GetRowIndex(dataGridView1);
 
             int id = int.Parse(cspeciesID.Text);
             using (var db = new CTDBEntities())
@@ -80,22 +78,18 @@ namespace CTDB
                 }
         }
 
-        //load/browser
+        /// <summary>load/browser</summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="rowIndex">要显示的选中的rowid， -1 </param>
         private void refreshdata(object sender, EventArgs e, int rowIndex = -1)
         {
             dataGridView1.DataSource = null;
-            //CTDBEntities ct = new CTDBEntities();
-            //dataGridView1.DataSource = ct.tbSpecies.ToList<tbSpecies>();
+
             dataGridView1.DataSource = FormLogin.LoadDataF("tbSpecies");
             FormLogin.SetColumn(dataGridView1, "species_id|species_latin|species_Order|species_Family|species_CHN|species_note");
 
-
-            if (dataGridView1.DataSource != null)
-                if (rowIndex > 0)
-                {
-                    dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
-                    dataGridView1.Rows[rowIndex].Selected = true;
-                }
+            CTHelper.SetRowIndex(dataGridView1, rowIndex);
             cspeciesNote.Focus();
         }
 
@@ -128,7 +122,6 @@ namespace CTDB
                 lbSPcount.Text = ct.tbSpecimen.Where(c => c.species_id == s.species_id).Count<tbSpecimen>().ToString();
             }
         }
-
 
         private void cspeciesNote_TextChanged(object sender, EventArgs e)
         {
@@ -167,7 +160,7 @@ namespace CTDB
             formDatas.Add(new FormItemModel() { Key = "vcode", Value = "iozName" });
             string r = CTHelper.PostForm(CTHelper.GetConfig("nameParseUrl"), formDatas);
 
-            
+
             Console.Write(r);
             //MessageBox.Show(r);
             //cspeciesLatin.Text = cspeciesGenus.Text.Trim() + " " + cspeciesSpecies.Text.Trim();

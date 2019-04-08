@@ -274,6 +274,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="doc\help-ct-Specimen.txt" />
+    <None Include="doc\help-ct-Tag.txt" />
     <Content Include="doc\th.ico" />
     <Content Include="th.ico" />
     <None Include="doc\help-ct-Sample.txt" />

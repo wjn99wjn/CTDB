@@ -39,7 +39,7 @@ namespace CTDB
 
                 if (r == "") s.doc = md5;
             }
-            
+
 
         }
         private void bSpeciesAdd_Click(object sender, EventArgs e)
@@ -53,13 +53,15 @@ namespace CTDB
         }
         private void bSpeciesUpdate_Click(object sender, EventArgs e)
         {
+            int rowid = CTHelper.GetRowIndex(dataGridView1);
+
             int id = int.Parse(refID.Text);
             using (var db = new CTDBEntities())
             {
                 var s = db.tbRef.FirstOrDefault(st => st.ref_id == id);
                 setDBValue(s);
                 db.SaveChanges();
-                refreshdata(null, null);
+                refreshdata(null, null, rowid);
             }
         }
         private void bSpeciesDel_Click(object sender, EventArgs e)
@@ -76,13 +78,14 @@ namespace CTDB
         }
 
         //load/browser
-        private void refreshdata(object sender, EventArgs e)
+        private void refreshdata(object sender, EventArgs e, int rowid = -1)
         {
             dataGridView1.DataSource = null;
-            //CTDBEntities ct = new CTDBEntities();
-            //dataGridView1.DataSource = ct.tbRef.ToList<tbRef>();
-            dataGridView1.DataSource = FormLogin.LoadDataA("tbRef");
+
+            dataGridView1.DataSource = FormLogin.LoadDataF("tbRef");
             FormLogin.SetColumn(dataGridView1, "ref_id|year|cite|url");
+
+            CTHelper.SetRowIndex(dataGridView1, rowid);
 
             if (dataGridView1.Rows.Count > 0)
                 dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
