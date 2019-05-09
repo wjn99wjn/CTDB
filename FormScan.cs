@@ -104,13 +104,24 @@ namespace CTDB
             }
         }
 
+        double getValueDouble(string s)
+        {
+            double doubletmp = 0.0;
+            double.TryParse(s, out doubletmp);
+            return doubletmp;
+        }
         /// <summary>set values </summary>
         /// <param name="s"></param>
         void setDBValue(tbScan s)
         {
+            DateTime dt = DateTime.Now;
             s.scan_operator = cscOperator.Text;
-            s.scan_timebegin = DateTime.Parse(cscTimeBegin.Text);
-            s.scan_timeend = DateTime.Parse(cscTimeEnd.Text);
+
+            DateTime.TryParse(cscTimeBegin.Text, out dt);
+            s.scan_timebegin = dt;
+            DateTime.TryParse(cscTimeEnd.Text, out dt);
+            s.scan_timeend = dt;
+
             s.sp_id = (cscSpecimen.SelectedItem as tbSpecimen).sp_id;
 
             s.scan_tag_SpecimenAlive = int.Parse(cscTagSpecimenAlive.SelectedValue.ToString());
@@ -119,21 +130,23 @@ namespace CTDB
             s.scan_para_FilesNumber = ucFileInfo1.ValueFileCount;// int.Parse(cscNumberFile.Text);
             s.scan_para_ImageFomat = cscFileType.Text;
             s.scan_para_ImagePixelSize = 0.0;
-            s.scan_para_LensMultiple = double.Parse(cscLensMultiple.Text);
+
+            s.scan_para_LensMultiple = getValueDouble(cscLensMultiple.Text);
+
             s.scan_para_CameraBinning = cscCameraBinning.Text;
 
             s.e_id = (cscEquipment.SelectedItem as tbEquipment).e_id;
             s.scan_para_SourceType = cscSourceType.Text;
             s.scan_para_Camera = cscCamera.Text;
-            s.scan_para_SourceVoltage = double.Parse(cscSourceVoltage.Text);
-            s.scan_para_SourceCurrent = double.Parse(cscSourceCurrent.Text);
+            s.scan_para_SourceVoltage = getValueDouble(cscSourceVoltage.Text);
+            s.scan_para_SourceCurrent = getValueDouble(cscSourceCurrent.Text);
 
-            s.scan_para_Camera2Source = double.Parse(cscCamera2Source.Text);
-            s.scan_para_Object2Source = double.Parse(cscObejct2Souce.Text);
-            s.scan_para_VerticalObjectPosition = double.Parse(cscVerticalObjectPosition.Text);
-            s.scan_para_PixelSize = double.Parse(cscPixelSize.Text);
-            s.scan_para_RotationStep = double.Parse(cscRotationStep.Text);
-            s.scan_para_Exposure = double.Parse(cscExposure.Text);
+            s.scan_para_Camera2Source = getValueDouble(cscCamera2Source.Text);
+            s.scan_para_Object2Source = getValueDouble(cscObejct2Souce.Text);
+            s.scan_para_VerticalObjectPosition = getValueDouble(cscVerticalObjectPosition.Text);
+            s.scan_para_PixelSize = getValueDouble(cscPixelSize.Text);
+            s.scan_para_RotationStep = getValueDouble(cscRotationStep.Text);
+            s.scan_para_Exposure = getValueDouble(cscExposure.Text);
 
             s.Abstract = cscSpecimen.Text + "-" + cscTagSpecimenParty.Text;
             s.scan_source_save_path = "-";
