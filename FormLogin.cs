@@ -89,7 +89,7 @@ namespace CTDB
 
         private void btnExit_Click(object sender, EventArgs e) { Application.Exit(); }
         private void tbPassword_KeyDown(object sender, KeyEventArgs e) { if (e.KeyCode == Keys.Return) btnOK_Click(sender, e); }
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) { Process.Start("iexplore.exe", "http://project.especies.cn:8083/cas/login"); }
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) { Process.Start("iexplore.exe", "http://www.especies.cn/cas/login"); }
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
@@ -111,7 +111,7 @@ namespace CTDB
             string pass = CTHelper.Convert2MD5(tbPassword.Text.Trim());
             string valid = "B6B4D7ED1E4D436F8D69FFE3924F47B3";
             string strpara = "sign_in_key=" + user + "&sign_in_pwd=" + pass + "&sign_in_token=" + valid;
-            string jsr = CTHelper.HttpPost("http://159.226.67.13:8083/rest/remoteLogin", strpara);
+            string jsr = CTHelper.HttpPost("http://www.especies.cn/casuser/rest/remoteLogin", strpara);
             try
             {
                 JObject jo = JObject.Parse(jsr);
