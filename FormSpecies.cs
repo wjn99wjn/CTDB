@@ -186,7 +186,11 @@ namespace CTDB
 
         private void cspeciesLatin_TextChanged(object sender, EventArgs e)
         {
-            autoParse(cspeciesLatin.Text);
+            try
+            {
+                autoParse(cspeciesLatin.Text);
+            }
+            catch { }
         }
 
 
