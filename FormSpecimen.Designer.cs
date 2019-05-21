@@ -39,7 +39,9 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label63 = new System.Windows.Forms.Label();
+            this.ucFileInfo1 = new CTDB.ucFileInfo();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lbSPcount = new System.Windows.Forms.Label();
             this.csmID = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -76,9 +78,8 @@
             this.bsmUpdate = new System.Windows.Forms.Button();
             this.bsmDelete = new System.Windows.Forms.Button();
             this.bsmAdd = new System.Windows.Forms.Button();
-            this.lbSPcount = new System.Windows.Forms.Label();
             this.lbScancount = new System.Windows.Forms.Label();
-            this.ucFileInfo1 = new CTDB.ucFileInfo();
+            this.lbSpeciesLatin = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -187,8 +188,20 @@
             this.label63.Text = "？";
             this.label63.DoubleClick += new System.EventHandler(this.label62_DoubleClick);
             // 
+            // ucFileInfo1
+            // 
+            this.ucFileInfo1.Location = new System.Drawing.Point(667, 24);
+            this.ucFileInfo1.Name = "ucFileInfo1";
+            this.ucFileInfo1.ParaDatasetID = 0;
+            this.ucFileInfo1.ParaTable = "";
+            this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
+            this.ucFileInfo1.TabIndex = 104;
+            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
+            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
+            // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.lbSpeciesLatin);
             this.groupBox4.Controls.Add(this.lbSPcount);
             this.groupBox4.Controls.Add(this.csmID);
             this.groupBox4.Controls.Add(this.label6);
@@ -203,6 +216,15 @@
             this.groupBox4.TabIndex = 103;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Record Abstract";
+            // 
+            // lbSPcount
+            // 
+            this.lbSPcount.AutoSize = true;
+            this.lbSPcount.Location = new System.Drawing.Point(222, 0);
+            this.lbSPcount.Name = "lbSPcount";
+            this.lbSPcount.Size = new System.Drawing.Size(11, 12);
+            this.lbSPcount.TabIndex = 98;
+            this.lbSPcount.Text = "0";
             // 
             // csmID
             // 
@@ -234,7 +256,7 @@
             // lbSpeciesCHN
             // 
             this.lbSpeciesCHN.AutoSize = true;
-            this.lbSpeciesCHN.Location = new System.Drawing.Point(75, 38);
+            this.lbSpeciesCHN.Location = new System.Drawing.Point(65, 38);
             this.lbSpeciesCHN.Name = "lbSpeciesCHN";
             this.lbSpeciesCHN.Size = new System.Drawing.Size(23, 12);
             this.lbSpeciesCHN.TabIndex = 97;
@@ -571,15 +593,6 @@
             this.bsmAdd.UseVisualStyleBackColor = true;
             this.bsmAdd.Click += new System.EventHandler(this.bsmAdd_Click);
             // 
-            // lbSPcount
-            // 
-            this.lbSPcount.AutoSize = true;
-            this.lbSPcount.Location = new System.Drawing.Point(222, 0);
-            this.lbSPcount.Name = "lbSPcount";
-            this.lbSPcount.Size = new System.Drawing.Size(11, 12);
-            this.lbSPcount.TabIndex = 98;
-            this.lbSPcount.Text = "0";
-            // 
             // lbScancount
             // 
             this.lbScancount.AutoSize = true;
@@ -590,16 +603,14 @@
             this.lbScancount.TabIndex = 98;
             this.lbScancount.Text = "0";
             // 
-            // ucFileInfo1
+            // lbSpeciesLatin
             // 
-            this.ucFileInfo1.Location = new System.Drawing.Point(667, 24);
-            this.ucFileInfo1.Name = "ucFileInfo1";
-            this.ucFileInfo1.ParaDatasetID = 0;
-            this.ucFileInfo1.ParaTable = "";
-            this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
-            this.ucFileInfo1.TabIndex = 104;
-            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
-            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
+            this.lbSpeciesLatin.AutoSize = true;
+            this.lbSpeciesLatin.Location = new System.Drawing.Point(168, 38);
+            this.lbSpeciesLatin.Name = "lbSpeciesLatin";
+            this.lbSpeciesLatin.Size = new System.Drawing.Size(23, 12);
+            this.lbSpeciesLatin.TabIndex = 99;
+            this.lbSpeciesLatin.Text = "CHN";
             // 
             // FormSpecimen
             // 
@@ -681,5 +692,6 @@
         private System.Windows.Forms.TextBox csmDriedSpecimenSavePosition;
         private System.Windows.Forms.Label lbSPcount;
         private System.Windows.Forms.Label lbScancount;
+        private System.Windows.Forms.Label lbSpeciesLatin;
     }
 }

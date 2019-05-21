@@ -99,6 +99,7 @@
             this.bsmAdd = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -164,6 +165,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.cscRef);
             this.panel1.Controls.Add(this.ucFileInfo1);
             this.panel1.Controls.Add(this.groupBox5);
@@ -186,9 +188,9 @@
             // 
             this.cscRef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cscRef.FormattingEnabled = true;
-            this.cscRef.Location = new System.Drawing.Point(124, 296);
+            this.cscRef.Location = new System.Drawing.Point(12, 285);
             this.cscRef.Name = "cscRef";
-            this.cscRef.Size = new System.Drawing.Size(156, 20);
+            this.cscRef.Size = new System.Drawing.Size(318, 20);
             this.cscRef.TabIndex = 145;
             // 
             // ucFileInfo1
@@ -197,7 +199,7 @@
             this.ucFileInfo1.Name = "ucFileInfo1";
             this.ucFileInfo1.ParaDatasetID = 0;
             this.ucFileInfo1.ParaTable = "";
-            this.ucFileInfo1.Size = new System.Drawing.Size(265, 42);
+            this.ucFileInfo1.Size = new System.Drawing.Size(268, 42);
             this.ucFileInfo1.TabIndex = 144;
             this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
             this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
@@ -460,14 +462,14 @@
             this.groupBox3.Controls.Add(this.cscTagSpecimenParty);
             this.groupBox3.Location = new System.Drawing.Point(12, 177);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(318, 103);
+            this.groupBox3.Size = new System.Drawing.Size(318, 79);
             this.groupBox3.TabIndex = 102;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Specimen Information";
             // 
             // btnAddSpecimen
             // 
-            this.btnAddSpecimen.Location = new System.Drawing.Point(279, 22);
+            this.btnAddSpecimen.Location = new System.Drawing.Point(279, 15);
             this.btnAddSpecimen.Name = "btnAddSpecimen";
             this.btnAddSpecimen.Size = new System.Drawing.Size(30, 21);
             this.btnAddSpecimen.TabIndex = 142;
@@ -479,7 +481,8 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 30);
+            this.label16.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label16.Location = new System.Drawing.Point(3, 17);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(53, 12);
             this.label16.TabIndex = 105;
@@ -489,15 +492,15 @@
             // 
             this.cscSpecimen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cscSpecimen.FormattingEnabled = true;
-            this.cscSpecimen.Location = new System.Drawing.Point(91, 25);
+            this.cscSpecimen.Location = new System.Drawing.Point(56, 16);
             this.cscSpecimen.Name = "cscSpecimen";
-            this.cscSpecimen.Size = new System.Drawing.Size(182, 20);
+            this.cscSpecimen.Size = new System.Drawing.Size(217, 20);
             this.cscSpecimen.TabIndex = 108;
             // 
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(6, 54);
+            this.label40.Location = new System.Drawing.Point(112, 48);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(83, 12);
             this.label40.TabIndex = 133;
@@ -506,7 +509,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(6, 77);
+            this.label51.Location = new System.Drawing.Point(3, 48);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(29, 12);
             this.label51.TabIndex = 134;
@@ -516,17 +519,17 @@
             // 
             this.cscTagSpecimenAlive.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cscTagSpecimenAlive.FormattingEnabled = true;
-            this.cscTagSpecimenAlive.Location = new System.Drawing.Point(91, 49);
+            this.cscTagSpecimenAlive.Location = new System.Drawing.Point(217, 43);
             this.cscTagSpecimenAlive.Name = "cscTagSpecimenAlive";
-            this.cscTagSpecimenAlive.Size = new System.Drawing.Size(182, 20);
+            this.cscTagSpecimenAlive.Size = new System.Drawing.Size(92, 20);
             this.cscTagSpecimenAlive.TabIndex = 136;
             // 
             // cscTagSpecimenParty
             // 
             this.cscTagSpecimenParty.FormattingEnabled = true;
-            this.cscTagSpecimenParty.Location = new System.Drawing.Point(91, 73);
+            this.cscTagSpecimenParty.Location = new System.Drawing.Point(38, 45);
             this.cscTagSpecimenParty.Name = "cscTagSpecimenParty";
-            this.cscTagSpecimenParty.Size = new System.Drawing.Size(182, 20);
+            this.cscTagSpecimenParty.Size = new System.Drawing.Size(68, 20);
             this.cscTagSpecimenParty.TabIndex = 135;
             // 
             // groupBox2
@@ -798,6 +801,15 @@
             this.comboBox1.Size = new System.Drawing.Size(156, 20);
             this.comboBox1.TabIndex = 145;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 266);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 143;
+            this.label4.Text = "Reference";
+            // 
             // FormScan
             // 
             this.AcceptButton = this.btnOK;
@@ -814,6 +826,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -898,5 +911,6 @@
         private System.Windows.Forms.ComboBox cscRef;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label4;
     }
 }

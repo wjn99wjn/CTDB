@@ -49,7 +49,10 @@ namespace CTDB
             CTDBEntities ct = new CTDBEntities();
             ct.tbSpecies.Add(s);
             ct.SaveChanges();   //将修改保存到数据库中
-            refreshdata(null, null, (dataGridView1.DataSource as List<tbSpecies>).Count);
+            if ((dataGridView1.DataSource as List<tbSpecies>) != null)
+                refreshdata(null, null, (dataGridView1.DataSource as List<tbSpecies>).Count);
+            else
+                refreshdata(null, null);
         }
         private void bSpeciesUpdate_Click(object sender, EventArgs e)
         {

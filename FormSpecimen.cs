@@ -28,6 +28,7 @@ namespace CTDB
             CTDBEntities ct = new CTDBEntities();
             csmSpecies.DataSource = FormLogin.LoadDataF("tbSpecies");
             csmSpecies.DisplayMember = "species_note";
+            //csmSpecies.DisplayMember = "species_latin";
 
             refreshdata();
         }
@@ -121,7 +122,8 @@ namespace CTDB
 
             s.sp_preserve_status = csmPS.Text;
 
-            s.Abstract = csmSpecies.Text.Trim() + "-" + csmSPID.Text;
+            //s.Abstract = csmSpecies.Text.Trim() + "-" + csmSPID.Text;
+            s.Abstract = lbSpeciesLatin.Text.Trim() + "-" + csmSPID.Text;
             s.UserId = Guid.Parse(CTHelper.GetConfig("userid"));
             s.date_in = DateTime.Now;
         }
@@ -181,7 +183,8 @@ namespace CTDB
         private void csmSpecies_SelectedIndexChanged(object sender, EventArgs e)
         {
             tbSpecies ts = (csmSpecies.SelectedItem as tbSpecies);
-            lbSpeciesCHN.Text = ts.species_CHN + " " + ts.species_latin;
+            lbSpeciesCHN.Text = ts.species_CHN;
+            lbSpeciesLatin.Text = ts.species_latin;
             csmNote.Text = csmSpecies.Text.Trim();
         }
         private void btnAddExample_Click(object sender, EventArgs e)
