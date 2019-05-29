@@ -111,9 +111,9 @@ namespace CTDB
             string pass = CTHelper.Convert2MD5(tbPassword.Text.Trim());
             string valid = "B6B4D7ED1E4D436F8D69FFE3924F47B3";
             string strpara = "sign_in_key=" + user + "&sign_in_pwd=" + pass + "&sign_in_token=" + valid;
-            string jsr = CTHelper.HttpPost("http://www.especies.cn/casuser/rest/remoteLogin", strpara);
             try
             {
+                string jsr = CTHelper.HttpPost("http://www.especies.cn/casuser/rest/remoteLogin", strpara);
                 JObject jo = JObject.Parse(jsr);
                 if (jo.GetValue("message").ToString() == "Success")
                 {
@@ -128,7 +128,7 @@ namespace CTDB
                     this.Close();
                 }
             }
-            catch { MessageBox.Show("Something Wrong."); }
+            catch { MessageBox.Show("Something wrong. Try later."); }
         }
 
     }

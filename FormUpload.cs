@@ -170,6 +170,9 @@ namespace CTDB
 
         private void miUpload_Click(object sender, EventArgs e)
         {
+            //阻止休眠
+            CTHelper.PreventSleep();
+
             //upload files
             pbar1.Maximum = lboxFile.Items.Count;
             pbar1.Value = 0;
@@ -181,7 +184,7 @@ namespace CTDB
             foreach (string fileSrc in lboxFile.Items)
             {
                 pbar1.Value++;
-                lbNote.Text = "Total:" + lboxFile.Items.Count + ", " + countOK + " OK," + countError + " Fail";
+                lbNote.Text = pbar1.Value + "，Total:" + lboxFile.Items.Count + ", " + countOK + " OK," + countError + " Fail";
 
                 if (checkSkipSameFile.Checked) //重复检查
                 {
@@ -217,6 +220,9 @@ namespace CTDB
             refreshdb();
             MessageBox.Show("Finishe upload. Error number:" + countError.ToString());
             lbNote.Text = "Finish Upload.";
+
+            //恢复休眠
+            CTHelper.RestoreSleep();
         }
 
         //=======remote / server=========
