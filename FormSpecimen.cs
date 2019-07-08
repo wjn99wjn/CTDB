@@ -72,8 +72,9 @@ namespace CTDB
                 csmSPID.Text = s.sp_spid;
 
                 csmCollector.Text = s.sp_collector;
-                csmCollectPlace.Text = s.sp_place;
-                csmCollectTime.Text = s.sp_time;
+                csmCollectPlace.Text = s.sp_collect_place;
+                csmCollectTime.Text = s.sp_collect_time;
+                csmIdentifier.Text = s.sp_identifier;
 
                 csmDehydrant.Text = s.sp_dehydrant;
                 csmDryInstrument.Text = s.sp_dryinstrument;
@@ -104,7 +105,7 @@ namespace CTDB
         void setDBValue(tbSpecimen s)
         {
             s.species_id = (csmSpecies.SelectedItem as tbSpecies).species_id;
-            s.sp_note = csmNote.Text;
+            s.sp_note = cutstring(csmNote.Text, 50);
 
             s.sp_spid = csmSPID.Text;//实际标本号-不是必须字段
             s.specimen_age = csmAge.Text;
@@ -113,8 +114,9 @@ namespace CTDB
             //s.sp_description = csmDescrip.Text;
 
             s.sp_collector = csmCollector.Text;
-            s.sp_place = csmCollectPlace.Text;
-            s.sp_time = csmCollectTime.Text;
+            s.sp_collect_place = csmCollectPlace.Text;
+            s.sp_collect_time = csmCollectTime.Text;
+            s.sp_identifier = csmIdentifier.Text;
 
             s.sp_dehydrant = csmDehydrant.Text;
             s.sp_drycirletime = int.Parse(csmDryCycleTime.Text);
@@ -123,10 +125,18 @@ namespace CTDB
             s.sp_preserve_status = csmPS.Text;
 
             //s.Abstract = csmSpecies.Text.Trim() + "-" + csmSPID.Text;
-            s.Abstract = lbSpeciesLatin.Text.Trim() + "-" + csmSPID.Text;
+            s.Abstract = cutstring(lbSpeciesLatin.Text, 28) + " : " + cutstring(csmSPID.Text, 18);
             s.UserId = Guid.Parse(CTHelper.GetConfig("userid"));
             s.date_in = DateTime.Now;
         }
+        string cutstring(string s, int l)
+        {
+            string r = s.Trim();
+            if (l <= r.Length)
+                return r.Substring(0, l);
+            return r;
+        }
+
         private void bsmAdd_Click(object sender, EventArgs e)
         {
             var s = new tbSpecimen();

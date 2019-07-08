@@ -41,6 +41,7 @@
             this.label63 = new System.Windows.Forms.Label();
             this.ucFileInfo1 = new CTDB.ucFileInfo();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lbSpeciesLatin = new System.Windows.Forms.Label();
             this.lbSPcount = new System.Windows.Forms.Label();
             this.csmID = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -79,7 +80,8 @@
             this.bsmDelete = new System.Windows.Forms.Button();
             this.bsmAdd = new System.Windows.Forms.Button();
             this.lbScancount = new System.Windows.Forms.Label();
-            this.lbSpeciesLatin = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.csmIdentifier = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -217,6 +219,15 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Record Abstract";
             // 
+            // lbSpeciesLatin
+            // 
+            this.lbSpeciesLatin.AutoSize = true;
+            this.lbSpeciesLatin.Location = new System.Drawing.Point(168, 38);
+            this.lbSpeciesLatin.Name = "lbSpeciesLatin";
+            this.lbSpeciesLatin.Size = new System.Drawing.Size(23, 12);
+            this.lbSpeciesLatin.TabIndex = 99;
+            this.lbSpeciesLatin.Text = "CHN";
+            // 
             // lbSPcount
             // 
             this.lbSPcount.AutoSize = true;
@@ -294,6 +305,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.csmIdentifier);
             this.groupBox3.Controls.Add(this.csmPS);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label10);
@@ -306,7 +319,7 @@
             this.groupBox3.Controls.Add(this.csmSPID);
             this.groupBox3.Location = new System.Drawing.Point(12, 117);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(331, 154);
+            this.groupBox3.Size = new System.Drawing.Size(331, 165);
             this.groupBox3.TabIndex = 102;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Specimen Information";
@@ -316,7 +329,7 @@
             this.csmPS.FormattingEnabled = true;
             this.csmPS.Items.AddRange(new object[] {
             "Leica EM CPD 300"});
-            this.csmPS.Location = new System.Drawing.Point(112, 128);
+            this.csmPS.Location = new System.Drawing.Point(112, 134);
             this.csmPS.Name = "csmPS";
             this.csmPS.Size = new System.Drawing.Size(179, 20);
             this.csmPS.TabIndex = 104;
@@ -325,7 +338,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 128);
+            this.label2.Location = new System.Drawing.Point(4, 137);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 12);
             this.label2.TabIndex = 105;
@@ -334,7 +347,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 107);
+            this.label10.Location = new System.Drawing.Point(4, 115);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(47, 12);
             this.label10.TabIndex = 76;
@@ -342,7 +355,7 @@
             // 
             // csmDriedSpecimenSavePosition
             // 
-            this.csmDriedSpecimenSavePosition.Location = new System.Drawing.Point(112, 101);
+            this.csmDriedSpecimenSavePosition.Location = new System.Drawing.Point(112, 110);
             this.csmDriedSpecimenSavePosition.Name = "csmDriedSpecimenSavePosition";
             this.csmDriedSpecimenSavePosition.Size = new System.Drawing.Size(179, 21);
             this.csmDriedSpecimenSavePosition.TabIndex = 67;
@@ -352,7 +365,7 @@
             // 
             this.csmSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.csmSex.FormattingEnabled = true;
-            this.csmSex.Location = new System.Drawing.Point(81, 47);
+            this.csmSex.Location = new System.Drawing.Point(81, 38);
             this.csmSex.Name = "csmSex";
             this.csmSex.Size = new System.Drawing.Size(210, 20);
             this.csmSex.TabIndex = 103;
@@ -370,7 +383,7 @@
             "Larva - 5",
             "Nymphae",
             "Egg"});
-            this.csmAge.Location = new System.Drawing.Point(81, 73);
+            this.csmAge.Location = new System.Drawing.Point(81, 62);
             this.csmAge.Name = "csmAge";
             this.csmAge.Size = new System.Drawing.Size(210, 20);
             this.csmAge.TabIndex = 102;
@@ -379,7 +392,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(7, 27);
+            this.label30.Location = new System.Drawing.Point(7, 22);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(47, 12);
             this.label30.TabIndex = 93;
@@ -388,7 +401,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 53);
+            this.label5.Location = new System.Drawing.Point(6, 44);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(23, 12);
             this.label5.TabIndex = 100;
@@ -397,7 +410,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 76);
+            this.label1.Location = new System.Drawing.Point(6, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(23, 12);
             this.label1.TabIndex = 100;
@@ -405,7 +418,7 @@
             // 
             // csmSPID
             // 
-            this.csmSPID.Location = new System.Drawing.Point(81, 20);
+            this.csmSPID.Location = new System.Drawing.Point(81, 15);
             this.csmSPID.Name = "csmSPID";
             this.csmSPID.Size = new System.Drawing.Size(210, 21);
             this.csmSPID.TabIndex = 94;
@@ -603,14 +616,22 @@
             this.lbScancount.TabIndex = 98;
             this.lbScancount.Text = "0";
             // 
-            // lbSpeciesLatin
+            // label4
             // 
-            this.lbSpeciesLatin.AutoSize = true;
-            this.lbSpeciesLatin.Location = new System.Drawing.Point(168, 38);
-            this.lbSpeciesLatin.Name = "lbSpeciesLatin";
-            this.lbSpeciesLatin.Size = new System.Drawing.Size(23, 12);
-            this.lbSpeciesLatin.TabIndex = 99;
-            this.lbSpeciesLatin.Text = "CHN";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(4, 92);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 107;
+            this.label4.Text = "Identifier";
+            // 
+            // csmIdentifier
+            // 
+            this.csmIdentifier.Location = new System.Drawing.Point(112, 87);
+            this.csmIdentifier.Name = "csmIdentifier";
+            this.csmIdentifier.Size = new System.Drawing.Size(179, 21);
+            this.csmIdentifier.TabIndex = 106;
+            this.csmIdentifier.Text = "Zong Le";
             // 
             // FormSpecimen
             // 
@@ -693,5 +714,7 @@
         private System.Windows.Forms.Label lbSPcount;
         private System.Windows.Forms.Label lbScancount;
         private System.Windows.Forms.Label lbSpeciesLatin;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox csmIdentifier;
     }
 }

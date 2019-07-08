@@ -52,8 +52,8 @@ namespace CTDB
         public Nullable<double> scan_para_PixelSize { get; set; }
     
         public virtual tbEquipment tbEquipment { get; set; }
-        public virtual tbSpecimen tbSpecimen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbSlice> tbSlice { get; set; }
+        public virtual tbSpecimen tbSpecimen { get; set; }
     }
 }

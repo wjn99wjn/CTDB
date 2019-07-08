@@ -7,20 +7,20 @@
       <Diagram DiagramId="46e266ae13d24a149ee2c645ae268000" Name="Diagram1" ZoomLevel="83">
         <EntityTypeShape EntityType="CTDBModel.tbEquipment" Width="1.875" PointX="0.5" PointY="5" />
         <EntityTypeShape EntityType="CTDBModel.tbSpecies" Width="1.875" PointX="0.5" PointY="0.625" />
-        <EntityTypeShape EntityType="CTDBModel.vQuick" Width="2" PointX="9.625" PointY="0.5" />
         <EntityTypeShape EntityType="CTDBModel.tbTag" Width="1.75" PointX="11.75" PointY="7" />
-        <EntityTypeShape EntityType="CTDBModel.tbUser" Width="1.75" PointX="12.875" PointY="0.75" />
+        <EntityTypeShape EntityType="CTDBModel.tbUser" Width="1.75" PointX="12.25" PointY="0.5" />
         <EntityTypeShape EntityType="CTDBModel.tbFile" Width="1.5" PointX="12.125" PointY="2.75" />
         <EntityTypeShape EntityType="CTDBModel.tbRef" Width="1.875" PointX="9.625" PointY="6.875" />
         <EntityTypeShape EntityType="CTDBModel.tbLabel" Width="1.5" PointX="7.5" PointY="0.625" />
         <EntityTypeShape EntityType="CTDBModel.tbSlice" Width="1.5" PointX="7.5" PointY="4.75" />
-        <EntityTypeShape EntityType="CTDBModel.tbSpecimen" Width="1.75" PointX="2.875" PointY="0.75" />
         <AssociationConnector Association="CTDBModel.FK_tbLabel_tbSlice" />
-        <AssociationConnector Association="CTDBModel.FK_tbSpecimen_tbSpecies" />
         <EntityTypeShape EntityType="CTDBModel.tbScan" Width="1.5" PointX="5.125" PointY="1.5" />
         <AssociationConnector Association="CTDBModel.FK_tbScan_tbEquipment" />
-        <AssociationConnector Association="CTDBModel.FK_tbScan_tbSpecimen" />
         <AssociationConnector Association="CTDBModel.FK_tbSlice_tbScan" />
+        <EntityTypeShape EntityType="CTDBModel.tbSpecimen" Width="1.5" PointX="3" PointY="1.875" />
+        <AssociationConnector Association="CTDBModel.FK_tbScan_tbSpecimen" />
+        <AssociationConnector Association="CTDBModel.FK_tbSpecimen_tbSpecies" />
+        <EntityTypeShape EntityType="CTDBModel.vQuick" Width="1.5" PointX="9.875" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

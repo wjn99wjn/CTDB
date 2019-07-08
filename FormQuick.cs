@@ -64,8 +64,8 @@ namespace CTDB
             s2.specimen_dry_save_path = csmSavePosition.Text;
 
             s2.sp_collector = csmCollector.Text;
-            s2.sp_place = csmCollectPlace.Text;
-            s2.sp_time = csmCollectTime.Text;
+            s2.sp_collect_place = csmCollectPlace.Text;
+            s2.sp_collect_time = csmCollectTime.Text;
 
             s2.sp_dehydrant = csmDehydrant.Text;
             s2.sp_drycirletime = int.Parse(csmDryCycleTime.Text);

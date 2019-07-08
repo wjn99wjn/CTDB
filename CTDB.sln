@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CTDB", "CTDB.csproj", "{3043FF7A-65C5-49B5-AD5C-4538578C5908}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "..\Updater\Updater.csproj", "{C115ACEC-78AC-4646-929D-A19BD89D73B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3043FF7A-65C5-49B5-AD5C-4538578C5908}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3043FF7A-65C5-49B5-AD5C-4538578C5908}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3043FF7A-65C5-49B5-AD5C-4538578C5908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C115ACEC-78AC-4646-929D-A19BD89D73B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C115ACEC-78AC-4646-929D-A19BD89D73B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C115ACEC-78AC-4646-929D-A19BD89D73B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C115ACEC-78AC-4646-929D-A19BD89D73B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

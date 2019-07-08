@@ -25,8 +25,8 @@ namespace CTDB
         public string sp_note { get; set; }
         public System.DateTime date_in { get; set; }
         public string sp_collector { get; set; }
-        public string sp_time { get; set; }
-        public string sp_place { get; set; }
+        public string sp_collect_time { get; set; }
+        public string sp_collect_place { get; set; }
         public string sp_spid { get; set; }
         public string sp_dehydrant { get; set; }
         public string sp_dryinstrument { get; set; }
@@ -38,9 +38,10 @@ namespace CTDB
         public string Abstract { get; set; }
         public string sp_preserve_status { get; set; }
         public int ref_id { get; set; }
+        public string sp_identifier { get; set; }
     
-        public virtual tbSpecies tbSpecies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbScan> tbScan { get; set; }
+        public virtual tbSpecies tbSpecies { get; set; }
     }
 }

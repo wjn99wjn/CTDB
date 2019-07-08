@@ -16,8 +16,8 @@ namespace CTDB
     {
         public int slice_id { get; set; }
         public Nullable<int> scan_id { get; set; }
+        public Nullable<int> e_id { get; set; }
         public Nullable<int> sp_id { get; set; }
-        public Nullable<int> slice_para_SliceNumber { get; set; }
         public string e_nameA { get; set; }
         public string species_note { get; set; }
         public string species_Order { get; set; }
@@ -27,8 +27,8 @@ namespace CTDB
         public string sp_dehydrant { get; set; }
         public Nullable<int> sp_drycirletime { get; set; }
         public string sp_collector { get; set; }
-        public string sp_time { get; set; }
-        public string sp_place { get; set; }
+        public string sp_collect_time { get; set; }
+        public string sp_collect_place { get; set; }
         public Nullable<int> specimen_sex { get; set; }
         public string specimen_age { get; set; }
         public string scan_specimen_Body { get; set; }
@@ -39,6 +39,6 @@ namespace CTDB
         public string specimen_dry_save_path { get; set; }
         public string scan_source_save_path { get; set; }
         public string slice_save_path { get; set; }
-        public Nullable<int> e_id { get; set; }
+        public Nullable<int> slice_para_SliceNumber { get; set; }
     }
 }

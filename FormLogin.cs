@@ -97,6 +97,7 @@ namespace CTDB
                 tbUser.Text = CTHelper.GetConfig("username");
             if (CTHelper.GetConfig("userkey") != "")
                 tbPassword.Text = CTHelper.GetConfig("userkey");
+
         }
 
         private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
@@ -130,6 +131,13 @@ namespace CTDB
             }
             catch { MessageBox.Show("Something wrong. Try later."); }
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Application.StartupPath + @"\Updater.exe");
+            Application.Exit();
+        }
+
 
     }
 }
