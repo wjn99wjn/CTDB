@@ -36,6 +36,7 @@
             this.mitDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.cscRef = new System.Windows.Forms.ComboBox();
             this.ucFileInfo1 = new CTDB.ucFileInfo();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -96,10 +97,10 @@
             this.cscSourceVoltage = new System.Windows.Forms.TextBox();
             this.bsmUpdate = new System.Windows.Forms.Button();
             this.bsmDelete = new System.Windows.Forms.Button();
+            this.bsmAddSlice = new System.Windows.Forms.Button();
             this.bsmAdd = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -155,7 +156,7 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(768, 242);
+            this.btnOK.Location = new System.Drawing.Point(780, 243);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 42);
             this.btnOK.TabIndex = 26;
@@ -176,6 +177,7 @@
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.bsmUpdate);
             this.panel1.Controls.Add(this.bsmDelete);
+            this.panel1.Controls.Add(this.bsmAddSlice);
             this.panel1.Controls.Add(this.bsmAdd);
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -184,13 +186,22 @@
             this.panel1.Size = new System.Drawing.Size(872, 335);
             this.panel1.TabIndex = 46;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 266);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 143;
+            this.label4.Text = "Reference";
+            // 
             // cscRef
             // 
             this.cscRef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cscRef.FormattingEnabled = true;
             this.cscRef.Location = new System.Drawing.Point(12, 285);
             this.cscRef.Name = "cscRef";
-            this.cscRef.Size = new System.Drawing.Size(318, 20);
+            this.cscRef.Size = new System.Drawing.Size(375, 20);
             this.cscRef.TabIndex = 145;
             // 
             // ucFileInfo1
@@ -462,14 +473,14 @@
             this.groupBox3.Controls.Add(this.cscTagSpecimenParty);
             this.groupBox3.Location = new System.Drawing.Point(12, 177);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(318, 79);
+            this.groupBox3.Size = new System.Drawing.Size(375, 71);
             this.groupBox3.TabIndex = 102;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Specimen Information";
             // 
             // btnAddSpecimen
             // 
-            this.btnAddSpecimen.Location = new System.Drawing.Point(279, 15);
+            this.btnAddSpecimen.Location = new System.Drawing.Point(341, 16);
             this.btnAddSpecimen.Name = "btnAddSpecimen";
             this.btnAddSpecimen.Size = new System.Drawing.Size(30, 21);
             this.btnAddSpecimen.TabIndex = 142;
@@ -494,13 +505,13 @@
             this.cscSpecimen.FormattingEnabled = true;
             this.cscSpecimen.Location = new System.Drawing.Point(56, 16);
             this.cscSpecimen.Name = "cscSpecimen";
-            this.cscSpecimen.Size = new System.Drawing.Size(217, 20);
+            this.cscSpecimen.Size = new System.Drawing.Size(283, 20);
             this.cscSpecimen.TabIndex = 108;
             // 
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(112, 48);
+            this.label40.Location = new System.Drawing.Point(158, 48);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(83, 12);
             this.label40.TabIndex = 133;
@@ -519,7 +530,7 @@
             // 
             this.cscTagSpecimenAlive.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cscTagSpecimenAlive.FormattingEnabled = true;
-            this.cscTagSpecimenAlive.Location = new System.Drawing.Point(217, 43);
+            this.cscTagSpecimenAlive.Location = new System.Drawing.Point(247, 43);
             this.cscTagSpecimenAlive.Name = "cscTagSpecimenAlive";
             this.cscTagSpecimenAlive.Size = new System.Drawing.Size(92, 20);
             this.cscTagSpecimenAlive.TabIndex = 136;
@@ -527,7 +538,7 @@
             // cscTagSpecimenParty
             // 
             this.cscTagSpecimenParty.FormattingEnabled = true;
-            this.cscTagSpecimenParty.Location = new System.Drawing.Point(38, 45);
+            this.cscTagSpecimenParty.Location = new System.Drawing.Point(56, 43);
             this.cscTagSpecimenParty.Name = "cscTagSpecimenParty";
             this.cscTagSpecimenParty.Size = new System.Drawing.Size(68, 20);
             this.cscTagSpecimenParty.TabIndex = 135;
@@ -544,9 +555,9 @@
             this.groupBox2.Controls.Add(this.cscExposure);
             this.groupBox2.Controls.Add(this.label37);
             this.groupBox2.Controls.Add(this.cscRotationStep);
-            this.groupBox2.Location = new System.Drawing.Point(336, 177);
+            this.groupBox2.Location = new System.Drawing.Point(393, 177);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(253, 144);
+            this.groupBox2.Size = new System.Drawing.Size(196, 144);
             this.groupBox2.TabIndex = 98;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Scaning Parameters";
@@ -638,7 +649,7 @@
             // 
             // btnOCR
             // 
-            this.btnOCR.Location = new System.Drawing.Point(610, 249);
+            this.btnOCR.Location = new System.Drawing.Point(595, 265);
             this.btnOCR.Name = "btnOCR";
             this.btnOCR.Size = new System.Drawing.Size(75, 21);
             this.btnOCR.TabIndex = 12;
@@ -754,7 +765,7 @@
             // 
             // bsmUpdate
             // 
-            this.bsmUpdate.Location = new System.Drawing.Point(768, 181);
+            this.bsmUpdate.Location = new System.Drawing.Point(780, 182);
             this.bsmUpdate.Name = "bsmUpdate";
             this.bsmUpdate.Size = new System.Drawing.Size(75, 42);
             this.bsmUpdate.TabIndex = 92;
@@ -765,17 +776,27 @@
             // bsmDelete
             // 
             this.bsmDelete.Enabled = false;
-            this.bsmDelete.Location = new System.Drawing.Point(610, 293);
+            this.bsmDelete.Location = new System.Drawing.Point(595, 294);
             this.bsmDelete.Name = "bsmDelete";
-            this.bsmDelete.Size = new System.Drawing.Size(233, 27);
+            this.bsmDelete.Size = new System.Drawing.Size(260, 27);
             this.bsmDelete.TabIndex = 91;
             this.bsmDelete.Text = "Delete - Right Click Record";
             this.bsmDelete.UseVisualStyleBackColor = true;
             this.bsmDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // bsmAddSlice
+            // 
+            this.bsmAddSlice.Location = new System.Drawing.Point(694, 245);
+            this.bsmAddSlice.Name = "bsmAddSlice";
+            this.bsmAddSlice.Size = new System.Drawing.Size(75, 42);
+            this.bsmAddSlice.TabIndex = 79;
+            this.bsmAddSlice.Text = "Add Slice";
+            this.bsmAddSlice.UseVisualStyleBackColor = true;
+            this.bsmAddSlice.Click += new System.EventHandler(this.bsmAddSlice_Click);
+            // 
             // bsmAdd
             // 
-            this.bsmAdd.Location = new System.Drawing.Point(682, 181);
+            this.bsmAdd.Location = new System.Drawing.Point(694, 182);
             this.bsmAdd.Name = "bsmAdd";
             this.bsmAdd.Size = new System.Drawing.Size(75, 42);
             this.bsmAdd.TabIndex = 79;
@@ -800,15 +821,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(156, 20);
             this.comboBox1.TabIndex = 145;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 266);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
-            this.label4.TabIndex = 143;
-            this.label4.Text = "Reference";
             // 
             // FormScan
             // 
@@ -912,5 +924,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button bsmAddSlice;
     }
 }

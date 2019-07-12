@@ -134,7 +134,10 @@ namespace CTDB
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(Application.StartupPath + @"\Updater.exe");
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = Application.StartupPath + @"\Updater.exe";
+            startInfo.Arguments = CTHelper.GetConfig("updateUrl") + " " + Application.ExecutablePath;
+            System.Diagnostics.Process.Start(startInfo);
             Application.Exit();
         }
 

@@ -102,10 +102,16 @@ namespace CTDB
         private void btnMDTag_Click(object sender, EventArgs e) { showFormD(new FormTag()); }
         private void btnQuick1_Click(object sender, EventArgs e) { showFormD(new FormQuick()); }
         private void btnMDSpecies_Click(object sender, EventArgs e) { showFormD(new FormSpecies()); }
-        private void btnMDScan_Click(object sender, EventArgs e) { showFormD(new FormScan()); }
         private void btnMDSlice_Click(object sender, EventArgs e) { showFormD(new FormSlice()); }
         private void btnMDLabel_Click(object sender, EventArgs e) { showFormD(new FormLabel()); }
         private void btnMDRef_Click(object sender, EventArgs e) { showFormD(new FormRef()); }
+        private void btnMDScan_Click(object sender, EventArgs e)
+        {
+            FormScan f = new FormScan();
+            showFormD(f);
+            if (f.AddSlice)
+                btnMDSlice_Click(sender, e);
+        }
         void showFormD(Form f)
         {
             this.Hide();

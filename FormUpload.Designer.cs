@@ -272,9 +272,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(78, 172);
+            this.button1.Location = new System.Drawing.Point(3, 172);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(69, 24);
+            this.button1.Size = new System.Drawing.Size(69, 36);
             this.button1.TabIndex = 50;
             this.button1.Text = "Clear All";
             this.button1.UseVisualStyleBackColor = true;
@@ -282,9 +282,9 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(3, 172);
+            this.btnDelete.Location = new System.Drawing.Point(78, 172);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(69, 24);
+            this.btnDelete.Size = new System.Drawing.Size(69, 36);
             this.btnDelete.TabIndex = 50;
             this.btnDelete.Text = "Clear";
             this.btnDelete.UseVisualStyleBackColor = true;

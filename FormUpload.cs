@@ -65,6 +65,7 @@ namespace CTDB
                 lbDSName.Text = s.Abstract;
                 lbSpecimenID.Text = s.tbScan.tbSpecimen.sp_id.ToString();
                 mitCreatedFromSlice.Visible = true;
+                cdFileRef.Visible = false;
             }
             else if (ParaTable == "ctdb-scan")
             {
@@ -73,6 +74,7 @@ namespace CTDB
                 tbScan s = ct.tbScan.Where(c => c.scan_id == ParaDatasetID).Single();
                 lbDSName.Text = s.Abstract;
                 lbSpecimenID.Text = s.tbSpecimen.sp_id.ToString();
+                cdFileRef.Visible = false;
             }
             else if (ParaTable == "ctdb-label")
             {
@@ -82,6 +84,7 @@ namespace CTDB
                 lbDSName.Text = s.label_id.ToString();
                 lbSpecimenID.Text = s.tbSlice.tbScan.tbSpecimen.sp_id.ToString();
                 mitCreatedFromLabel.Visible = true;
+                cdFileRef.Visible = false;
             }
             else if (ParaTable == "ctdb-specimen")
             {
@@ -90,6 +93,7 @@ namespace CTDB
                 tbSpecimen s = ct.tbSpecimen.Where(c => c.sp_id == ParaDatasetID).Single();
                 lbSpecimenID.Text = s.sp_id.ToString();
                 lbDSName.Text = s.Abstract;
+                // cdFileRef.Enabled = true;
             }
             else if (ParaTable == "ctdb-scanpara")
             {
@@ -98,6 +102,7 @@ namespace CTDB
                 tbScan s = ct.tbScan.Where(c => c.scan_id == ParaDatasetID).Single();
                 lbDSName.Text = s.Abstract;
                 lbSpecimenID.Text = s.tbSpecimen.sp_id.ToString();
+                cdFileRef.Visible = false;
             }
             else
             { this.Close(); }
@@ -126,7 +131,7 @@ namespace CTDB
         void notep(string s = "") { if (pbar1.Value < pbar1.Maximum) pbar1.Value++; lbNote.Text = pbar1.Value + "|" + pbar1.Maximum + " " + s; Application.DoEvents(); }
 
         //========local file operation===========
-        private void miDelAll_Click(object sender, EventArgs e) { lboxFile.SelectedItems.Clear(); }
+        private void miDelAll_Click(object sender, EventArgs e) { lboxFile.Items.Clear(); }
         private void miDel_Click(object sender, EventArgs e)
         {
             int SelectItems = lboxFile.SelectedItems.Count;
@@ -184,7 +189,7 @@ namespace CTDB
             foreach (string fileSrc in lboxFile.Items)
             {
                 pbar1.Value++;
-                lbNote.Text = pbar1.Value + "，Total:" + lboxFile.Items.Count + ", " + countOK + " OK," + countError + " Fail";
+                lbNote.Text = pbar1.Value + "/" + lboxFile.Items.Count + ", " + countOK + " OK," + countError + " Fail";
 
                 if (checkSkipSameFile.Checked) //重复检查
                 {
@@ -288,12 +293,17 @@ namespace CTDB
                 CTDBEntities ct = new CTDBEntities();
                 ct.tbFile.Add(t);
                 ct.SaveChanges();   //将修改保存到数据库中
+
                 return r;
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
                 r = dbEx.ToString();
                 return r;
+            }
+            finally
+            {
+                this.Enabled = true;
             }
         }
 

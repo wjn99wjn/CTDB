@@ -9,6 +9,14 @@ namespace CTDB
 {
     public partial class FormSpecimen : Form
     {
+        public static string CutString(string s, int l)
+        {
+            string r = s.Trim();
+            if (l <= r.Length)
+                return r.Substring(0, l);
+            return r;
+        }
+
         public FormSpecimen() { InitializeComponent(); }
         private void btnOK_Click(object sender, EventArgs e) { this.Close(); }
 
@@ -17,7 +25,7 @@ namespace CTDB
             //load controls
             ucFileInfo1.ParaTable = "ctdb-specimen";
             CTHelper.setControlTag(csmSex, 43, 42);
-            CTHelper.setControlTag(csmAge, 45, 46);
+            CTHelper.setControlTag(csmAge, 45, 144);
             CTHelper.setControlTag(csmDehydrant, 63, 64);
             CTHelper.setControlTag(csmPS, 95, 96);
             //load gridview-specimen information
@@ -105,7 +113,7 @@ namespace CTDB
         void setDBValue(tbSpecimen s)
         {
             s.species_id = (csmSpecies.SelectedItem as tbSpecies).species_id;
-            s.sp_note = cutstring(csmNote.Text, 50);
+            s.sp_note = CutString(csmNote.Text, 50);
 
             s.sp_spid = csmSPID.Text;//实际标本号-不是必须字段
             s.specimen_age = csmAge.Text;
@@ -125,16 +133,9 @@ namespace CTDB
             s.sp_preserve_status = csmPS.Text;
 
             //s.Abstract = csmSpecies.Text.Trim() + "-" + csmSPID.Text;
-            s.Abstract = cutstring(lbSpeciesLatin.Text, 28) + " : " + cutstring(csmSPID.Text, 18);
+            s.Abstract = CutString(lbSpeciesLatin.Text, 28) + " : " + CutString(csmSPID.Text, 18);
             s.UserId = Guid.Parse(CTHelper.GetConfig("userid"));
             s.date_in = DateTime.Now;
-        }
-        string cutstring(string s, int l)
-        {
-            string r = s.Trim();
-            if (l <= r.Length)
-                return r.Substring(0, l);
-            return r;
         }
 
         private void bsmAdd_Click(object sender, EventArgs e)

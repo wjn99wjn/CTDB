@@ -187,7 +187,7 @@ namespace CTDB
                 sl.slice_para_PixelSize = 1.04;
                 sl.open_status = 30;
                 sl.UserId = Guid.Parse(CTHelper.GetConfig("userid"));
-                sl.Abstract = cscSpecimen.Text + "-" + cscTagSpecimenParty.Text;
+                sl.Abstract = FormSpecimen.CutString(cscSpecimen.Text, 40) + "-" + FormSpecimen.CutString(cscTagSpecimenParty.Text, 7);
                 ct.tbSlice.Add(sl);
                 ct.SaveChanges();   //将修改保存到数据库中
             }
@@ -301,6 +301,13 @@ namespace CTDB
             }
         }
 
+        public bool AddSlice = false;
+
+        private void bsmAddSlice_Click(object sender, EventArgs e)
+        {
+            this.AddSlice = true;
+            this.Close();
+        }
 
 
 

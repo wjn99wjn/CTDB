@@ -76,7 +76,10 @@ namespace CTDB
             s.slice_para_ResultFileType = "-";// clResultFileType.Text.Trim();
             s.slice_para_SliceNumber = ucFileInfo1.ValueFileCount;// int.Parse(clNumberSlice.Text);
 
-            s.slice_para_PixelSize = 0;
+            s.slice_para_PixelSize = double.Parse(clPixelSize.Text);
+
+
+
             if (clPixelSize.Text != "")
                 s.slice_para_PixelSize = float.Parse(clPixelSize.Text);
             s.open_status = int.Parse(clOpenStatus.SelectedValue.ToString());

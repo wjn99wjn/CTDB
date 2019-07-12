@@ -172,7 +172,7 @@
             // 
             // ucFileInfo1
             // 
-            this.ucFileInfo1.Location = new System.Drawing.Point(334, 32);
+            this.ucFileInfo1.Location = new System.Drawing.Point(477, 34);
             this.ucFileInfo1.Name = "ucFileInfo1";
             this.ucFileInfo1.ParaDatasetID = 0;
             this.ucFileInfo1.ParaTable = "tbSlice";
@@ -183,7 +183,7 @@
             // 
             // btnMDScan
             // 
-            this.btnMDScan.Location = new System.Drawing.Point(278, 34);
+            this.btnMDScan.Location = new System.Drawing.Point(66, 34);
             this.btnMDScan.Name = "btnMDScan";
             this.btnMDScan.Size = new System.Drawing.Size(27, 20);
             this.btnMDScan.TabIndex = 115;
@@ -205,7 +205,7 @@
             this.clOpenStatus.FormattingEnabled = true;
             this.clOpenStatus.Location = new System.Drawing.Point(66, 60);
             this.clOpenStatus.Name = "clOpenStatus";
-            this.clOpenStatus.Size = new System.Drawing.Size(239, 20);
+            this.clOpenStatus.Size = new System.Drawing.Size(376, 20);
             this.clOpenStatus.TabIndex = 111;
             // 
             // label50
@@ -237,10 +237,9 @@
             // 
             // clPixelSize
             // 
-            this.clPixelSize.Enabled = false;
             this.clPixelSize.Location = new System.Drawing.Point(156, 121);
             this.clPixelSize.Name = "clPixelSize";
-            this.clPixelSize.Size = new System.Drawing.Size(149, 21);
+            this.clPixelSize.Size = new System.Drawing.Size(75, 21);
             this.clPixelSize.TabIndex = 107;
             this.clPixelSize.Text = "1.04";
             // 
@@ -256,11 +255,12 @@
             // label43
             // 
             this.label43.AutoSize = true;
+            this.label43.ForeColor = System.Drawing.Color.Red;
             this.label43.Location = new System.Drawing.Point(12, 125);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(95, 12);
             this.label43.TabIndex = 106;
-            this.label43.Text = "Pixel Size (µm)";
+            this.label43.Text = "Resolution (µm)";
             // 
             // clReconstructionProgram
             // 
@@ -283,9 +283,9 @@
             // 
             this.clScan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.clScan.FormattingEnabled = true;
-            this.clScan.Location = new System.Drawing.Point(66, 34);
+            this.clScan.Location = new System.Drawing.Point(99, 34);
             this.clScan.Name = "clScan";
-            this.clScan.Size = new System.Drawing.Size(206, 20);
+            this.clScan.Size = new System.Drawing.Size(343, 20);
             this.clScan.TabIndex = 101;
             // 
             // label17
