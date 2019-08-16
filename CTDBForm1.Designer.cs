@@ -54,6 +54,8 @@
             this.btnMDSpecies = new System.Windows.Forms.Button();
             this.btnMDEquipment = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.lbHelp2 = new System.Windows.Forms.TextBox();
+            this.btnExit = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -131,6 +133,7 @@
             // 
             // tabPage0
             // 
+            this.tabPage0.AutoScroll = true;
             this.tabPage0.Controls.Add(this.lbHelpSpecimen);
             this.tabPage0.Location = new System.Drawing.Point(4, 22);
             this.tabPage0.Name = "tabPage0";
@@ -188,6 +191,7 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.lbHelp2);
             this.tabPage7.Controls.Add(this.lbHelp);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
@@ -208,6 +212,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btnMDLabel);
+            this.panel1.Controls.Add(this.btnExit);
             this.panel1.Controls.Add(this.btnQuick1);
             this.panel1.Controls.Add(this.btnMDTag);
             this.panel1.Controls.Add(this.btnRef);
@@ -330,6 +335,25 @@
             this.dataGridView1.Size = new System.Drawing.Size(872, 262);
             this.dataGridView1.TabIndex = 0;
             // 
+            // lbHelp2
+            // 
+            this.lbHelp2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbHelp2.Location = new System.Drawing.Point(0, 0);
+            this.lbHelp2.Multiline = true;
+            this.lbHelp2.Name = "lbHelp2";
+            this.lbHelp2.Size = new System.Drawing.Size(528, 310);
+            this.lbHelp2.TabIndex = 1;
+            // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(119, 270);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(89, 44);
+            this.btnExit.TabIndex = 10;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // CTDBForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -392,5 +416,7 @@
         private System.Windows.Forms.Label lbHelpSpecimen;
         private System.Windows.Forms.Label lbHelpScan;
         private System.Windows.Forms.Label lbHelpTag;
+        private System.Windows.Forms.TextBox lbHelp2;
+        private System.Windows.Forms.Button btnExit;
     }
 }

@@ -32,6 +32,7 @@ namespace CTDB
             lbHelpScan.Text = Properties.Resources.help_ct_Scan;
             lbHelpTag.Text = Properties.Resources.help_ct_Tag;
             lbHelp.Text = Properties.Resources.help_ct;
+            lbHelp2.Text = Properties.Resources.help_ct;
             tabControl2.SelectedIndex = 3;//help
             updateUserInfo();
         }
@@ -118,6 +119,8 @@ namespace CTDB
             f.ShowDialog();
             this.Show();
         }
+
+        private void btnExit_Click(object sender, EventArgs e) { Application.Exit(); }
 
 
     }

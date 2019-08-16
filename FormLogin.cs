@@ -132,15 +132,27 @@ namespace CTDB
             catch { MessageBox.Show("Something wrong. Try later."); }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void lbUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            string fupdate = Application.StartupPath + "\\Updater.exe";
+            if (File.Exists(fupdate)) File.Delete(fupdate);
+            //update updater.exe
+            if (!File.Exists(fupdate))
+                CTHelper.DownloadFile(CTHelper.GetConfig("updateUrl") + "/Updater.exe", fupdate);
+            if (!File.Exists(fupdate))
+                CTHelper.DownloadFile(CTHelper.GetConfig("downloadurl") + "/Updater.exe", fupdate);
+            if (!File.Exists(fupdate))
+            {
+                MessageBox.Show("Fail!");
+                return;
+            }
+            //begin to update
             ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = Application.StartupPath + @"\Updater.exe";
+            startInfo.FileName = fupdate;
             startInfo.Arguments = CTHelper.GetConfig("updateUrl") + " " + Application.ExecutablePath;
             System.Diagnostics.Process.Start(startInfo);
             Application.Exit();
         }
-
 
     }
 }
