@@ -58,6 +58,7 @@
             this.bsmAdd = new System.Windows.Forms.Button();
             this.cscSliceNo = new System.Windows.Forms.Label();
             this.clSliceNo = new System.Windows.Forms.Label();
+            this.cmitExportMeta = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -87,29 +88,30 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mitDelete,
             this.cmitAddFileStack,
-            this.cmitAddFile3D});
+            this.cmitAddFile3D,
+            this.cmitExportMeta});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(164, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
             // 
             // mitDelete
             // 
             this.mitDelete.Enabled = false;
             this.mitDelete.Name = "mitDelete";
-            this.mitDelete.Size = new System.Drawing.Size(163, 22);
+            this.mitDelete.Size = new System.Drawing.Size(180, 22);
             this.mitDelete.Text = "Delete";
             this.mitDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // cmitAddFileStack
             // 
             this.cmitAddFileStack.Name = "cmitAddFileStack";
-            this.cmitAddFileStack.Size = new System.Drawing.Size(163, 22);
+            this.cmitAddFileStack.Size = new System.Drawing.Size(180, 22);
             this.cmitAddFileStack.Text = "Add Image Stack";
             this.cmitAddFileStack.Click += new System.EventHandler(this.cmitAddFileStack_Click);
             // 
             // cmitAddFile3D
             // 
             this.cmitAddFile3D.Name = "cmitAddFile3D";
-            this.cmitAddFile3D.Size = new System.Drawing.Size(163, 22);
+            this.cmitAddFile3D.Size = new System.Drawing.Size(180, 22);
             this.cmitAddFile3D.Text = "Add 3D Model";
             this.cmitAddFile3D.Click += new System.EventHandler(this.cmitAddFile3D_Click);
             // 
@@ -346,6 +348,13 @@
             this.clSliceNo.TabIndex = 150;
             this.clSliceNo.Text = "0";
             // 
+            // cmitExportMeta
+            // 
+            this.cmitExportMeta.Name = "cmitExportMeta";
+            this.cmitExportMeta.Size = new System.Drawing.Size(180, 22);
+            this.cmitExportMeta.Text = "Export Meta";
+            this.cmitExportMeta.Click += new System.EventHandler(this.cmitExportMeta_Click);
+            // 
             // FormSlice
             // 
             this.AcceptButton = this.btnOK;
@@ -397,5 +406,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label cscSliceNo;
         private System.Windows.Forms.Label clSliceNo;
+        private System.Windows.Forms.ToolStripMenuItem cmitExportMeta;
     }
 }

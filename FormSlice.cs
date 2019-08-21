@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
 
 namespace CTDB
 {
@@ -204,6 +206,66 @@ namespace CTDB
 
         private void ucFileInfo1_OpenFileDialog(object sender, EventArgs e) { this.Hide(); }
         private void ucFileInfo1_UpdateFile(object sender, EventArgs e) { this.Show(); }
+
+        private void cmitExportMeta_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                int id = int.Parse(clID.Text);
+                //Hashtable ht = new Hashtable();
+                List<Tuple<string, string>> ht = new List<Tuple<string, string>>();
+                CTDBEntities ct = new CTDBEntities();
+
+
+                tbSlice slice = ct.tbSlice.FirstOrDefault(s => s.slice_id == id);
+                ht.Add(new Tuple<string, string>("Slice ID", slice.sp_id.ToString()));
+                ht.Add(new Tuple<string, string>("Slice Number", slice.slice_para_SliceNumber.ToString()));
+                ht.Add(new Tuple<string, string>("Slice File Type", slice.slice_para_ResultFileType.ToString()));
+                ht.Add(new Tuple<string, string>("Slice Resolution", slice.slice_para_PixelSize.ToString()));
+
+                tbScan scan = ct.tbScan.FirstOrDefault(s => s.scan_id == slice.scan_id);
+                ht.Add(new Tuple<string, string>("ScanPara Volta", scan.scan_para_SourceVoltage.ToString()));
+                ht.Add(new Tuple<string, string>("ScanPara Bunning", scan.scan_para_CameraBinning.ToString()));
+                ht.Add(new Tuple<string, string>("ScanPara Lens Multiply", scan.scan_para_LensMultiple.ToString()));
+                ht.Add(new Tuple<string, string>("ScanPara Time", scan.scan_timebegin.ToString("yyyy-MM-dd")));
+                ht.Add(new Tuple<string, string>("ScanPara Operator", scan.scan_operator));
+                ht.Add(new Tuple<string, string>("ScanPara Part", scan.scan_specimen_Body));
+
+                tbEquipment equip = ct.tbEquipment.FirstOrDefault(s => s.e_id == scan.e_id);
+                ht.Add(new Tuple<string, string>("ScanPara Equipment", equip.e_name));
+
+                tbSpecimen sp = ct.tbSpecimen.FirstOrDefault(s => s.sp_id == slice.sp_id);
+                ht.Add(new Tuple<string, string>("Specimen ID", sp.sp_spid));
+                ht.Add(new Tuple<string, string>("Specimen Collector", sp.sp_collector));
+                ht.Add(new Tuple<string, string>("Specimen Collect Time", sp.sp_collect_time));
+                ht.Add(new Tuple<string, string>("Specimen Collect Place", sp.sp_collect_place));
+
+
+                tbSpecies species = ct.tbSpecies.FirstOrDefault(s => s.species_id == sp.species_id);
+                ht.Add(new Tuple<string, string>("Specie Name", species.species_latin));
+                ht.Add(new Tuple<string, string>("Specie Genus", species.species_Genus));
+                ht.Add(new Tuple<string, string>("Specie Family", species.species_Family));
+
+
+                string f = Application.StartupPath + "\\meta.txt";
+                if (File.Exists(f)) File.Delete(f);
+                //foreach (System.Collections.DictionaryEntry item in ht)
+                foreach (Tuple<string, string> item in ht)
+                {
+                    string s = item.Item1 + "\t:\t" + item.Item2;
+                    CTHelper.AddLog(s, f);
+                }
+
+                System.Diagnostics.Process.Start(f);
+            }
+            catch
+            {
+                MessageBox.Show("记录有关联，删除失败");
+            }
+        }
+
+
 
 
     }
