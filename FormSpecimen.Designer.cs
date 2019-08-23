@@ -51,6 +51,8 @@
             this.csmNote = new System.Windows.Forms.TextBox();
             this.btnAddSpecies = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.csmIdentifier = new System.Windows.Forms.TextBox();
             this.csmPS = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -80,8 +82,13 @@
             this.bsmDelete = new System.Windows.Forms.Button();
             this.bsmAdd = new System.Windows.Forms.Button();
             this.lbScancount = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.csmIdentifier = new System.Windows.Forms.TextBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -89,6 +96,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -99,14 +107,14 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 288);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 347);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(872, 339);
+            this.dataGridView1.Size = new System.Drawing.Size(872, 280);
             this.dataGridView1.TabIndex = 45;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -143,7 +151,6 @@
             // 
             // mitDelete
             // 
-            this.mitDelete.Enabled = false;
             this.mitDelete.Name = "mitDelete";
             this.mitDelete.Size = new System.Drawing.Size(173, 22);
             this.mitDelete.Text = "Delete";
@@ -152,7 +159,7 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(785, 234);
+            this.btnOK.Location = new System.Drawing.Point(785, 295);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 42);
             this.btnOK.TabIndex = 26;
@@ -167,6 +174,7 @@
             this.panel1.Controls.Add(this.groupBox4);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.btnMDExample);
+            this.panel1.Controls.Add(this.groupBox5);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.bsmUpdate);
@@ -176,7 +184,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(872, 288);
+            this.panel1.Size = new System.Drawing.Size(872, 347);
             this.panel1.TabIndex = 46;
             // 
             // label63
@@ -214,7 +222,7 @@
             this.groupBox4.Controls.Add(this.btnAddSpecies);
             this.groupBox4.Location = new System.Drawing.Point(12, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(331, 99);
+            this.groupBox4.Size = new System.Drawing.Size(304, 99);
             this.groupBox4.TabIndex = 103;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Record Abstract";
@@ -279,7 +287,7 @@
             this.csmSpecies.FormattingEnabled = true;
             this.csmSpecies.Location = new System.Drawing.Point(67, 15);
             this.csmSpecies.Name = "csmSpecies";
-            this.csmSpecies.Size = new System.Drawing.Size(210, 20);
+            this.csmSpecies.Size = new System.Drawing.Size(188, 20);
             this.csmSpecies.TabIndex = 84;
             this.csmSpecies.SelectedIndexChanged += new System.EventHandler(this.csmSpecies_SelectedIndexChanged);
             // 
@@ -288,13 +296,13 @@
             this.csmNote.Location = new System.Drawing.Point(67, 55);
             this.csmNote.Multiline = true;
             this.csmNote.Name = "csmNote";
-            this.csmNote.Size = new System.Drawing.Size(210, 34);
+            this.csmNote.Size = new System.Drawing.Size(224, 34);
             this.csmNote.TabIndex = 82;
             this.csmNote.Text = "-";
             // 
             // btnAddSpecies
             // 
-            this.btnAddSpecies.Location = new System.Drawing.Point(283, 14);
+            this.btnAddSpecies.Location = new System.Drawing.Point(261, 14);
             this.btnAddSpecies.Name = "btnAddSpecies";
             this.btnAddSpecies.Size = new System.Drawing.Size(30, 21);
             this.btnAddSpecies.TabIndex = 80;
@@ -305,12 +313,6 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.csmIdentifier);
-            this.groupBox3.Controls.Add(this.csmPS);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.csmDriedSpecimenSavePosition);
             this.groupBox3.Controls.Add(this.csmSex);
             this.groupBox3.Controls.Add(this.csmAge);
             this.groupBox3.Controls.Add(this.label30);
@@ -319,35 +321,52 @@
             this.groupBox3.Controls.Add(this.csmSPID);
             this.groupBox3.Location = new System.Drawing.Point(12, 117);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(331, 165);
+            this.groupBox3.Size = new System.Drawing.Size(304, 91);
             this.groupBox3.TabIndex = 102;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Specimen Information";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(5, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 107;
+            this.label4.Text = "Identifier";
+            // 
+            // csmIdentifier
+            // 
+            this.csmIdentifier.Location = new System.Drawing.Point(76, 11);
+            this.csmIdentifier.Name = "csmIdentifier";
+            this.csmIdentifier.Size = new System.Drawing.Size(216, 21);
+            this.csmIdentifier.TabIndex = 106;
+            this.csmIdentifier.Text = "Zong Le";
             // 
             // csmPS
             // 
             this.csmPS.FormattingEnabled = true;
             this.csmPS.Items.AddRange(new object[] {
             "Leica EM CPD 300"});
-            this.csmPS.Location = new System.Drawing.Point(112, 134);
+            this.csmPS.Location = new System.Drawing.Point(76, 61);
             this.csmPS.Name = "csmPS";
-            this.csmPS.Size = new System.Drawing.Size(179, 20);
+            this.csmPS.Size = new System.Drawing.Size(216, 20);
             this.csmPS.TabIndex = 104;
             this.csmPS.Text = "Leica EM CPD 300";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 137);
+            this.label2.Location = new System.Drawing.Point(5, 64);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 12);
+            this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 105;
-            this.label2.Text = "Preserve Status";
+            this.label2.Text = "Status";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 115);
+            this.label10.Location = new System.Drawing.Point(5, 39);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(47, 12);
             this.label10.TabIndex = 76;
@@ -355,9 +374,9 @@
             // 
             // csmDriedSpecimenSavePosition
             // 
-            this.csmDriedSpecimenSavePosition.Location = new System.Drawing.Point(112, 110);
+            this.csmDriedSpecimenSavePosition.Location = new System.Drawing.Point(76, 34);
             this.csmDriedSpecimenSavePosition.Name = "csmDriedSpecimenSavePosition";
-            this.csmDriedSpecimenSavePosition.Size = new System.Drawing.Size(179, 21);
+            this.csmDriedSpecimenSavePosition.Size = new System.Drawing.Size(216, 21);
             this.csmDriedSpecimenSavePosition.TabIndex = 67;
             this.csmDriedSpecimenSavePosition.Text = "Zong Le";
             // 
@@ -365,9 +384,9 @@
             // 
             this.csmSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.csmSex.FormattingEnabled = true;
-            this.csmSex.Location = new System.Drawing.Point(81, 38);
+            this.csmSex.Location = new System.Drawing.Point(67, 38);
             this.csmSex.Name = "csmSex";
-            this.csmSex.Size = new System.Drawing.Size(210, 20);
+            this.csmSex.Size = new System.Drawing.Size(224, 20);
             this.csmSex.TabIndex = 103;
             // 
             // csmAge
@@ -383,9 +402,9 @@
             "Larva - 5",
             "Nymphae",
             "Egg"});
-            this.csmAge.Location = new System.Drawing.Point(81, 62);
+            this.csmAge.Location = new System.Drawing.Point(67, 62);
             this.csmAge.Name = "csmAge";
-            this.csmAge.Size = new System.Drawing.Size(210, 20);
+            this.csmAge.Size = new System.Drawing.Size(224, 20);
             this.csmAge.TabIndex = 102;
             this.csmAge.Text = "Adult";
             // 
@@ -418,16 +437,16 @@
             // 
             // csmSPID
             // 
-            this.csmSPID.Location = new System.Drawing.Point(81, 15);
+            this.csmSPID.Location = new System.Drawing.Point(67, 15);
             this.csmSPID.Name = "csmSPID";
-            this.csmSPID.Size = new System.Drawing.Size(210, 21);
+            this.csmSPID.Size = new System.Drawing.Size(224, 21);
             this.csmSPID.TabIndex = 94;
             this.csmSPID.Text = "-";
             // 
             // btnMDExample
             // 
             this.btnMDExample.Enabled = false;
-            this.btnMDExample.Location = new System.Drawing.Point(505, 222);
+            this.btnMDExample.Location = new System.Drawing.Point(505, 283);
             this.btnMDExample.Name = "btnMDExample";
             this.btnMDExample.Size = new System.Drawing.Size(261, 30);
             this.btnMDExample.TabIndex = 99;
@@ -441,11 +460,13 @@
             this.groupBox2.Controls.Add(this.csmCollector);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.csmCollectTime);
+            this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.csmCollectPlace);
-            this.groupBox2.Location = new System.Drawing.Point(385, 12);
+            this.groupBox2.Location = new System.Drawing.Point(12, 214);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(276, 99);
+            this.groupBox2.Size = new System.Drawing.Size(304, 123);
             this.groupBox2.TabIndex = 98;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Collection Information";
@@ -463,7 +484,7 @@
             // 
             this.csmCollector.Location = new System.Drawing.Point(67, 13);
             this.csmCollector.Name = "csmCollector";
-            this.csmCollector.Size = new System.Drawing.Size(200, 21);
+            this.csmCollector.Size = new System.Drawing.Size(224, 21);
             this.csmCollector.TabIndex = 86;
             this.csmCollector.Text = "-";
             // 
@@ -474,13 +495,13 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 12);
             this.label8.TabIndex = 87;
-            this.label8.Text = "Date/Time";
+            this.label8.Text = "Date Time";
             // 
             // csmCollectTime
             // 
             this.csmCollectTime.Location = new System.Drawing.Point(67, 39);
             this.csmCollectTime.Name = "csmCollectTime";
-            this.csmCollectTime.Size = new System.Drawing.Size(200, 21);
+            this.csmCollectTime.Size = new System.Drawing.Size(224, 21);
             this.csmCollectTime.TabIndex = 88;
             this.csmCollectTime.Text = "-";
             // 
@@ -489,15 +510,15 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(7, 69);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 12);
+            this.label9.Size = new System.Drawing.Size(59, 12);
             this.label9.TabIndex = 89;
-            this.label9.Text = "Place";
+            this.label9.Text = "Loacation";
             // 
             // csmCollectPlace
             // 
             this.csmCollectPlace.Location = new System.Drawing.Point(67, 66);
             this.csmCollectPlace.Name = "csmCollectPlace";
-            this.csmCollectPlace.Size = new System.Drawing.Size(200, 21);
+            this.csmCollectPlace.Size = new System.Drawing.Size(224, 21);
             this.csmCollectPlace.TabIndex = 90;
             this.csmCollectPlace.Text = "-";
             // 
@@ -509,9 +530,9 @@
             this.groupBox1.Controls.Add(this.label61);
             this.groupBox1.Controls.Add(this.csmDehydrant);
             this.groupBox1.Controls.Add(this.label59);
-            this.groupBox1.Location = new System.Drawing.Point(385, 117);
+            this.groupBox1.Location = new System.Drawing.Point(340, 168);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(276, 103);
+            this.groupBox1.Size = new System.Drawing.Size(312, 103);
             this.groupBox1.TabIndex = 95;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dehydration Information";
@@ -523,7 +544,7 @@
             "Leica EM CPD 300"});
             this.csmDryInstrument.Location = new System.Drawing.Point(78, 45);
             this.csmDryInstrument.Name = "csmDryInstrument";
-            this.csmDryInstrument.Size = new System.Drawing.Size(179, 20);
+            this.csmDryInstrument.Size = new System.Drawing.Size(214, 20);
             this.csmDryInstrument.TabIndex = 75;
             this.csmDryInstrument.Text = "Leica EM CPD 300";
             // 
@@ -531,7 +552,7 @@
             // 
             this.csmDryCycleTime.Location = new System.Drawing.Point(78, 71);
             this.csmDryCycleTime.Name = "csmDryCycleTime";
-            this.csmDryCycleTime.Size = new System.Drawing.Size(179, 21);
+            this.csmDryCycleTime.Size = new System.Drawing.Size(214, 21);
             this.csmDryCycleTime.TabIndex = 67;
             this.csmDryCycleTime.Text = "25";
             // 
@@ -562,7 +583,7 @@
             "75%-100% Alcohol + Acetone"});
             this.csmDehydrant.Location = new System.Drawing.Point(78, 18);
             this.csmDehydrant.Name = "csmDehydrant";
-            this.csmDehydrant.Size = new System.Drawing.Size(179, 20);
+            this.csmDehydrant.Size = new System.Drawing.Size(214, 20);
             this.csmDehydrant.TabIndex = 69;
             this.csmDehydrant.Text = "75%-100% Alcohol";
             // 
@@ -577,7 +598,7 @@
             // 
             // bsmUpdate
             // 
-            this.bsmUpdate.Location = new System.Drawing.Point(785, 170);
+            this.bsmUpdate.Location = new System.Drawing.Point(785, 231);
             this.bsmUpdate.Name = "bsmUpdate";
             this.bsmUpdate.Size = new System.Drawing.Size(75, 42);
             this.bsmUpdate.TabIndex = 92;
@@ -588,7 +609,7 @@
             // bsmDelete
             // 
             this.bsmDelete.Enabled = false;
-            this.bsmDelete.Location = new System.Drawing.Point(505, 249);
+            this.bsmDelete.Location = new System.Drawing.Point(505, 310);
             this.bsmDelete.Name = "bsmDelete";
             this.bsmDelete.Size = new System.Drawing.Size(261, 27);
             this.bsmDelete.TabIndex = 91;
@@ -598,7 +619,7 @@
             // 
             // bsmAdd
             // 
-            this.bsmAdd.Location = new System.Drawing.Point(691, 171);
+            this.bsmAdd.Location = new System.Drawing.Point(691, 232);
             this.bsmAdd.Name = "bsmAdd";
             this.bsmAdd.Size = new System.Drawing.Size(75, 42);
             this.bsmAdd.TabIndex = 79;
@@ -616,22 +637,78 @@
             this.lbScancount.TabIndex = 98;
             this.lbScancount.Text = "0";
             // 
-            // label4
+            // groupBox5
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 92);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 12);
-            this.label4.TabIndex = 107;
-            this.label4.Text = "Identifier";
+            this.groupBox5.Controls.Add(this.label4);
+            this.groupBox5.Controls.Add(this.label12);
+            this.groupBox5.Controls.Add(this.csmIdentifier);
+            this.groupBox5.Controls.Add(this.textBox2);
+            this.groupBox5.Controls.Add(this.label10);
+            this.groupBox5.Controls.Add(this.csmPS);
+            this.groupBox5.Controls.Add(this.csmDriedSpecimenSavePosition);
+            this.groupBox5.Controls.Add(this.label13);
+            this.groupBox5.Controls.Add(this.label2);
+            this.groupBox5.Controls.Add(this.textBox3);
+            this.groupBox5.Location = new System.Drawing.Point(340, 15);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(312, 140);
+            this.groupBox5.TabIndex = 98;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Preserve Information";
             // 
-            // csmIdentifier
+            // label12
             // 
-            this.csmIdentifier.Location = new System.Drawing.Point(112, 87);
-            this.csmIdentifier.Name = "csmIdentifier";
-            this.csmIdentifier.Size = new System.Drawing.Size(179, 21);
-            this.csmIdentifier.TabIndex = 106;
-            this.csmIdentifier.Text = "Zong Le";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 89);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(59, 12);
+            this.label12.TabIndex = 87;
+            this.label12.Text = "Date/Time";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(76, 87);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(216, 21);
+            this.textBox2.TabIndex = 88;
+            this.textBox2.Text = "-";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 117);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 12);
+            this.label13.TabIndex = 89;
+            this.label13.Text = "Place";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Enabled = false;
+            this.textBox3.Location = new System.Drawing.Point(76, 114);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(216, 21);
+            this.textBox3.TabIndex = 90;
+            this.textBox3.Text = "-";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(8, 95);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(17, 12);
+            this.label11.TabIndex = 89;
+            this.label11.Text = "ID";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(67, 93);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(224, 21);
+            this.textBox1.TabIndex = 90;
+            this.textBox1.Text = "-";
             // 
             // FormSpecimen
             // 
@@ -659,6 +736,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -716,5 +795,12 @@
         private System.Windows.Forms.Label lbSpeciesLatin;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox csmIdentifier;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

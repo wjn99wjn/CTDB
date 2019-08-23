@@ -15,7 +15,7 @@ namespace CTDB
         /// <summary>显示列控制</summary>
         /// <param name="dg"></param>
         /// <param name="name"></param>
-        public static void SetColumn(DataGridView dg, string name)
+        static public void SetColumn(DataGridView dg, string name)
         {
             for (int i = 0; i < dg.ColumnCount; i++)
             {
@@ -87,23 +87,26 @@ namespace CTDB
         public FormLogin() { InitializeComponent(); }
         public string userid { get; set; }
 
+
         private void btnExit_Click(object sender, EventArgs e) { Application.Exit(); }
         private void tbPassword_KeyDown(object sender, KeyEventArgs e) { if (e.KeyCode == Keys.Return) btnOK_Click(sender, e); }
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) { Process.Start("iexplore.exe", "http://www.especies.cn/cas/login"); }
+
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
             if (CTHelper.GetConfig("username") != "")
                 tbUser.Text = CTHelper.GetConfig("username");
             if (CTHelper.GetConfig("userkey") != "")
-                tbPassword.Text = CTHelper.GetConfig("userkey");
-
+                tbPassword.Text = CTHelper.Decrypt(CTHelper.GetConfig("userkey"), "WXDX");
         }
 
         private void FormLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
             CTHelper.SetConfig("username", tbUser.Text);
             CTHelper.SetConfig("userid", userid);
+            CTHelper.SetConfig("userkey", CTHelper.Encrypt(tbPassword.Text, "WXDX"));
+            //CTHelper.SetConfig("userkey", "womR4GniEbw=");
         }
 
         private void btnOK_Click(object sender, EventArgs e)

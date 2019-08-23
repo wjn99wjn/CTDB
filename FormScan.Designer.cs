@@ -38,7 +38,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.cscRef = new System.Windows.Forms.ComboBox();
-            this.ucFileInfo1 = new CTDB.ucFileInfo();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cscPixelSize = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
@@ -101,6 +100,7 @@
             this.bsmAdd = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ucFileInfo1 = new CTDB.ucFileInfo();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -201,19 +201,8 @@
             this.cscRef.FormattingEnabled = true;
             this.cscRef.Location = new System.Drawing.Point(12, 285);
             this.cscRef.Name = "cscRef";
-            this.cscRef.Size = new System.Drawing.Size(375, 20);
+            this.cscRef.Size = new System.Drawing.Size(394, 20);
             this.cscRef.TabIndex = 145;
-            // 
-            // ucFileInfo1
-            // 
-            this.ucFileInfo1.Location = new System.Drawing.Point(595, 126);
-            this.ucFileInfo1.Name = "ucFileInfo1";
-            this.ucFileInfo1.ParaDatasetID = 0;
-            this.ucFileInfo1.ParaTable = "";
-            this.ucFileInfo1.Size = new System.Drawing.Size(268, 42);
-            this.ucFileInfo1.TabIndex = 144;
-            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
-            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
             // 
             // groupBox5
             // 
@@ -555,7 +544,7 @@
             this.groupBox2.Controls.Add(this.cscExposure);
             this.groupBox2.Controls.Add(this.label37);
             this.groupBox2.Controls.Add(this.cscRotationStep);
-            this.groupBox2.Location = new System.Drawing.Point(393, 177);
+            this.groupBox2.Location = new System.Drawing.Point(346, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(196, 144);
             this.groupBox2.TabIndex = 98;
@@ -669,34 +658,35 @@
             this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.label28);
             this.groupBox1.Controls.Add(this.cscSourceVoltage);
-            this.groupBox1.Location = new System.Drawing.Point(336, 12);
+            this.groupBox1.Location = new System.Drawing.Point(412, 167);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(253, 155);
+            this.groupBox1.Size = new System.Drawing.Size(177, 155);
             this.groupBox1.TabIndex = 95;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Source Information";
             // 
             // cscCamera
             // 
+            this.cscCamera.Enabled = false;
             this.cscCamera.FormattingEnabled = true;
-            this.cscCamera.Location = new System.Drawing.Point(82, 50);
+            this.cscCamera.Location = new System.Drawing.Point(57, 50);
             this.cscCamera.Name = "cscCamera";
-            this.cscCamera.Size = new System.Drawing.Size(154, 20);
+            this.cscCamera.Size = new System.Drawing.Size(111, 20);
             this.cscCamera.TabIndex = 145;
             this.cscCamera.Text = "Hamamatsu C9300 11Mp ";
             // 
             // cscSourceType
             // 
             this.cscSourceType.FormattingEnabled = true;
-            this.cscSourceType.Location = new System.Drawing.Point(82, 21);
+            this.cscSourceType.Location = new System.Drawing.Point(57, 20);
             this.cscSourceType.Name = "cscSourceType";
-            this.cscSourceType.Size = new System.Drawing.Size(154, 20);
+            this.cscSourceType.Size = new System.Drawing.Size(111, 20);
             this.cscSourceType.TabIndex = 145;
             this.cscSourceType.Text = "Hamamatsu 100/250";
             // 
             // cscSourceCurrent
             // 
-            this.cscSourceCurrent.Location = new System.Drawing.Point(132, 101);
+            this.cscSourceCurrent.Location = new System.Drawing.Point(92, 98);
             this.cscSourceCurrent.Name = "cscSourceCurrent";
             this.cscSourceCurrent.Size = new System.Drawing.Size(55, 21);
             this.cscSourceCurrent.TabIndex = 114;
@@ -704,7 +694,7 @@
             // 
             // csmSourcePower
             // 
-            this.csmSourcePower.Location = new System.Drawing.Point(132, 128);
+            this.csmSourcePower.Location = new System.Drawing.Point(92, 125);
             this.csmSourcePower.Name = "csmSourcePower";
             this.csmSourcePower.Size = new System.Drawing.Size(55, 21);
             this.csmSourcePower.TabIndex = 144;
@@ -715,27 +705,27 @@
             this.label38.AutoSize = true;
             this.label38.Location = new System.Drawing.Point(4, 24);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(71, 12);
+            this.label38.Size = new System.Drawing.Size(29, 12);
             this.label38.TabIndex = 131;
-            this.label38.Text = "Source Type";
+            this.label38.Text = "Type";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(6, 79);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(119, 12);
+            this.label27.Size = new System.Drawing.Size(77, 12);
             this.label27.TabIndex = 111;
-            this.label27.Text = "Source Voltage (kV)";
+            this.label27.Text = "Voltage (kV)";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(7, 131);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 12);
+            this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 143;
-            this.label3.Text = "Source Power(W)";
+            this.label3.Text = "Power(W)";
             // 
             // label26
             // 
@@ -751,13 +741,13 @@
             this.label28.AutoSize = true;
             this.label28.Location = new System.Drawing.Point(7, 104);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(119, 12);
+            this.label28.Size = new System.Drawing.Size(77, 12);
             this.label28.TabIndex = 113;
-            this.label28.Text = "Source Current (uA)";
+            this.label28.Text = "Current (uA)";
             // 
             // cscSourceVoltage
             // 
-            this.cscSourceVoltage.Location = new System.Drawing.Point(131, 76);
+            this.cscSourceVoltage.Location = new System.Drawing.Point(91, 73);
             this.cscSourceVoltage.Name = "cscSourceVoltage";
             this.cscSourceVoltage.Size = new System.Drawing.Size(55, 21);
             this.cscSourceVoltage.TabIndex = 112;
@@ -821,6 +811,17 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(156, 20);
             this.comboBox1.TabIndex = 145;
+            // 
+            // ucFileInfo1
+            // 
+            this.ucFileInfo1.Location = new System.Drawing.Point(595, 126);
+            this.ucFileInfo1.Name = "ucFileInfo1";
+            this.ucFileInfo1.ParaDatasetID = 0;
+            this.ucFileInfo1.ParaTable = "";
+            this.ucFileInfo1.Size = new System.Drawing.Size(268, 42);
+            this.ucFileInfo1.TabIndex = 144;
+            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
+            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
             // 
             // FormScan
             // 

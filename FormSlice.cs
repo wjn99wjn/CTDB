@@ -34,6 +34,10 @@ namespace CTDB
             //CTHelper.setControlTag(clResultFileType, 51, 52);
             CTHelper.setControlTag(clCutMethod, 37, 35);
 
+            cscRef.DataSource = FormLogin.LoadDataF("tbRef");
+            cscRef.DisplayMember = "cite";
+            cscRef.SelectedIndex = 3;
+
             //dataGridView1.DataSource = ct.tbSlice.ToList<tbSlice>();
             //dataGridView1.DataSource = FormLogin.LoadDataA("tbSlice");
             FormLogin.LoadData(dataGridView1, "tbSlice", "slice_id|scan_id|slice_para_PixelSize|slice_para_CutMethod|Abstract|date_in|open_status");
@@ -65,6 +69,8 @@ namespace CTDB
                     ucFileInfo1.ParaDatasetID = s.slice_id;
                     clLabelNo.Text = ct.tbLabel.Count<tbLabel>(c => c.slice_id == id).ToString();
 
+                    CTHelper.setControl(cscRef, s.ref_id);
+
                     mitDelete.Enabled = dataGridView1.Rows.Count > 0;
                 }
             }
@@ -93,6 +99,8 @@ namespace CTDB
                 s.Abstract = s.tbScan.Abstract;
             s.UserId = Guid.Parse(CTHelper.GetConfig("userid"));
             s.date_in = DateTime.Now;
+            s.ref_id = (cscRef.SelectedItem as tbRef).ref_id;
+
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -240,6 +248,7 @@ namespace CTDB
                 ht.Add(new Tuple<string, string>("Specimen Collector", sp.sp_collector));
                 ht.Add(new Tuple<string, string>("Specimen Collect Time", sp.sp_collect_time));
                 ht.Add(new Tuple<string, string>("Specimen Collect Place", sp.sp_collect_place));
+                ht.Add(new Tuple<string, string>("Specimen Preprocess", sp.sp_dehydrant));
 
 
                 tbSpecies species = ct.tbSpecies.FirstOrDefault(s => s.species_id == sp.species_id);

@@ -33,6 +33,7 @@ namespace CTDB
         public string slice_para_CutMethod { get; set; }
         public string Abstract { get; set; }
         public int sp_id { get; set; }
+        public int ref_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbLabel> tbLabel { get; set; }

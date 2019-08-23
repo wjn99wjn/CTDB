@@ -105,7 +105,6 @@
           <Property Name="scan_specimen_Body" Type="nvarchar" MaxLength="50" />
           <Property Name="Abstract" Type="nvarchar" MaxLength="100" />
           <Property Name="ref_id" Type="int" Nullable="false" />
-          <Property Name="scan_para_PixelSize" Type="float" />
         </EntityType>
         <EntityType Name="tbSlice">
           <Key>
@@ -124,6 +123,7 @@
           <Property Name="slice_para_CutMethod" Type="nvarchar" MaxLength="50" />
           <Property Name="Abstract" Type="nvarchar" MaxLength="50" />
           <Property Name="sp_id" Type="int" Nullable="false" />
+          <Property Name="ref_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tbSpecies">
           <Key>
@@ -354,6 +354,12 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
           <EntitySet Name="tbFile" EntityType="CTDBModel.tbFile" />
           <EntitySet Name="tbRef" EntityType="CTDBModel.tbRef" />
           <EntitySet Name="tbLabel" EntityType="CTDBModel.tbLabel" />
+          <EntitySet Name="tbSpecimen" EntityType="CTDBModel.tbSpecimen" />
+          <AssociationSet Name="FK_tbSpecimen_tbSpecies" Association="CTDBModel.FK_tbSpecimen_tbSpecies">
+            <End Role="tbSpecies" EntitySet="tbSpecies" />
+            <End Role="tbSpecimen" EntitySet="tbSpecimen" />
+          </AssociationSet>
+          <EntitySet Name="vQuick" EntityType="CTDBModel.vQuick" />
           <EntitySet Name="tbSlice" EntityType="CTDBModel.tbSlice" />
           <AssociationSet Name="FK_tbLabel_tbSlice" Association="CTDBModel.FK_tbLabel_tbSlice">
             <End Role="tbSlice" EntitySet="tbSlice" />
@@ -364,20 +370,14 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
             <End Role="tbEquipment" EntitySet="tbEquipment" />
             <End Role="tbScan" EntitySet="tbScan" />
           </AssociationSet>
-          <AssociationSet Name="FK_tbSlice_tbScan" Association="CTDBModel.FK_tbSlice_tbScan">
-            <End Role="tbScan" EntitySet="tbScan" />
-            <End Role="tbSlice" EntitySet="tbSlice" />
-          </AssociationSet>
-          <EntitySet Name="tbSpecimen" EntityType="CTDBModel.tbSpecimen" />
           <AssociationSet Name="FK_tbScan_tbSpecimen" Association="CTDBModel.FK_tbScan_tbSpecimen">
             <End Role="tbSpecimen" EntitySet="tbSpecimen" />
             <End Role="tbScan" EntitySet="tbScan" />
           </AssociationSet>
-          <AssociationSet Name="FK_tbSpecimen_tbSpecies" Association="CTDBModel.FK_tbSpecimen_tbSpecies">
-            <End Role="tbSpecies" EntitySet="tbSpecies" />
-            <End Role="tbSpecimen" EntitySet="tbSpecimen" />
+          <AssociationSet Name="FK_tbSlice_tbScan" Association="CTDBModel.FK_tbSlice_tbScan">
+            <End Role="tbScan" EntitySet="tbScan" />
+            <End Role="tbSlice" EntitySet="tbSlice" />
           </AssociationSet>
-          <EntitySet Name="vQuick" EntityType="CTDBModel.vQuick" />
           </EntityContainer>
         <EntityType Name="tbEquipment">
           <Key>
@@ -487,6 +487,75 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
           <Property Name="sp_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tbSlice" Relationship="CTDBModel.FK_tbLabel_tbSlice" FromRole="tbLabel" ToRole="tbSlice" />
         </EntityType>
+        <EntityType Name="tbSpecimen">
+          <Key>
+            <PropertyRef Name="sp_id" />
+          </Key>
+          <Property Name="sp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="species_id" Type="Int32" />
+          <Property Name="sp_note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date_in" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="sp_collector" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sp_collect_time" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sp_collect_place" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sp_spid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_dehydrant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_dryinstrument" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_drycirletime" Type="Int32" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="specimen_sex" Type="Int32" />
+          <Property Name="specimen_age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="specimen_dry_save_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Abstract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_preserve_status" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ref_id" Type="Int32" Nullable="false" />
+          <Property Name="sp_identifier" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbSpecies" Relationship="CTDBModel.FK_tbSpecimen_tbSpecies" FromRole="tbSpecimen" ToRole="tbSpecies" />
+          <NavigationProperty Name="tbScan" Relationship="CTDBModel.FK_tbScan_tbSpecimen" FromRole="tbSpecimen" ToRole="tbScan" />
+        </EntityType>
+        <Association Name="FK_tbSpecimen_tbSpecies">
+          <End Type="CTDBModel.tbSpecies" Role="tbSpecies" Multiplicity="0..1" />
+          <End Type="CTDBModel.tbSpecimen" Role="tbSpecimen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSpecies">
+              <PropertyRef Name="species_id" />
+            </Principal>
+            <Dependent Role="tbSpecimen">
+              <PropertyRef Name="species_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vQuick">
+          <Key>
+            <PropertyRef Name="slice_id" />
+          </Key>
+          <Property Name="slice_id" Type="Int32" Nullable="false" />
+          <Property Name="scan_id" Type="Int32" />
+          <Property Name="e_id" Type="Int32" />
+          <Property Name="sp_id" Type="Int32" />
+          <Property Name="e_nameA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="species_note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="species_Order" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_spid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="scan_timebegin" Type="DateTime" Precision="3" />
+          <Property Name="sp_dehydrant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sp_drycirletime" Type="Int32" />
+          <Property Name="sp_collector" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sp_collect_time" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sp_collect_place" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="specimen_sex" Type="Int32" />
+          <Property Name="specimen_age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="scan_specimen_Body" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="scan_para_CameraBinning" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="scan_para_SourceVoltage" Type="Double" />
+          <Property Name="scan_para_SourceCurrent" Type="Double" />
+          <Property Name="scan_para_Exposure" Type="Double" />
+          <Property Name="specimen_dry_save_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="scan_source_save_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="slice_save_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="slice_para_SliceNumber" Type="Int32" />
+        </EntityType>
         <EntityType Name="tbSlice">
           <Key>
             <PropertyRef Name="slice_id" />
@@ -504,6 +573,7 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
           <Property Name="slice_para_CutMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Abstract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="sp_id" Type="Int32" Nullable="false" />
+          <Property Name="ref_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tbLabel" Relationship="CTDBModel.FK_tbLabel_tbSlice" FromRole="tbSlice" ToRole="tbLabel" />
           <NavigationProperty Name="tbScan" Relationship="CTDBModel.FK_tbSlice_tbScan" FromRole="tbSlice" ToRole="tbScan" />
         </EntityType>
@@ -552,10 +622,9 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
           <Property Name="scan_specimen_Body" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Abstract" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ref_id" Type="Int32" Nullable="false" />
-          <Property Name="scan_para_PixelSize" Type="Double" />
           <NavigationProperty Name="tbEquipment" Relationship="CTDBModel.FK_tbScan_tbEquipment" FromRole="tbScan" ToRole="tbEquipment" />
-          <NavigationProperty Name="tbSlice" Relationship="CTDBModel.FK_tbSlice_tbScan" FromRole="tbScan" ToRole="tbSlice" />
           <NavigationProperty Name="tbSpecimen" Relationship="CTDBModel.FK_tbScan_tbSpecimen" FromRole="tbScan" ToRole="tbSpecimen" />
+          <NavigationProperty Name="tbSlice" Relationship="CTDBModel.FK_tbSlice_tbScan" FromRole="tbScan" ToRole="tbSlice" />
         </EntityType>
         <Association Name="FK_tbScan_tbEquipment">
           <End Type="CTDBModel.tbEquipment" Role="tbEquipment" Multiplicity="1" />
@@ -566,6 +635,18 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
             </Principal>
             <Dependent Role="tbScan">
               <PropertyRef Name="e_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbScan_tbSpecimen">
+          <End Type="CTDBModel.tbSpecimen" Role="tbSpecimen" Multiplicity="1" />
+          <End Type="CTDBModel.tbScan" Role="tbScan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSpecimen">
+              <PropertyRef Name="sp_id" />
+            </Principal>
+            <Dependent Role="tbScan">
+              <PropertyRef Name="sp_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -581,87 +662,6 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="tbSpecimen">
-          <Key>
-            <PropertyRef Name="sp_id" />
-          </Key>
-          <Property Name="sp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="species_id" Type="Int32" />
-          <Property Name="sp_note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="date_in" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="sp_collector" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="sp_collect_time" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="sp_collect_place" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="sp_spid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sp_dehydrant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sp_dryinstrument" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sp_drycirletime" Type="Int32" />
-          <Property Name="UserId" Type="Guid" />
-          <Property Name="specimen_sex" Type="Int32" />
-          <Property Name="specimen_age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="specimen_dry_save_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Abstract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sp_preserve_status" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ref_id" Type="Int32" Nullable="false" />
-          <Property Name="sp_identifier" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tbScan" Relationship="CTDBModel.FK_tbScan_tbSpecimen" FromRole="tbSpecimen" ToRole="tbScan" />
-          <NavigationProperty Name="tbSpecies" Relationship="CTDBModel.FK_tbSpecimen_tbSpecies" FromRole="tbSpecimen" ToRole="tbSpecies" />
-        </EntityType>
-        <Association Name="FK_tbScan_tbSpecimen">
-          <End Type="CTDBModel.tbSpecimen" Role="tbSpecimen" Multiplicity="1" />
-          <End Type="CTDBModel.tbScan" Role="tbScan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbSpecimen">
-              <PropertyRef Name="sp_id" />
-            </Principal>
-            <Dependent Role="tbScan">
-              <PropertyRef Name="sp_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tbSpecimen_tbSpecies">
-          <End Type="CTDBModel.tbSpecies" Role="tbSpecies" Multiplicity="0..1" />
-          <End Type="CTDBModel.tbSpecimen" Role="tbSpecimen" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbSpecies">
-              <PropertyRef Name="species_id" />
-            </Principal>
-            <Dependent Role="tbSpecimen">
-              <PropertyRef Name="species_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="vQuick">
-          <Key>
-            <PropertyRef Name="slice_id" />
-          </Key>
-          <Property Name="slice_id" Type="Int32" Nullable="false" />
-          <Property Name="scan_id" Type="Int32" />
-          <Property Name="e_id" Type="Int32" />
-          <Property Name="sp_id" Type="Int32" />
-          <Property Name="e_nameA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="species_note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="species_Order" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sp_spid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sp_note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="scan_timebegin" Type="DateTime" Precision="3" />
-          <Property Name="sp_dehydrant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sp_drycirletime" Type="Int32" />
-          <Property Name="sp_collector" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="sp_collect_time" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="sp_collect_place" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="specimen_sex" Type="Int32" />
-          <Property Name="specimen_age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="scan_specimen_Body" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="scan_para_CameraBinning" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="scan_para_SourceVoltage" Type="Double" />
-          <Property Name="scan_para_SourceCurrent" Type="Double" />
-          <Property Name="scan_para_Exposure" Type="Double" />
-          <Property Name="specimen_dry_save_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="scan_source_save_path" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="slice_save_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="slice_para_SliceNumber" Type="Int32" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -780,61 +780,6 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbSlice">
-            <EntityTypeMapping TypeName="CTDBModel.tbSlice">
-              <MappingFragment StoreEntitySet="tbSlice">
-                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
-                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
-                <ScalarProperty Name="slice_para_CutMethod" ColumnName="slice_para_CutMethod" />
-                <ScalarProperty Name="slice_save_path" ColumnName="slice_save_path" />
-                <ScalarProperty Name="date_in" ColumnName="date_in" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="open_status" ColumnName="open_status" />
-                <ScalarProperty Name="slice_para_SliceNumber" ColumnName="slice_para_SliceNumber" />
-                <ScalarProperty Name="slice_para_PixelSize" ColumnName="slice_para_PixelSize" />
-                <ScalarProperty Name="slice_para_ResultFileType" ColumnName="slice_para_ResultFileType" />
-                <ScalarProperty Name="slice_para_ReconstructionProgram" ColumnName="slice_para_ReconstructionProgram" />
-                <ScalarProperty Name="scan_id" ColumnName="scan_id" />
-                <ScalarProperty Name="slice_id" ColumnName="slice_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbScan">
-            <EntityTypeMapping TypeName="CTDBModel.tbScan">
-              <MappingFragment StoreEntitySet="tbScan">
-                <ScalarProperty Name="scan_para_PixelSize" ColumnName="scan_para_PixelSize" />
-                <ScalarProperty Name="ref_id" ColumnName="ref_id" />
-                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
-                <ScalarProperty Name="scan_specimen_Body" ColumnName="scan_specimen_Body" />
-                <ScalarProperty Name="scan_para_SourcePower" ColumnName="scan_para_SourcePower" />
-                <ScalarProperty Name="scan_source_save_path" ColumnName="scan_source_save_path" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="open_status" ColumnName="open_status" />
-                <ScalarProperty Name="date_in" ColumnName="date_in" />
-                <ScalarProperty Name="scan_para_LensMultiple" ColumnName="scan_para_LensMultiple" />
-                <ScalarProperty Name="scan_para_RotationStep" ColumnName="scan_para_RotationStep" />
-                <ScalarProperty Name="scan_para_Exposure" ColumnName="scan_para_Exposure" />
-                <ScalarProperty Name="scan_para_VerticalObjectPosition" ColumnName="scan_para_VerticalObjectPosition" />
-                <ScalarProperty Name="scan_para_Camera2Source" ColumnName="scan_para_Camera2Source" />
-                <ScalarProperty Name="scan_para_Object2Source" ColumnName="scan_para_Object2Source" />
-                <ScalarProperty Name="scan_para_ImagePixelSize" ColumnName="scan_para_ImagePixelSize" />
-                <ScalarProperty Name="scan_para_ImageFomat" ColumnName="scan_para_ImageFomat" />
-                <ScalarProperty Name="scan_para_FilesNumber" ColumnName="scan_para_FilesNumber" />
-                <ScalarProperty Name="scan_para_CameraBinning" ColumnName="scan_para_CameraBinning" />
-                <ScalarProperty Name="scan_para_SourceCurrent" ColumnName="scan_para_SourceCurrent" />
-                <ScalarProperty Name="scan_para_SourceVoltage" ColumnName="scan_para_SourceVoltage" />
-                <ScalarProperty Name="scan_para_Camera" ColumnName="scan_para_Camera" />
-                <ScalarProperty Name="scan_para_SourceType" ColumnName="scan_para_SourceType" />
-                <ScalarProperty Name="scan_timeend" ColumnName="scan_timeend" />
-                <ScalarProperty Name="scan_timebegin" ColumnName="scan_timebegin" />
-                <ScalarProperty Name="scan_operator" ColumnName="scan_operator" />
-                <ScalarProperty Name="scan_tag_SpecimenAlive" ColumnName="scan_tag_SpecimenAlive" />
-                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
-                <ScalarProperty Name="e_id" ColumnName="e_id" />
-                <ScalarProperty Name="scan_id" ColumnName="scan_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbSpecimen">
             <EntityTypeMapping TypeName="CTDBModel.tbSpecimen">
               <MappingFragment StoreEntitySet="tbSpecimen">
@@ -889,6 +834,61 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
                 <ScalarProperty Name="e_id" ColumnName="e_id" />
                 <ScalarProperty Name="scan_id" ColumnName="scan_id" />
                 <ScalarProperty Name="slice_id" ColumnName="slice_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSlice">
+            <EntityTypeMapping TypeName="CTDBModel.tbSlice">
+              <MappingFragment StoreEntitySet="tbSlice">
+                <ScalarProperty Name="ref_id" ColumnName="ref_id" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+                <ScalarProperty Name="slice_para_CutMethod" ColumnName="slice_para_CutMethod" />
+                <ScalarProperty Name="slice_save_path" ColumnName="slice_save_path" />
+                <ScalarProperty Name="date_in" ColumnName="date_in" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="open_status" ColumnName="open_status" />
+                <ScalarProperty Name="slice_para_SliceNumber" ColumnName="slice_para_SliceNumber" />
+                <ScalarProperty Name="slice_para_PixelSize" ColumnName="slice_para_PixelSize" />
+                <ScalarProperty Name="slice_para_ResultFileType" ColumnName="slice_para_ResultFileType" />
+                <ScalarProperty Name="slice_para_ReconstructionProgram" ColumnName="slice_para_ReconstructionProgram" />
+                <ScalarProperty Name="scan_id" ColumnName="scan_id" />
+                <ScalarProperty Name="slice_id" ColumnName="slice_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbScan">
+            <EntityTypeMapping TypeName="CTDBModel.tbScan">
+              <MappingFragment StoreEntitySet="tbScan">
+                <ScalarProperty Name="ref_id" ColumnName="ref_id" />
+                <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+                <ScalarProperty Name="scan_specimen_Body" ColumnName="scan_specimen_Body" />
+                <ScalarProperty Name="scan_para_SourcePower" ColumnName="scan_para_SourcePower" />
+                <ScalarProperty Name="scan_source_save_path" ColumnName="scan_source_save_path" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="open_status" ColumnName="open_status" />
+                <ScalarProperty Name="date_in" ColumnName="date_in" />
+                <ScalarProperty Name="scan_para_LensMultiple" ColumnName="scan_para_LensMultiple" />
+                <ScalarProperty Name="scan_para_RotationStep" ColumnName="scan_para_RotationStep" />
+                <ScalarProperty Name="scan_para_Exposure" ColumnName="scan_para_Exposure" />
+                <ScalarProperty Name="scan_para_VerticalObjectPosition" ColumnName="scan_para_VerticalObjectPosition" />
+                <ScalarProperty Name="scan_para_Camera2Source" ColumnName="scan_para_Camera2Source" />
+                <ScalarProperty Name="scan_para_Object2Source" ColumnName="scan_para_Object2Source" />
+                <ScalarProperty Name="scan_para_ImagePixelSize" ColumnName="scan_para_ImagePixelSize" />
+                <ScalarProperty Name="scan_para_ImageFomat" ColumnName="scan_para_ImageFomat" />
+                <ScalarProperty Name="scan_para_FilesNumber" ColumnName="scan_para_FilesNumber" />
+                <ScalarProperty Name="scan_para_CameraBinning" ColumnName="scan_para_CameraBinning" />
+                <ScalarProperty Name="scan_para_SourceCurrent" ColumnName="scan_para_SourceCurrent" />
+                <ScalarProperty Name="scan_para_SourceVoltage" ColumnName="scan_para_SourceVoltage" />
+                <ScalarProperty Name="scan_para_Camera" ColumnName="scan_para_Camera" />
+                <ScalarProperty Name="scan_para_SourceType" ColumnName="scan_para_SourceType" />
+                <ScalarProperty Name="scan_timeend" ColumnName="scan_timeend" />
+                <ScalarProperty Name="scan_timebegin" ColumnName="scan_timebegin" />
+                <ScalarProperty Name="scan_operator" ColumnName="scan_operator" />
+                <ScalarProperty Name="scan_tag_SpecimenAlive" ColumnName="scan_tag_SpecimenAlive" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="e_id" ColumnName="e_id" />
+                <ScalarProperty Name="scan_id" ColumnName="scan_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

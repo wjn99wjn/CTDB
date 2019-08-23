@@ -88,7 +88,7 @@ namespace CTDB
                 cscCamera2Source.Text = s.scan_para_Camera2Source.ToString();
                 cscObejct2Souce.Text = s.scan_para_Object2Source.ToString();
                 cscVerticalObjectPosition.Text = s.scan_para_VerticalObjectPosition.ToString();
-                cscPixelSize.Text = s.scan_para_PixelSize.ToString();
+                cscPixelSize.Text = s.scan_para_ImagePixelSize.ToString();
                 cscRotationStep.Text = s.scan_para_RotationStep.ToString();
                 cscExposure.Text = s.scan_para_Exposure.ToString();
 
@@ -144,7 +144,7 @@ namespace CTDB
             s.scan_para_Camera2Source = getValueDouble(cscCamera2Source.Text);
             s.scan_para_Object2Source = getValueDouble(cscObejct2Souce.Text);
             s.scan_para_VerticalObjectPosition = getValueDouble(cscVerticalObjectPosition.Text);
-            s.scan_para_PixelSize = getValueDouble(cscPixelSize.Text);
+            s.scan_para_ImagePixelSize = getValueDouble(cscPixelSize.Text);
             s.scan_para_RotationStep = getValueDouble(cscRotationStep.Text);
             s.scan_para_Exposure = getValueDouble(cscExposure.Text);
 
@@ -184,7 +184,7 @@ namespace CTDB
                 sl.slice_para_ReconstructionProgram = "NRecon";
                 sl.slice_para_ResultFileType = "BMP";
                 sl.slice_para_SliceNumber = 0;
-                sl.slice_para_PixelSize = 1.04;
+                sl.slice_para_PixelSize = s.scan_para_ImagePixelSize;
                 sl.open_status = 30;
                 sl.UserId = Guid.Parse(CTHelper.GetConfig("userid"));
                 sl.Abstract = FormSpecimen.CutString(cscSpecimen.Text, 40) + "-" + FormSpecimen.CutString(cscTagSpecimenParty.Text, 7);

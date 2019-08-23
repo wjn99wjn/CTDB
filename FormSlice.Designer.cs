@@ -35,11 +35,11 @@
             this.mitDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.cmitAddFileStack = new System.Windows.Forms.ToolStripMenuItem();
             this.cmitAddFile3D = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmitExportMeta = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.clLabelNo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.ucFileInfo1 = new CTDB.ucFileInfo();
             this.btnMDScan = new System.Windows.Forms.Button();
             this.clCutMethod = new System.Windows.Forms.ComboBox();
             this.clOpenStatus = new System.Windows.Forms.ComboBox();
@@ -54,11 +54,12 @@
             this.clScan = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.bsmUpdate = new System.Windows.Forms.Button();
-            this.bsmDelete = new System.Windows.Forms.Button();
             this.bsmAdd = new System.Windows.Forms.Button();
             this.cscSliceNo = new System.Windows.Forms.Label();
             this.clSliceNo = new System.Windows.Forms.Label();
-            this.cmitExportMeta = new System.Windows.Forms.ToolStripMenuItem();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cscRef = new System.Windows.Forms.ComboBox();
+            this.ucFileInfo1 = new CTDB.ucFileInfo();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -72,14 +73,14 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 183);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 223);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(872, 444);
+            this.dataGridView1.Size = new System.Drawing.Size(872, 404);
             this.dataGridView1.TabIndex = 45;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -91,34 +92,41 @@
             this.cmitAddFile3D,
             this.cmitExportMeta});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(164, 92);
             // 
             // mitDelete
             // 
             this.mitDelete.Enabled = false;
             this.mitDelete.Name = "mitDelete";
-            this.mitDelete.Size = new System.Drawing.Size(180, 22);
+            this.mitDelete.Size = new System.Drawing.Size(163, 22);
             this.mitDelete.Text = "Delete";
             this.mitDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // cmitAddFileStack
             // 
             this.cmitAddFileStack.Name = "cmitAddFileStack";
-            this.cmitAddFileStack.Size = new System.Drawing.Size(180, 22);
+            this.cmitAddFileStack.Size = new System.Drawing.Size(163, 22);
             this.cmitAddFileStack.Text = "Add Image Stack";
             this.cmitAddFileStack.Click += new System.EventHandler(this.cmitAddFileStack_Click);
             // 
             // cmitAddFile3D
             // 
             this.cmitAddFile3D.Name = "cmitAddFile3D";
-            this.cmitAddFile3D.Size = new System.Drawing.Size(180, 22);
+            this.cmitAddFile3D.Size = new System.Drawing.Size(163, 22);
             this.cmitAddFile3D.Text = "Add 3D Model";
             this.cmitAddFile3D.Click += new System.EventHandler(this.cmitAddFile3D_Click);
+            // 
+            // cmitExportMeta
+            // 
+            this.cmitExportMeta.Name = "cmitExportMeta";
+            this.cmitExportMeta.Size = new System.Drawing.Size(163, 22);
+            this.cmitExportMeta.Text = "Export Meta";
+            this.cmitExportMeta.Click += new System.EventHandler(this.cmitExportMeta_Click);
             // 
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(774, 95);
+            this.btnOK.Location = new System.Drawing.Point(774, 165);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 42);
             this.btnOK.TabIndex = 26;
@@ -128,6 +136,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.cscRef);
             this.panel1.Controls.Add(this.clLabelNo);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.ucFileInfo1);
@@ -145,13 +155,12 @@
             this.panel1.Controls.Add(this.clScan);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.bsmUpdate);
-            this.panel1.Controls.Add(this.bsmDelete);
             this.panel1.Controls.Add(this.bsmAdd);
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(872, 183);
+            this.panel1.Size = new System.Drawing.Size(872, 223);
             this.panel1.TabIndex = 46;
             // 
             // clLabelNo
@@ -171,17 +180,6 @@
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 149;
             this.label2.Text = "LabelCount";
-            // 
-            // ucFileInfo1
-            // 
-            this.ucFileInfo1.Location = new System.Drawing.Point(477, 34);
-            this.ucFileInfo1.Name = "ucFileInfo1";
-            this.ucFileInfo1.ParaDatasetID = 0;
-            this.ucFileInfo1.ParaTable = "tbSlice";
-            this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
-            this.ucFileInfo1.TabIndex = 116;
-            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
-            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
             // 
             // btnMDScan
             // 
@@ -239,6 +237,7 @@
             // 
             // clPixelSize
             // 
+            this.clPixelSize.Enabled = false;
             this.clPixelSize.Location = new System.Drawing.Point(156, 121);
             this.clPixelSize.Name = "clPixelSize";
             this.clPixelSize.Size = new System.Drawing.Size(75, 21);
@@ -301,7 +300,7 @@
             // 
             // bsmUpdate
             // 
-            this.bsmUpdate.Location = new System.Drawing.Point(636, 95);
+            this.bsmUpdate.Location = new System.Drawing.Point(693, 165);
             this.bsmUpdate.Name = "bsmUpdate";
             this.bsmUpdate.Size = new System.Drawing.Size(75, 42);
             this.bsmUpdate.TabIndex = 92;
@@ -309,22 +308,11 @@
             this.bsmUpdate.UseVisualStyleBackColor = true;
             this.bsmUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // bsmDelete
-            // 
-            this.bsmDelete.Enabled = false;
-            this.bsmDelete.Location = new System.Drawing.Point(541, 143);
-            this.bsmDelete.Name = "bsmDelete";
-            this.bsmDelete.Size = new System.Drawing.Size(308, 27);
-            this.bsmDelete.TabIndex = 91;
-            this.bsmDelete.Text = "Delete - Right Click Record";
-            this.bsmDelete.UseVisualStyleBackColor = true;
-            this.bsmDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
             // bsmAdd
             // 
             this.bsmAdd.Location = new System.Drawing.Point(774, 22);
             this.bsmAdd.Name = "bsmAdd";
-            this.bsmAdd.Size = new System.Drawing.Size(75, 27);
+            this.bsmAdd.Size = new System.Drawing.Size(75, 32);
             this.bsmAdd.TabIndex = 79;
             this.bsmAdd.Text = "Add";
             this.bsmAdd.UseVisualStyleBackColor = true;
@@ -348,12 +336,35 @@
             this.clSliceNo.TabIndex = 150;
             this.clSliceNo.Text = "0";
             // 
-            // cmitExportMeta
+            // label4
             // 
-            this.cmitExportMeta.Name = "cmitExportMeta";
-            this.cmitExportMeta.Size = new System.Drawing.Size(180, 22);
-            this.cmitExportMeta.Text = "Export Meta";
-            this.cmitExportMeta.Click += new System.EventHandler(this.cmitExportMeta_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 172);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 151;
+            this.label4.Text = "Reference";
+            // 
+            // cscRef
+            // 
+            this.cscRef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cscRef.Enabled = false;
+            this.cscRef.FormattingEnabled = true;
+            this.cscRef.Location = new System.Drawing.Point(12, 187);
+            this.cscRef.Name = "cscRef";
+            this.cscRef.Size = new System.Drawing.Size(660, 20);
+            this.cscRef.TabIndex = 152;
+            // 
+            // ucFileInfo1
+            // 
+            this.ucFileInfo1.Location = new System.Drawing.Point(477, 34);
+            this.ucFileInfo1.Name = "ucFileInfo1";
+            this.ucFileInfo1.ParaDatasetID = 0;
+            this.ucFileInfo1.ParaTable = "tbSlice";
+            this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
+            this.ucFileInfo1.TabIndex = 116;
+            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
+            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
             // 
             // FormSlice
             // 
@@ -382,7 +393,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button bsmUpdate;
-        private System.Windows.Forms.Button bsmDelete;
         private System.Windows.Forms.Button bsmAdd;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem mitDelete;
@@ -407,5 +417,7 @@
         private System.Windows.Forms.Label cscSliceNo;
         private System.Windows.Forms.Label clSliceNo;
         private System.Windows.Forms.ToolStripMenuItem cmitExportMeta;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cscRef;
     }
 }

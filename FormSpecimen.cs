@@ -163,7 +163,8 @@ namespace CTDB
             try
             {
                 int id = int.Parse(csmID.Text);
-                if (MessageBox.Show("确认删除" + id.ToString(), "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                //if (MessageBox.Show("确认删除" + id.ToString(), "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (CTHelper.AlertYes("Delete " + id.ToString() + "?"))
                 {
                     using (var db = new CTDBEntities())
                     {
