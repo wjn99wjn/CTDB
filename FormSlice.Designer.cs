@@ -38,8 +38,13 @@
             this.cmitExportMeta = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.clResultFileType = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cscRef = new System.Windows.Forms.ComboBox();
             this.clLabelNo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.ucFileInfo1 = new CTDB.ucFileInfo();
             this.btnMDScan = new System.Windows.Forms.Button();
             this.clCutMethod = new System.Windows.Forms.ComboBox();
             this.clOpenStatus = new System.Windows.Forms.ComboBox();
@@ -57,9 +62,8 @@
             this.bsmAdd = new System.Windows.Forms.Button();
             this.cscSliceNo = new System.Windows.Forms.Label();
             this.clSliceNo = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cscRef = new System.Windows.Forms.ComboBox();
-            this.ucFileInfo1 = new CTDB.ucFileInfo();
+            this.clFileType = new System.Windows.Forms.ComboBox();
+            this.cmitOpenInBrowser = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -90,36 +94,37 @@
             this.mitDelete,
             this.cmitAddFileStack,
             this.cmitAddFile3D,
-            this.cmitExportMeta});
+            this.cmitExportMeta,
+            this.cmitOpenInBrowser});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(164, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
             // 
             // mitDelete
             // 
             this.mitDelete.Enabled = false;
             this.mitDelete.Name = "mitDelete";
-            this.mitDelete.Size = new System.Drawing.Size(163, 22);
+            this.mitDelete.Size = new System.Drawing.Size(180, 22);
             this.mitDelete.Text = "Delete";
             this.mitDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // cmitAddFileStack
             // 
             this.cmitAddFileStack.Name = "cmitAddFileStack";
-            this.cmitAddFileStack.Size = new System.Drawing.Size(163, 22);
+            this.cmitAddFileStack.Size = new System.Drawing.Size(180, 22);
             this.cmitAddFileStack.Text = "Add Image Stack";
             this.cmitAddFileStack.Click += new System.EventHandler(this.cmitAddFileStack_Click);
             // 
             // cmitAddFile3D
             // 
             this.cmitAddFile3D.Name = "cmitAddFile3D";
-            this.cmitAddFile3D.Size = new System.Drawing.Size(163, 22);
+            this.cmitAddFile3D.Size = new System.Drawing.Size(180, 22);
             this.cmitAddFile3D.Text = "Add 3D Model";
             this.cmitAddFile3D.Click += new System.EventHandler(this.cmitAddFile3D_Click);
             // 
             // cmitExportMeta
             // 
             this.cmitExportMeta.Name = "cmitExportMeta";
-            this.cmitExportMeta.Size = new System.Drawing.Size(163, 22);
+            this.cmitExportMeta.Size = new System.Drawing.Size(180, 22);
             this.cmitExportMeta.Text = "Export Meta";
             this.cmitExportMeta.Click += new System.EventHandler(this.cmitExportMeta_Click);
             // 
@@ -136,6 +141,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.clResultFileType);
+            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.cscRef);
             this.panel1.Controls.Add(this.clLabelNo);
@@ -163,6 +170,42 @@
             this.panel1.Size = new System.Drawing.Size(872, 223);
             this.panel1.TabIndex = 46;
             // 
+            // clResultFileType
+            // 
+            this.clResultFileType.FormattingEnabled = true;
+            this.clResultFileType.Location = new System.Drawing.Point(430, 89);
+            this.clResultFileType.Name = "clResultFileType";
+            this.clResultFileType.Size = new System.Drawing.Size(55, 20);
+            this.clResultFileType.TabIndex = 155;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(365, 95);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 12);
+            this.label3.TabIndex = 153;
+            this.label3.Text = "File Type";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 172);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.TabIndex = 151;
+            this.label4.Text = "Reference";
+            // 
+            // cscRef
+            // 
+            this.cscRef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cscRef.Enabled = false;
+            this.cscRef.FormattingEnabled = true;
+            this.cscRef.Location = new System.Drawing.Point(12, 187);
+            this.cscRef.Name = "cscRef";
+            this.cscRef.Size = new System.Drawing.Size(660, 20);
+            this.cscRef.TabIndex = 152;
+            // 
             // clLabelNo
             // 
             this.clLabelNo.AutoSize = true;
@@ -180,6 +223,17 @@
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 149;
             this.label2.Text = "LabelCount";
+            // 
+            // ucFileInfo1
+            // 
+            this.ucFileInfo1.Location = new System.Drawing.Point(477, 34);
+            this.ucFileInfo1.Name = "ucFileInfo1";
+            this.ucFileInfo1.ParaDatasetID = 0;
+            this.ucFileInfo1.ParaTable = "tbSlice";
+            this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
+            this.ucFileInfo1.TabIndex = 116;
+            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
+            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
             // 
             // btnMDScan
             // 
@@ -336,35 +390,20 @@
             this.clSliceNo.TabIndex = 150;
             this.clSliceNo.Text = "0";
             // 
-            // label4
+            // clFileType
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 172);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
-            this.label4.TabIndex = 151;
-            this.label4.Text = "Reference";
+            this.clFileType.FormattingEnabled = true;
+            this.clFileType.Location = new System.Drawing.Point(430, 89);
+            this.clFileType.Name = "clFileType";
+            this.clFileType.Size = new System.Drawing.Size(55, 20);
+            this.clFileType.TabIndex = 155;
             // 
-            // cscRef
+            // cmitOpenInBrowser
             // 
-            this.cscRef.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cscRef.Enabled = false;
-            this.cscRef.FormattingEnabled = true;
-            this.cscRef.Location = new System.Drawing.Point(12, 187);
-            this.cscRef.Name = "cscRef";
-            this.cscRef.Size = new System.Drawing.Size(660, 20);
-            this.cscRef.TabIndex = 152;
-            // 
-            // ucFileInfo1
-            // 
-            this.ucFileInfo1.Location = new System.Drawing.Point(477, 34);
-            this.ucFileInfo1.Name = "ucFileInfo1";
-            this.ucFileInfo1.ParaDatasetID = 0;
-            this.ucFileInfo1.ParaTable = "tbSlice";
-            this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
-            this.ucFileInfo1.TabIndex = 116;
-            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
-            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
+            this.cmitOpenInBrowser.Name = "cmitOpenInBrowser";
+            this.cmitOpenInBrowser.Size = new System.Drawing.Size(180, 22);
+            this.cmitOpenInBrowser.Text = "Open in Browser";
+            this.cmitOpenInBrowser.Click += new System.EventHandler(this.cmitOpenInBrowser_Click);
             // 
             // FormSlice
             // 
@@ -419,5 +458,9 @@
         private System.Windows.Forms.ToolStripMenuItem cmitExportMeta;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cscRef;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox clResultFileType;
+        private System.Windows.Forms.ComboBox clFileType;
+        private System.Windows.Forms.ToolStripMenuItem cmitOpenInBrowser;
     }
 }

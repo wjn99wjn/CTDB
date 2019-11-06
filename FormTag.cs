@@ -11,6 +11,25 @@ namespace CTDB
 {
     public partial class FormTag : Form
     {
+        /// <summary>获取标签</summary>
+        /// <param name="id"></param>
+        static public string GetTagTag(int id)
+        {
+            string tag = "";
+            using (CTDBEntities ct = new CTDBEntities())
+                tag = ct.tbTag.FirstOrDefault(s => s.tag_id == id).tag_tag;
+            return tag;
+        }
+        /// <summary>获取标签</summary>
+        /// <param name="id"></param>
+        static public tbTag GetTag(int id)
+        {
+            tbTag tag = null;
+            using (CTDBEntities ct = new CTDBEntities())
+                tag = ct.tbTag.FirstOrDefault(s => s.tag_id == id);
+            return tag;
+        }
+
         public FormTag() { InitializeComponent(); }
 
         CTDBEntities ct = new CTDBEntities();

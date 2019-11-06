@@ -25,7 +25,7 @@ namespace CTDB
         public int sp_id { get; set; }
         public int scan_tag_SpecimenAlive { get; set; }
         public string scan_operator { get; set; }
-        public System.DateTime scan_timebegin { get; set; }
+        public Nullable<System.DateTime> scan_timebegin { get; set; }
         public Nullable<System.DateTime> scan_timeend { get; set; }
         public string scan_para_SourceType { get; set; }
         public string scan_para_Camera { get; set; }
@@ -49,6 +49,7 @@ namespace CTDB
         public string scan_specimen_Body { get; set; }
         public string Abstract { get; set; }
         public int ref_id { get; set; }
+        public string scan_date { get; set; }
     
         public virtual tbEquipment tbEquipment { get; set; }
         public virtual tbSpecimen tbSpecimen { get; set; }

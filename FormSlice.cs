@@ -31,7 +31,7 @@ namespace CTDB
             clScan.DisplayMember = "Abstract";
 
             CTHelper.setControlTag(clOpenStatus, 31, 30);
-            //CTHelper.setControlTag(clResultFileType, 51, 52);
+            CTHelper.setControlTag(clFileType, 51, 52);
             CTHelper.setControlTag(clCutMethod, 37, 35);
 
             cscRef.DataSource = FormLogin.LoadDataF("tbRef");
@@ -61,7 +61,7 @@ namespace CTDB
                     CTHelper.setControl(clScan, s.scan_id);
 
                     clReconstructionProgram.Text = s.slice_para_ReconstructionProgram;
-                    // clResultFileType.Text = "";// s.slice_para_ResultFileType;
+                    clFileType.Text = s.slice_para_ResultFileType;
                     // clNumberSlice.Text = s.slice_para_SliceNumber.ToString();
                     clPixelSize.Text = s.slice_para_PixelSize.ToString();
                     CTHelper.setControl(clOpenStatus, s.open_status);
@@ -81,7 +81,7 @@ namespace CTDB
             s.sp_id = (clScan.SelectedValue as tbScan).sp_id; //specimen_id
 
             s.slice_para_ReconstructionProgram = clReconstructionProgram.Text;
-            s.slice_para_ResultFileType = "-";// clResultFileType.Text.Trim();
+            s.slice_para_ResultFileType = clResultFileType.Text.Trim();
             s.slice_para_SliceNumber = ucFileInfo1.ValueFileCount;// int.Parse(clNumberSlice.Text);
 
             s.slice_para_PixelSize = double.Parse(clPixelSize.Text);
@@ -227,28 +227,38 @@ namespace CTDB
 
 
                 tbSlice slice = ct.tbSlice.FirstOrDefault(s => s.slice_id == id);
-                ht.Add(new Tuple<string, string>("Slice ID", slice.sp_id.ToString()));
+                ht.Add(new Tuple<string, string>("URL", "http://ct.especies.cn/slice/info/" + slice.slice_id.ToString()));
+                ht.Add(new Tuple<string, string>("Slice ID", slice.slice_id.ToString()));
                 ht.Add(new Tuple<string, string>("Slice Number", slice.slice_para_SliceNumber.ToString()));
                 ht.Add(new Tuple<string, string>("Slice File Type", slice.slice_para_ResultFileType.ToString()));
                 ht.Add(new Tuple<string, string>("Slice Resolution", slice.slice_para_PixelSize.ToString()));
 
+
                 tbScan scan = ct.tbScan.FirstOrDefault(s => s.scan_id == slice.scan_id);
-                ht.Add(new Tuple<string, string>("ScanPara Volta", scan.scan_para_SourceVoltage.ToString()));
-                ht.Add(new Tuple<string, string>("ScanPara Bunning", scan.scan_para_CameraBinning.ToString()));
-                ht.Add(new Tuple<string, string>("ScanPara Lens Multiply", scan.scan_para_LensMultiple.ToString()));
-                ht.Add(new Tuple<string, string>("ScanPara Time", scan.scan_timebegin.ToString("yyyy-MM-dd")));
-                ht.Add(new Tuple<string, string>("ScanPara Operator", scan.scan_operator));
-                ht.Add(new Tuple<string, string>("ScanPara Part", scan.scan_specimen_Body));
+                //ht.Add(new Tuple<string, string>("Scan ID", scan.scan_id.ToString()));
+                ht.Add(new Tuple<string, string>("Scan Voltage", scan.scan_para_SourceVoltage.ToString()));
+                ht.Add(new Tuple<string, string>("Scan Binning", scan.scan_para_CameraBinning.ToString()));
+                ht.Add(new Tuple<string, string>("Scan Lens", scan.scan_para_LensMultiple.ToString()));
+                ht.Add(new Tuple<string, string>("Scan Exposure", scan.scan_para_Exposure.ToString()));
+                ht.Add(new Tuple<string, string>("Scan Time", scan.scan_date));
+                ht.Add(new Tuple<string, string>("Scan Operator", scan.scan_operator));
+                ht.Add(new Tuple<string, string>("Scan Part", scan.scan_specimen_Body));
+
+                //tbTag ttag = ct.tbTag.FirstOrDefault(s => s.tag_id == scan.scan_tag_SpecimenAlive);
+                //ht.Add(new Tuple<string, string>("Specimen Status", ttag.tag_tag));
+                ht.Add(new Tuple<string, string>("Specimen Status", FormTag.GetTagTag(scan.scan_tag_SpecimenAlive)));
 
                 tbEquipment equip = ct.tbEquipment.FirstOrDefault(s => s.e_id == scan.e_id);
-                ht.Add(new Tuple<string, string>("ScanPara Equipment", equip.e_name));
+                ht.Add(new Tuple<string, string>("Equipment", equip.e_name));
 
                 tbSpecimen sp = ct.tbSpecimen.FirstOrDefault(s => s.sp_id == slice.sp_id);
                 ht.Add(new Tuple<string, string>("Specimen ID", sp.sp_spid));
                 ht.Add(new Tuple<string, string>("Specimen Collector", sp.sp_collector));
-                ht.Add(new Tuple<string, string>("Specimen Collect Time", sp.sp_collect_time));
-                ht.Add(new Tuple<string, string>("Specimen Collect Place", sp.sp_collect_place));
-                ht.Add(new Tuple<string, string>("Specimen Preprocess", sp.sp_dehydrant));
+                ht.Add(new Tuple<string, string>("Specimen Time", sp.sp_collect_time));
+                ht.Add(new Tuple<string, string>("Specimen Place", sp.sp_collect_place));
+                ht.Add(new Tuple<string, string>("Specimen Identifier", sp.sp_identifier));
+
+                ht.Add(new Tuple<string, string>("Preprocess", sp.sp_dehydrant));
 
 
                 tbSpecies species = ct.tbSpecies.FirstOrDefault(s => s.species_id == sp.species_id);
@@ -272,6 +282,23 @@ namespace CTDB
             {
                 MessageBox.Show("记录有关联，删除失败");
             }
+        }
+
+        private void cmitOpenInBrowser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                int id = int.Parse(clID.Text);
+                //Hashtable ht = new Hashtable();
+                List<Tuple<string, string>> ht = new List<Tuple<string, string>>();
+                CTDBEntities ct = new CTDBEntities();
+                tbSlice slice = ct.tbSlice.FirstOrDefault(s => s.slice_id == id);
+                string url = "http://ct.especies.cn/slice/info/" + slice.slice_id.ToString();
+
+                System.Diagnostics.Process.Start(url);
+            }
+            catch { }
         }
 
 

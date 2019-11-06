@@ -127,8 +127,67 @@ namespace CTDB
             }
 
         }
+        /// <summary> 从文本文件中按行读取 </summary>
+        /// <param name="f">指定文件名</param>
+        /// <param name="trimed">是否开启简易空白筛取</param>
+        /// <returns></returns>
+        static public string[] LoadTxtByLine(string f, bool trimed = false)
+        {
+            List<string> r = new List<string>();
+            StreamReader sr = new StreamReader(f, Encoding.Default);
+            while (!sr.EndOfStream)
+            {
+                string s = sr.ReadLine();
+                r.Add(s);
+            }
+            sr.Close();
+            sr.Dispose();
+            if (trimed)
+                for (int i = r.Count - 1; i >= 0; i--)
+                    if (r[i].Trim() == "")
+                        r.RemoveAt(i);
+            return r.ToArray();
+        }
 
-
+        /// <summary> 测试连接数据库是否成功 </summary>
+        /// <param name="ConnectionString">数据库连接字符串</param>
+        /// <returns></returns>
+        public static bool DBIsConnect(string ConnectionString)
+        {
+            //创建连接对象
+            SqlConnection mySqlConnection = new SqlConnection(ConnectionString);
+            bool IsCanConnectioned = false;
+            //ConnectionTimeout 在.net 1.x 可以设置 在.net 2.0后是只读属性，则需要在连接字符串设置
+            //如：server=.;uid=sa;pwd=;database=PMIS;Integrated Security=SSPI; Connection Timeout=30
+            //mySqlConnection.ConnectionTimeout = 1;//设置连接超时的时间
+            try
+            {
+                //Open DataBase打开数据库
+                mySqlConnection.Open();
+                IsCanConnectioned = true;
+            }
+            catch
+            {
+                //Can not Open DataBase 打开不成功 则连接不成功
+                IsCanConnectioned = false;
+            }
+            finally
+            {
+                //Close DataBase  关闭数据库连接
+                mySqlConnection.Close();
+            }
+            //mySqlConnection   is   a   SqlConnection   object 
+            if (mySqlConnection.State == ConnectionState.Closed || mySqlConnection.State == ConnectionState.Broken)
+            {
+                //Connection   is   not   available  
+                return IsCanConnectioned;
+            }
+            else
+            {
+                //Connection   is   available  
+                return IsCanConnectioned;
+            }
+        }
         public static bool DBCheck(string sql, string constr)
         {
             bool r = false;
@@ -160,7 +219,6 @@ namespace CTDB
                 return null;
             }
         }
-
 
         /// <summary>set value for combbox </summary>
         /// <param name="cb"></param>

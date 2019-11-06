@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-
+using System.Text.RegularExpressions;
 namespace CTDB
 {
     public partial class FormQuick : Form
@@ -68,12 +68,13 @@ namespace CTDB
             s2.sp_collect_time = csmCollectTime.Text;
 
             s2.sp_dehydrant = csmDehydrant.Text;
-            s2.sp_drycirletime = int.Parse(csmDryCycleTime.Text);
+            s2.sp_drycirletime = int.Parse(GetStringNumber(csmDryCycleTime.Text));
             //s2.sp_dryinstrument = "-";
 
             s2.Abstract = s1.species_note + "-" + s2.sp_id;
             s2.date_in = DateTime.Now;
             s2.UserId = Guid.Parse(CTHelper.GetConfig("userid"));
+            s2.sp_preserve_status = "-";
             ct.tbSpecimen.Add(s2);
             ct.SaveChanges();   //将修改保存到数据库中
 
@@ -84,12 +85,13 @@ namespace CTDB
 
             s3.scan_specimen_Body = cscanTagSpecimenParty.Text;
             s3.scan_source_save_path = cscanPath.Text;
-            s3.scan_timebegin = DateTime.Parse(cscanTimeBegin.Text);
+            //s3.scan_timebegin = DateTime.Parse(cscanTimeBegin.Text);
+            s3.scan_date = cscanTimeBegin.Text;
 
             s3.scan_para_CameraBinning = cscanCameraBinning.Text;
-            s3.scan_para_SourceVoltage = double.Parse(cscanSourceVoltage.Text);
-            s3.scan_para_SourceCurrent = double.Parse(cscanSourceCurrent.Text);
-            s3.scan_para_Exposure = double.Parse(cscanExposure.Text);
+            s3.scan_para_SourceVoltage = double.Parse(GetStringNumber(cscanSourceVoltage.Text));
+            s3.scan_para_SourceCurrent = double.Parse(GetStringNumber(cscanSourceCurrent.Text));
+            s3.scan_para_Exposure = double.Parse(GetStringNumber(cscanExposure.Text));
 
             s3.Abstract = s2.Abstract + "-" + s3.scan_specimen_Body;
             s3.date_in = DateTime.Now;
@@ -109,6 +111,28 @@ namespace CTDB
             ct.SaveChanges();   //将修改保存到数据库中
 
             refreshdata(null, null);
+        }
+
+        public static decimal GetNumber(string str)
+        {
+            if (str.Trim() == "") return 0;
+            decimal result = 0;
+            if (str != null && str != string.Empty)
+            {
+                // 正则表达式剔除非数字字符（不包含小数点.）
+                str = Regex.Replace(str, @"[^\d.\d]", "");
+                // 如果是数字，则转换为decimal类型
+                if (Regex.IsMatch(str, @"^[+-]?\d*[.]?\d*$"))
+                {
+                    result = decimal.Parse(str);
+                }
+            }
+            return result;
+        }
+        public static string GetStringNumber(string str)
+        {
+            decimal result = GetNumber(str);
+            return result.ToString();
         }
 
         //view/ browser
@@ -183,7 +207,7 @@ namespace CTDB
 
             string[] sl = tbParas.Text.Split('\t');
 
-            if (sl.Length < 18) return;
+            if (sl.Length < 24) return;
             //MessageBox.Show(sl.Length.ToString());
 
             //初始化一些字段
@@ -193,7 +217,30 @@ namespace CTDB
             cscanExposure.Text = "0";
             csmDryCycleTime.Text = "25";
 
+            //字段对应
+            //0-扫描时间
+            //1-扫描地点
+            //2-样本编号（年[4位]月[2位]标本号[3位]）
 
+            //3-目             
+            //4,5,6 - 种名(俗名,中文)  拉丁名 名称备注 
+
+            //7-性别（♀♂A P L）功能型等
+            //8-虫龄
+            //12-采集备注
+            //9,10,11 - 采集时间 采集地点 采集人 
+
+            //16-脱水参数  
+            //17-临界点干燥 
+            //18-扫描部位    
+            //19-扫描参数 
+
+            //21-ct -slice数据保存位置
+            //22-ct原始数据保存位置
+            //23-干样本保存位置 如样本编号为201903001的样本，保存在1号箱的1号抽屉里，则命名为1 - 2019 - 1 - 3 - 01
+            //24-对应数据库编号
+
+            //================================
             cscanTimeBegin.Text = sl[0];
             try
             {
@@ -201,41 +248,51 @@ namespace CTDB
                 else if (sl[1].Contains("动物所")) CTHelper.setControl(cscanEquipment, 1);
             }
             catch { }
-
             csmSPID.Text = sl[2];
-            cspeciesNote.Text = sl[3];
-            cspeciesOrder.Text = sl[4];
+            cspeciesOrder.Text = sl[3];
+            cspeciesNote.Text = sl[4] + " " + sl[5];
+            //cspeciesOrder.Text = sl[3];
 
+            //7-性别（♀♂A P L）功能型等
+            //8-虫龄
+            //12-采集备注
+            //9,10,11 - 采集时间 采集地点 采集人 
             try
             {
-                if (sl[6].Contains("♀")) CTHelper.setControl(csmSex, 44);
-                else if (sl[6].Contains("♂")) CTHelper.setControl(csmSex, 41);
+                if (sl[7].Contains("♀")) CTHelper.setControl(csmSex, 44);
+                else if (sl[7].Contains("♂")) CTHelper.setControl(csmSex, 41);
+            }
+            catch { }
+            csmAge.Text = (sl[8].Trim() == "") ? "-" : sl[7];
+            csmNote.Text = (sl[12].Trim() == "") ? "-" : sl[8];
+
+            //9,10,11-采集地点  采集时间 采集人 
+            csmCollectTime.Text = (sl[9].Trim() == "") ? "-" : sl[10];
+            csmCollectPlace.Text = (sl[10].Trim() == "") ? "-" : sl[11];
+            csmCollector.Text = (sl[11].Trim() == "") ? "-" : sl[9];
+
+            //16-脱水参数  
+            //17-临界点干燥 
+            //18-扫描部位    
+            //19-扫描参数 
+            try
+            {
+                if (sl[16].Contains("75%-100%")) CTHelper.setControl(csmDehydrant, 0);
+                else if (sl[16].Contains("75-100")) CTHelper.setControl(csmDehydrant, 0);
+                else if (sl[16].Contains("75%-丙酮")) CTHelper.setControl(csmDehydrant, 3);
+                else if (sl[16].Contains("100")) CTHelper.setControl(csmDehydrant, 1);
             }
             catch { }
 
-            csmAge.Text = (sl[7].Trim() == "") ? "-" : sl[7];
-            csmNote.Text = (sl[8].Trim() == "") ? "-" : sl[8];
+            csmDryCycleTime.Text = (sl[17].Trim() == "") ? "0" : sl[13];
 
-            csmCollector.Text = (sl[9].Trim() == "") ? "-" : sl[9];
-            csmCollectTime.Text = (sl[10].Trim() == "") ? "-" : sl[10];
-            csmCollectPlace.Text = (sl[11].Trim() == "") ? "-" : sl[11];
+            //cscanTagSpecimenParty
 
             try
             {
-                if (sl[12].Contains("75%-100%")) CTHelper.setControl(csmDehydrant, 0);
-                else if (sl[12].Contains("75-100")) CTHelper.setControl(csmDehydrant, 0);
-                else if (sl[12].Contains("75%-丙酮")) CTHelper.setControl(csmDehydrant, 3);
-                else if (sl[12].Contains("100")) CTHelper.setControl(csmDehydrant, 1);
-            }
-            catch { }
-
-            csmDryCycleTime.Text = (sl[13].Trim() == "") ? "0" : sl[13];
-
-            try
-            {
-                if (sl[15].Trim() != "")
+                if (sl[19].Trim() != "")
                 {
-                    string[] sp = sl[15].Split(new char[] { '：', '-' });
+                    string[] sp = sl[19].Split(new char[] { '：', '-' });
                     cscanCameraBinning.Text = sp[1].Trim();
                     cscanSourceVoltage.Text = sp[2].Trim().ToLower().Replace("kv", "");
                     cscanSourceCurrent.Text = sp[3].Trim().ToLower().Replace("w", "");
@@ -244,8 +301,12 @@ namespace CTDB
             }
             catch { }
 
-            cscanPath.Text = sl[17].Trim();
-            csmSavePosition.Text = sl[18].Trim();
+            //21-ct -slice数据保存位置
+            //22-ct原始数据保存位置
+            //23-干样本保存位置 如样本编号为201903001的样本，保存在1号箱的1号抽屉里，则命名为1 - 2019 - 1 - 3 - 01
+            //24-对应数据库编号
+            cscanPath.Text = sl[21].Trim();
+            csmSavePosition.Text = sl[22].Trim();
         }
 
         private void mitAddFile_Click(object sender, EventArgs e)
@@ -273,5 +334,25 @@ namespace CTDB
             //refreshdata();
 
         }
+
+        private void btnAddFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog d = new OpenFileDialog();
+            if (d.ShowDialog() == DialogResult.OK)
+            {
+                string[] l = CTHelper.LoadTxtByLine(d.FileName);
+                if (MessageBox.Show("Add " + l.Length + " records?", "Note", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    foreach (string s in l)
+                    {
+                        if (s.Trim() == "") continue;
+                        tbParas.Text = s;
+                        Application.DoEvents();
+                        System.Threading.Thread.Sleep(2000);
+                        btnAdd_Click(sender, e);
+                    }
+            }
+        }
+
+
     }
 }

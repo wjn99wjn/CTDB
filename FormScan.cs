@@ -66,8 +66,11 @@ namespace CTDB
                 cscID.Text = s.scan_id.ToString();
 
                 cscOperator.Text = s.scan_operator;
-                cscTimeBegin.Text = s.scan_timebegin.ToShortDateString();
+                //cscTimeBegin.Text = s.scan_timebegin.ToShortDateString();
+                cscTimeBegin.Text = s.scan_timebegin.ToString();
                 cscTimeEnd.Text = s.scan_timeend.ToString();
+                cscScanDate.Text = s.scan_date;
+
                 CTHelper.setControl(cscSpecimen, s.sp_id);
                 CTHelper.setControl(cscTagSpecimenAlive, s.scan_tag_SpecimenAlive);
                 cscTagSpecimenParty.Text = s.scan_specimen_Body;
@@ -121,6 +124,7 @@ namespace CTDB
             s.scan_timebegin = dt;
             DateTime.TryParse(cscTimeEnd.Text, out dt);
             s.scan_timeend = dt;
+            s.scan_date = cscScanDate.Text.Trim();
 
             s.sp_id = (cscSpecimen.SelectedItem as tbSpecimen).sp_id;
 

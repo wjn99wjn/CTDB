@@ -38,6 +38,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.cscRef = new System.Windows.Forms.ComboBox();
+            this.ucFileInfo1 = new CTDB.ucFileInfo();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cscPixelSize = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
@@ -100,7 +101,8 @@
             this.bsmAdd = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.ucFileInfo1 = new CTDB.ucFileInfo();
+            this.cscScanDate = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -204,6 +206,17 @@
             this.cscRef.Size = new System.Drawing.Size(394, 20);
             this.cscRef.TabIndex = 145;
             // 
+            // ucFileInfo1
+            // 
+            this.ucFileInfo1.Location = new System.Drawing.Point(595, 126);
+            this.ucFileInfo1.Name = "ucFileInfo1";
+            this.ucFileInfo1.ParaDatasetID = 0;
+            this.ucFileInfo1.ParaTable = "";
+            this.ucFileInfo1.Size = new System.Drawing.Size(268, 42);
+            this.ucFileInfo1.TabIndex = 144;
+            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
+            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.cscPixelSize);
@@ -291,8 +304,10 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.cscScanDate);
             this.groupBox4.Controls.Add(this.cscSliceNo);
             this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.label47);
             this.groupBox4.Controls.Add(this.label39);
             this.groupBox4.Controls.Add(this.label46);
@@ -334,7 +349,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(203, 91);
+            this.label47.Location = new System.Drawing.Point(178, 114);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(53, 12);
             this.label47.TabIndex = 145;
@@ -356,14 +371,14 @@
             this.label46.AutoSize = true;
             this.label46.Location = new System.Drawing.Point(6, 119);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(65, 12);
+            this.label46.Size = new System.Drawing.Size(59, 12);
             this.label46.TabIndex = 146;
             this.label46.Tag = "Camera";
-            this.label46.Text = "Begin Time";
+            this.label46.Text = "Scan Time";
             // 
             // cscTimeEnd
             // 
-            this.cscTimeEnd.Location = new System.Drawing.Point(204, 114);
+            this.cscTimeEnd.Location = new System.Drawing.Point(231, 110);
             this.cscTimeEnd.Name = "cscTimeEnd";
             this.cscTimeEnd.Size = new System.Drawing.Size(87, 21);
             this.cscTimeEnd.TabIndex = 143;
@@ -381,11 +396,12 @@
             // 
             // cscTimeBegin
             // 
-            this.cscTimeBegin.Location = new System.Drawing.Point(77, 114);
+            this.cscTimeBegin.Location = new System.Drawing.Point(231, 85);
             this.cscTimeBegin.Name = "cscTimeBegin";
             this.cscTimeBegin.Size = new System.Drawing.Size(92, 21);
             this.cscTimeBegin.TabIndex = 144;
             this.cscTimeBegin.Text = "2015-2-20";
+            this.cscTimeBegin.Visible = false;
             // 
             // cscOperator
             // 
@@ -812,16 +828,24 @@
             this.comboBox1.Size = new System.Drawing.Size(156, 20);
             this.comboBox1.TabIndex = 145;
             // 
-            // ucFileInfo1
+            // cscScanDate
             // 
-            this.ucFileInfo1.Location = new System.Drawing.Point(595, 126);
-            this.ucFileInfo1.Name = "ucFileInfo1";
-            this.ucFileInfo1.ParaDatasetID = 0;
-            this.ucFileInfo1.ParaTable = "";
-            this.ucFileInfo1.Size = new System.Drawing.Size(268, 42);
-            this.ucFileInfo1.TabIndex = 144;
-            this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
-            this.ucFileInfo1.OpenFileDialog += new System.EventHandler(this.ucFileInfo1_OpenFileDialog);
+            this.cscScanDate.Location = new System.Drawing.Point(77, 116);
+            this.cscScanDate.Name = "cscScanDate";
+            this.cscScanDate.Size = new System.Drawing.Size(121, 21);
+            this.cscScanDate.TabIndex = 149;
+            this.cscScanDate.Text = "2015-2-20";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(178, 91);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 145;
+            this.label5.Tag = "Camera";
+            this.label5.Text = "Begin Time";
+            this.label5.Visible = false;
             // 
             // FormScan
             // 
@@ -926,5 +950,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button bsmAddSlice;
+        private System.Windows.Forms.TextBox cscScanDate;
+        private System.Windows.Forms.Label label5;
     }
 }

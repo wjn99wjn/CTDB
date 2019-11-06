@@ -90,6 +90,7 @@
             this.bsmAdd = new System.Windows.Forms.Button();
             this.csliceID = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnAddFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -167,6 +168,7 @@
             this.panel1.Controls.Add(this.groupBox6);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.btnExport);
+            this.panel1.Controls.Add(this.btnAddFile);
             this.panel1.Controls.Add(this.bsmAdd);
             this.panel1.Controls.Add(this.csliceID);
             this.panel1.Controls.Add(this.label4);
@@ -210,7 +212,7 @@
             this.tbParas.Location = new System.Drawing.Point(573, 24);
             this.tbParas.Multiline = true;
             this.tbParas.Name = "tbParas";
-            this.tbParas.Size = new System.Drawing.Size(287, 313);
+            this.tbParas.Size = new System.Drawing.Size(287, 271);
             this.tbParas.TabIndex = 0;
             this.tbParas.TextChanged += new System.EventHandler(this.tbParas_TextChanged);
             // 
@@ -678,7 +680,7 @@
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(654, 353);
+            this.btnExport.Location = new System.Drawing.Point(573, 350);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 42);
             this.btnExport.TabIndex = 79;
@@ -688,11 +690,11 @@
             // 
             // bsmAdd
             // 
-            this.bsmAdd.Location = new System.Drawing.Point(573, 353);
+            this.bsmAdd.Location = new System.Drawing.Point(573, 301);
             this.bsmAdd.Name = "bsmAdd";
             this.bsmAdd.Size = new System.Drawing.Size(75, 42);
             this.bsmAdd.TabIndex = 79;
-            this.bsmAdd.Text = "Add";
+            this.bsmAdd.Text = "Import";
             this.bsmAdd.UseVisualStyleBackColor = true;
             this.bsmAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -713,6 +715,16 @@
             this.label4.Size = new System.Drawing.Size(59, 12);
             this.label4.TabIndex = 78;
             this.label4.Text = "Record ID";
+            // 
+            // btnAddFile
+            // 
+            this.btnAddFile.Location = new System.Drawing.Point(654, 301);
+            this.btnAddFile.Name = "btnAddFile";
+            this.btnAddFile.Size = new System.Drawing.Size(75, 42);
+            this.btnAddFile.TabIndex = 79;
+            this.btnAddFile.Text = "Import Batch";
+            this.btnAddFile.UseVisualStyleBackColor = true;
+            this.btnAddFile.Click += new System.EventHandler(this.btnAddFile_Click);
             // 
             // FormQuick
             // 
@@ -810,5 +822,6 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ToolStripMenuItem mitAddFile;
+        private System.Windows.Forms.Button btnAddFile;
     }
 }
