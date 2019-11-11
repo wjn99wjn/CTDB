@@ -87,10 +87,12 @@
             this.csmDehydrant = new System.Windows.Forms.ComboBox();
             this.label59 = new System.Windows.Forms.Label();
             this.btnExport = new System.Windows.Forms.Button();
+            this.btnAddFile = new System.Windows.Forms.Button();
             this.bsmAdd = new System.Windows.Forms.Button();
             this.csliceID = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnAddFile = new System.Windows.Forms.Button();
+            this.mitViewInBrowser = new System.Windows.Forms.ToolStripMenuItem();
+            this.mitViewMeta = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -127,14 +129,16 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mitAddFile,
-            this.mitDelete});
+            this.mitDelete,
+            this.mitViewInBrowser,
+            this.mitViewMeta});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(150, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
             // 
             // mitAddFile
             // 
             this.mitAddFile.Name = "mitAddFile";
-            this.mitAddFile.Size = new System.Drawing.Size(149, 22);
+            this.mitAddFile.Size = new System.Drawing.Size(180, 22);
             this.mitAddFile.Text = "Add Slice Files";
             this.mitAddFile.Click += new System.EventHandler(this.mitAddFile_Click);
             // 
@@ -142,7 +146,7 @@
             // 
             this.mitDelete.Enabled = false;
             this.mitDelete.Name = "mitDelete";
-            this.mitDelete.Size = new System.Drawing.Size(149, 22);
+            this.mitDelete.Size = new System.Drawing.Size(180, 22);
             this.mitDelete.Text = "Delete";
             // 
             // btnOK
@@ -688,6 +692,16 @@
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
+            // btnAddFile
+            // 
+            this.btnAddFile.Location = new System.Drawing.Point(654, 301);
+            this.btnAddFile.Name = "btnAddFile";
+            this.btnAddFile.Size = new System.Drawing.Size(75, 42);
+            this.btnAddFile.TabIndex = 79;
+            this.btnAddFile.Text = "Import Batch";
+            this.btnAddFile.UseVisualStyleBackColor = true;
+            this.btnAddFile.Click += new System.EventHandler(this.btnAddFile_Click);
+            // 
             // bsmAdd
             // 
             this.bsmAdd.Location = new System.Drawing.Point(573, 301);
@@ -716,15 +730,19 @@
             this.label4.TabIndex = 78;
             this.label4.Text = "Record ID";
             // 
-            // btnAddFile
+            // mitViewInBrowser
             // 
-            this.btnAddFile.Location = new System.Drawing.Point(654, 301);
-            this.btnAddFile.Name = "btnAddFile";
-            this.btnAddFile.Size = new System.Drawing.Size(75, 42);
-            this.btnAddFile.TabIndex = 79;
-            this.btnAddFile.Text = "Import Batch";
-            this.btnAddFile.UseVisualStyleBackColor = true;
-            this.btnAddFile.Click += new System.EventHandler(this.btnAddFile_Click);
+            this.mitViewInBrowser.Name = "mitViewInBrowser";
+            this.mitViewInBrowser.Size = new System.Drawing.Size(180, 22);
+            this.mitViewInBrowser.Text = "View in Browser";
+            this.mitViewInBrowser.Click += new System.EventHandler(this.mitViewInBrowser_Click);
+            // 
+            // mitViewMeta
+            // 
+            this.mitViewMeta.Name = "mitViewMeta";
+            this.mitViewMeta.Size = new System.Drawing.Size(180, 22);
+            this.mitViewMeta.Text = "View Meta";
+            this.mitViewMeta.Click += new System.EventHandler(this.mitViewMeta_Click);
             // 
             // FormQuick
             // 
@@ -823,5 +841,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ToolStripMenuItem mitAddFile;
         private System.Windows.Forms.Button btnAddFile;
+        private System.Windows.Forms.ToolStripMenuItem mitViewInBrowser;
+        private System.Windows.Forms.ToolStripMenuItem mitViewMeta;
     }
 }

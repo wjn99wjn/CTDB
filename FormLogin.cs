@@ -92,7 +92,6 @@ namespace CTDB
         private void tbPassword_KeyDown(object sender, KeyEventArgs e) { if (e.KeyCode == Keys.Return) btnOK_Click(sender, e); }
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) { Process.Start("iexplore.exe", "http://www.especies.cn/cas/login"); }
 
-
         private void FormLogin_Load(object sender, EventArgs e)
         {
             if (CTHelper.GetConfig("username") != "")

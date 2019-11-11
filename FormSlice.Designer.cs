@@ -36,6 +36,7 @@
             this.cmitAddFileStack = new System.Windows.Forms.ToolStripMenuItem();
             this.cmitAddFile3D = new System.Windows.Forms.ToolStripMenuItem();
             this.cmitExportMeta = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmitOpenInBrowser = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.clResultFileType = new System.Windows.Forms.ComboBox();
@@ -63,7 +64,6 @@
             this.cscSliceNo = new System.Windows.Forms.Label();
             this.clSliceNo = new System.Windows.Forms.Label();
             this.clFileType = new System.Windows.Forms.ComboBox();
-            this.cmitOpenInBrowser = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -97,36 +97,43 @@
             this.cmitExportMeta,
             this.cmitOpenInBrowser});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(164, 114);
             // 
             // mitDelete
             // 
             this.mitDelete.Enabled = false;
             this.mitDelete.Name = "mitDelete";
-            this.mitDelete.Size = new System.Drawing.Size(180, 22);
+            this.mitDelete.Size = new System.Drawing.Size(163, 22);
             this.mitDelete.Text = "Delete";
             this.mitDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // cmitAddFileStack
             // 
             this.cmitAddFileStack.Name = "cmitAddFileStack";
-            this.cmitAddFileStack.Size = new System.Drawing.Size(180, 22);
+            this.cmitAddFileStack.Size = new System.Drawing.Size(163, 22);
             this.cmitAddFileStack.Text = "Add Image Stack";
             this.cmitAddFileStack.Click += new System.EventHandler(this.cmitAddFileStack_Click);
             // 
             // cmitAddFile3D
             // 
             this.cmitAddFile3D.Name = "cmitAddFile3D";
-            this.cmitAddFile3D.Size = new System.Drawing.Size(180, 22);
+            this.cmitAddFile3D.Size = new System.Drawing.Size(163, 22);
             this.cmitAddFile3D.Text = "Add 3D Model";
             this.cmitAddFile3D.Click += new System.EventHandler(this.cmitAddFile3D_Click);
             // 
             // cmitExportMeta
             // 
             this.cmitExportMeta.Name = "cmitExportMeta";
-            this.cmitExportMeta.Size = new System.Drawing.Size(180, 22);
+            this.cmitExportMeta.Size = new System.Drawing.Size(163, 22);
             this.cmitExportMeta.Text = "Export Meta";
             this.cmitExportMeta.Click += new System.EventHandler(this.cmitExportMeta_Click);
+            // 
+            // cmitOpenInBrowser
+            // 
+            this.cmitOpenInBrowser.Name = "cmitOpenInBrowser";
+            this.cmitOpenInBrowser.Size = new System.Drawing.Size(163, 22);
+            this.cmitOpenInBrowser.Text = "Open in Browser";
+            this.cmitOpenInBrowser.Click += new System.EventHandler(this.cmitOpenInBrowser_Click);
             // 
             // btnOK
             // 
@@ -177,6 +184,7 @@
             this.clResultFileType.Name = "clResultFileType";
             this.clResultFileType.Size = new System.Drawing.Size(55, 20);
             this.clResultFileType.TabIndex = 155;
+            this.clResultFileType.Text = "tiff";
             // 
             // label3
             // 
@@ -397,13 +405,6 @@
             this.clFileType.Name = "clFileType";
             this.clFileType.Size = new System.Drawing.Size(55, 20);
             this.clFileType.TabIndex = 155;
-            // 
-            // cmitOpenInBrowser
-            // 
-            this.cmitOpenInBrowser.Name = "cmitOpenInBrowser";
-            this.cmitOpenInBrowser.Size = new System.Drawing.Size(180, 22);
-            this.cmitOpenInBrowser.Text = "Open in Browser";
-            this.cmitOpenInBrowser.Click += new System.EventHandler(this.cmitOpenInBrowser_Click);
             // 
             // FormSlice
             // 

@@ -145,9 +145,9 @@ namespace CTDB
                 CTDBEntities ct = new CTDBEntities();
 
                 var q = from c in ct.vQuick where c.slice_id == id select c;
-                vQuick s = q.ToList<vQuick>()[0];
+                vQuick qv = q.ToList<vQuick>()[0];
 
-                csliceID.Text = s.slice_id.ToString();
+                csliceID.Text = qv.slice_id.ToString();
                 //csmID.Text = s.sp_id.ToString();
                 //csmDescrip.Text = s.sp_description;
                 //csmCollector.Text = s.sp_collector;
@@ -353,6 +353,16 @@ namespace CTDB
             }
         }
 
+        private void mitViewMeta_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(csliceID.Text);
+            FormSlice.ExportMeta(id);
+        }
+        private void mitViewInBrowser_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(csliceID.Text);
+            FormSlice.OpenSliceInBrowser(id);
+        }
 
     }
 }
