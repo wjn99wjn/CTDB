@@ -37,6 +37,7 @@
             this.cmitAddFile3D = new System.Windows.Forms.ToolStripMenuItem();
             this.cmitExportMeta = new System.Windows.Forms.ToolStripMenuItem();
             this.cmitOpenInBrowser = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewScanInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.clResultFileType = new System.Windows.Forms.ComboBox();
@@ -54,7 +55,7 @@
             this.label49 = new System.Windows.Forms.Label();
             this.clPixelSize = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
+            this.lbSliceResolution = new System.Windows.Forms.Label();
             this.clReconstructionProgram = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
             this.clScan = new System.Windows.Forms.ComboBox();
@@ -64,6 +65,7 @@
             this.cscSliceNo = new System.Windows.Forms.Label();
             this.clSliceNo = new System.Windows.Forms.Label();
             this.clFileType = new System.Windows.Forms.ComboBox();
+            this.label43 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -95,45 +97,53 @@
             this.cmitAddFileStack,
             this.cmitAddFile3D,
             this.cmitExportMeta,
-            this.cmitOpenInBrowser});
+            this.cmitOpenInBrowser,
+            this.viewScanInfoToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(164, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 158);
             // 
             // mitDelete
             // 
             this.mitDelete.Enabled = false;
             this.mitDelete.Name = "mitDelete";
-            this.mitDelete.Size = new System.Drawing.Size(163, 22);
+            this.mitDelete.Size = new System.Drawing.Size(180, 22);
             this.mitDelete.Text = "Delete";
             this.mitDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // cmitAddFileStack
             // 
             this.cmitAddFileStack.Name = "cmitAddFileStack";
-            this.cmitAddFileStack.Size = new System.Drawing.Size(163, 22);
+            this.cmitAddFileStack.Size = new System.Drawing.Size(180, 22);
             this.cmitAddFileStack.Text = "Add Image Stack";
             this.cmitAddFileStack.Click += new System.EventHandler(this.cmitAddFileStack_Click);
             // 
             // cmitAddFile3D
             // 
             this.cmitAddFile3D.Name = "cmitAddFile3D";
-            this.cmitAddFile3D.Size = new System.Drawing.Size(163, 22);
+            this.cmitAddFile3D.Size = new System.Drawing.Size(180, 22);
             this.cmitAddFile3D.Text = "Add 3D Model";
             this.cmitAddFile3D.Click += new System.EventHandler(this.cmitAddFile3D_Click);
             // 
             // cmitExportMeta
             // 
             this.cmitExportMeta.Name = "cmitExportMeta";
-            this.cmitExportMeta.Size = new System.Drawing.Size(163, 22);
+            this.cmitExportMeta.Size = new System.Drawing.Size(180, 22);
             this.cmitExportMeta.Text = "Export Meta";
             this.cmitExportMeta.Click += new System.EventHandler(this.cmitExportMeta_Click);
             // 
             // cmitOpenInBrowser
             // 
             this.cmitOpenInBrowser.Name = "cmitOpenInBrowser";
-            this.cmitOpenInBrowser.Size = new System.Drawing.Size(163, 22);
-            this.cmitOpenInBrowser.Text = "Open in Browser";
+            this.cmitOpenInBrowser.Size = new System.Drawing.Size(180, 22);
+            this.cmitOpenInBrowser.Text = "View in Browser";
             this.cmitOpenInBrowser.Click += new System.EventHandler(this.cmitOpenInBrowser_Click);
+            // 
+            // viewScanInfoToolStripMenuItem
+            // 
+            this.viewScanInfoToolStripMenuItem.Name = "viewScanInfoToolStripMenuItem";
+            this.viewScanInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewScanInfoToolStripMenuItem.Text = "View Scan Info";
+            this.viewScanInfoToolStripMenuItem.Click += new System.EventHandler(this.viewScanInfoToolStripMenuItem_Click);
             // 
             // btnOK
             // 
@@ -163,7 +173,7 @@
             this.panel1.Controls.Add(this.label49);
             this.panel1.Controls.Add(this.clPixelSize);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label43);
+            this.panel1.Controls.Add(this.lbSliceResolution);
             this.panel1.Controls.Add(this.clReconstructionProgram);
             this.panel1.Controls.Add(this.label45);
             this.panel1.Controls.Add(this.clScan);
@@ -315,15 +325,16 @@
             this.label1.TabIndex = 106;
             this.label1.Text = "Cut Method";
             // 
-            // label43
+            // lbSliceResolution
             // 
-            this.label43.AutoSize = true;
-            this.label43.ForeColor = System.Drawing.Color.Red;
-            this.label43.Location = new System.Drawing.Point(12, 125);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(95, 12);
-            this.label43.TabIndex = 106;
-            this.label43.Text = "Resolution (µm)";
+            this.lbSliceResolution.AutoSize = true;
+            this.lbSliceResolution.ForeColor = System.Drawing.Color.Red;
+            this.lbSliceResolution.Location = new System.Drawing.Point(12, 125);
+            this.lbSliceResolution.Name = "lbSliceResolution";
+            this.lbSliceResolution.Size = new System.Drawing.Size(95, 12);
+            this.lbSliceResolution.TabIndex = 106;
+            this.lbSliceResolution.Text = "Resolution (µm)";
+            this.lbSliceResolution.DoubleClick += new System.EventHandler(this.lbComputeResolution_DoubleClick);
             // 
             // clReconstructionProgram
             // 
@@ -406,6 +417,16 @@
             this.clFileType.Size = new System.Drawing.Size(55, 20);
             this.clFileType.TabIndex = 155;
             // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.ForeColor = System.Drawing.Color.Red;
+            this.label43.Location = new System.Drawing.Point(12, 125);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(95, 12);
+            this.label43.TabIndex = 106;
+            this.label43.Text = "Resolution (µm)";
+            // 
             // FormSlice
             // 
             this.AcceptButton = this.btnOK;
@@ -441,7 +462,7 @@
         private System.Windows.Forms.Label clID;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.TextBox clPixelSize;
-        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label lbSliceResolution;
         private System.Windows.Forms.TextBox clReconstructionProgram;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.ComboBox clScan;
@@ -463,5 +484,7 @@
         private System.Windows.Forms.ComboBox clResultFileType;
         private System.Windows.Forms.ComboBox clFileType;
         private System.Windows.Forms.ToolStripMenuItem cmitOpenInBrowser;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.ToolStripMenuItem viewScanInfoToolStripMenuItem;
     }
 }

@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="CTDBModel.tbFile" Width="1.5" PointX="12.125" PointY="2.75" />
         <EntityTypeShape EntityType="CTDBModel.tbRef" Width="1.875" PointX="9.625" PointY="6.875" />
         <EntityTypeShape EntityType="CTDBModel.tbLabel" Width="1.5" PointX="7.5" PointY="0.625" />
-        <EntityTypeShape EntityType="CTDBModel.vQuick" Width="1.5" PointX="9.875" PointY="0.75" />
+        <EntityTypeShape EntityType="CTDBModel.vQuick" Width="1.5" PointX="9.625" PointY="0.5" />
         <EntityTypeShape EntityType="CTDBModel.tbScan" Width="1.5" PointX="5.375" PointY="0.5" />
         <EntityTypeShape EntityType="CTDBModel.tbSlice" Width="1.5" PointX="7.625" PointY="6.125" />
         <EntityTypeShape EntityType="CTDBModel.tbSpecimen" Width="1.5" PointX="3.375" PointY="1" />

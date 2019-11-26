@@ -124,7 +124,7 @@ namespace CTDB
 
             //dataGridView1.DataSource = ct.tbSlice.ToList<tbSlice>();
             //dataGridView1.DataSource = FormLogin.LoadDataA("tbSlice");
-            FormLogin.LoadData(dataGridView1, "tbSlice", "slice_id|scan_id|slice_para_PixelSize|slice_para_CutMethod|Abstract|date_in|open_status");
+            FormLogin.LoadData(dataGridView1, "tbSlice", "slice_id|scan_id|slice_para_PixelSize|slice_para_CutMethod|Abstract|date_in|open_status|slice_para_SliceNumber");
 
         }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -298,7 +298,21 @@ namespace CTDB
         }
 
         private void ucFileInfo1_OpenFileDialog(object sender, EventArgs e) { this.Hide(); }
-        private void ucFileInfo1_UpdateFile(object sender, EventArgs e) { this.Show(); }
+        private void ucFileInfo1_UpdateFile(object sender, EventArgs e)
+        {
+            this.Show();
+            int id = int.Parse(clID.Text);
+            using (CTDBEntities ct = new CTDBEntities())
+            {
+                //更新文件数量
+                var s = ct.tbSlice.FirstOrDefault(st => st.slice_id == id);
+                //s.scan_para_FilesNumber = ucFileInfo1.ValueFileCount;// q.Count<tbFile>();
+                s.slice_para_SliceNumber = ucFileInfo1.ValueFileCount;
+                //s.slice_para_PixelSize  = ucFileI
+                ct.SaveChanges();
+            }
+            refreshDatagridview(id.ToString());
+        }
 
         private void cmitExportMeta_Click(object sender, EventArgs e)
         {
@@ -311,7 +325,31 @@ namespace CTDB
             OpenSliceInBrowser(id);
         }
 
+        private void lbComputeResolution_DoubleClick(object sender, EventArgs e)
+        {
+            OpenFileDialog od = new OpenFileDialog();
+            if (od.ShowDialog() == DialogResult.OK)
+            {
 
+            }
 
+        }
+
+        private void viewScanInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(clID.Text);
+            using (CTDBEntities ct = new CTDBEntities())
+            {
+                //更新文件数量
+                var slice = ct.tbSlice.FirstOrDefault(st => st.slice_id == id);
+                var scan = ct.tbScan.FirstOrDefault(st => st.scan_id == slice.scan_id);
+                var sp = ct.tbSpecimen.FirstOrDefault(st => st.sp_id == scan.sp_id);
+
+                string r = "ScanID: " + scan.sp_id + "\r\n";
+                r += "Scan Operator: " + scan.scan_operator + "\r\n";
+                r += "SecimenSPID: " + sp.sp_spid + "\r\n";
+                MessageBox.Show(r);
+            }
+        }
     }
 }

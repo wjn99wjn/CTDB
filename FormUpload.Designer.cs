@@ -382,6 +382,7 @@
             this.updateInforToolStripMenuItem.Name = "updateInforToolStripMenuItem";
             this.updateInforToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.updateInforToolStripMenuItem.Text = "Update Information";
+            this.updateInforToolStripMenuItem.Click += new System.EventHandler(this.updateInforToolStripMenuItem_Click);
             // 
             // panel2
             // 

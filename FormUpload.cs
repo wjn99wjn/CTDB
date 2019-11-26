@@ -461,5 +461,12 @@ namespace CTDB
             return r;
         }
 
+        private void updateInforToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
     }
 }
