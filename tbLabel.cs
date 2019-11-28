@@ -27,6 +27,7 @@ namespace CTDB
         public Nullable<int> label_file_number { get; set; }
         public int scan_id { get; set; }
         public int sp_id { get; set; }
+        public string label_title { get; set; }
     
         public virtual tbSlice tbSlice { get; set; }
     }

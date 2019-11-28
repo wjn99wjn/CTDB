@@ -58,6 +58,7 @@
           <Property Name="label_file_number" Type="int" />
           <Property Name="scan_id" Type="int" Nullable="false" />
           <Property Name="sp_id" Type="int" Nullable="false" />
+          <Property Name="label_title" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tbRef">
           <Key>
@@ -354,7 +355,6 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
           <EntitySet Name="tbUser" EntityType="CTDBModel.tbUser" />
           <EntitySet Name="tbFile" EntityType="CTDBModel.tbFile" />
           <EntitySet Name="tbRef" EntityType="CTDBModel.tbRef" />
-          <EntitySet Name="tbLabel" EntityType="CTDBModel.tbLabel" />
           <EntitySet Name="vQuick" EntityType="CTDBModel.vQuick" />
           <EntitySet Name="tbScan" EntityType="CTDBModel.tbScan" />
           <EntitySet Name="tbSlice" EntityType="CTDBModel.tbSlice" />
@@ -362,10 +362,6 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
           <AssociationSet Name="FK_tbScan_tbEquipment" Association="CTDBModel.FK_tbScan_tbEquipment">
             <End Role="tbEquipment" EntitySet="tbEquipment" />
             <End Role="tbScan" EntitySet="tbScan" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tbLabel_tbSlice" Association="CTDBModel.FK_tbLabel_tbSlice">
-            <End Role="tbSlice" EntitySet="tbSlice" />
-            <End Role="tbLabel" EntitySet="tbLabel" />
           </AssociationSet>
           <AssociationSet Name="FK_tbScan_tbSpecimen" Association="CTDBModel.FK_tbScan_tbSpecimen">
             <End Role="tbSpecimen" EntitySet="tbSpecimen" />
@@ -378,6 +374,11 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
           <AssociationSet Name="FK_tbSpecimen_tbSpecies" Association="CTDBModel.FK_tbSpecimen_tbSpecies">
             <End Role="tbSpecies" EntitySet="tbSpecies" />
             <End Role="tbSpecimen" EntitySet="tbSpecimen" />
+          </AssociationSet>
+          <EntitySet Name="tbLabel" EntityType="CTDBModel.tbLabel" />
+          <AssociationSet Name="FK_tbLabel_tbSlice" Association="CTDBModel.FK_tbLabel_tbSlice">
+            <End Role="tbSlice" EntitySet="tbSlice" />
+            <End Role="tbLabel" EntitySet="tbLabel" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="tbEquipment">
@@ -469,25 +470,6 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
           <Property Name="doc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserId" Type="Guid" />
         </EntityType>
-        <EntityType Name="tbLabel">
-          <Key>
-            <PropertyRef Name="label_id" />
-          </Key>
-          <Property Name="label_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="slice_id" Type="Int32" Nullable="false" />
-          <Property Name="label_note" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="date_in" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="open_status" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Guid" />
-          <Property Name="label_method" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="label_author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="label_file_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="label_structure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="label_file_number" Type="Int32" />
-          <Property Name="scan_id" Type="Int32" Nullable="false" />
-          <Property Name="sp_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tbSlice" Relationship="CTDBModel.FK_tbLabel_tbSlice" FromRole="tbLabel" ToRole="tbSlice" />
-        </EntityType>
         <EntityType Name="vQuick">
           <Key>
             <PropertyRef Name="slice_id" />
@@ -575,8 +557,8 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
           <Property Name="Abstract" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="sp_id" Type="Int32" Nullable="false" />
           <Property Name="ref_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tbLabel" Relationship="CTDBModel.FK_tbLabel_tbSlice" FromRole="tbSlice" ToRole="tbLabel" />
           <NavigationProperty Name="tbScan" Relationship="CTDBModel.FK_tbSlice_tbScan" FromRole="tbSlice" ToRole="tbScan" />
+          <NavigationProperty Name="tbLabel" Relationship="CTDBModel.FK_tbLabel_tbSlice" FromRole="tbSlice" ToRole="tbLabel" />
         </EntityType>
         <EntityType Name="tbSpecimen">
           <Key>
@@ -616,18 +598,6 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tbLabel_tbSlice">
-          <End Type="CTDBModel.tbSlice" Role="tbSlice" Multiplicity="1" />
-          <End Type="CTDBModel.tbLabel" Role="tbLabel" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbSlice">
-              <PropertyRef Name="slice_id" />
-            </Principal>
-            <Dependent Role="tbLabel">
-              <PropertyRef Name="slice_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tbScan_tbSpecimen">
           <End Type="CTDBModel.tbSpecimen" Role="tbSpecimen" Multiplicity="1" />
           <End Type="CTDBModel.tbScan" Role="tbScan" Multiplicity="*" />
@@ -661,6 +631,38 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
             </Principal>
             <Dependent Role="tbSpecimen">
               <PropertyRef Name="species_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tbLabel">
+          <Key>
+            <PropertyRef Name="label_id" />
+          </Key>
+          <Property Name="label_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="slice_id" Type="Int32" Nullable="false" />
+          <Property Name="label_note" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="date_in" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="open_status" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="label_method" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="label_author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="label_file_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="label_structure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="label_file_number" Type="Int32" />
+          <Property Name="scan_id" Type="Int32" Nullable="false" />
+          <Property Name="sp_id" Type="Int32" Nullable="false" />
+          <Property Name="label_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbSlice" Relationship="CTDBModel.FK_tbLabel_tbSlice" FromRole="tbLabel" ToRole="tbSlice" />
+        </EntityType>
+        <Association Name="FK_tbLabel_tbSlice">
+          <End Type="CTDBModel.tbSlice" Role="tbSlice" Multiplicity="1" />
+          <End Type="CTDBModel.tbLabel" Role="tbLabel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSlice">
+              <PropertyRef Name="slice_id" />
+            </Principal>
+            <Dependent Role="tbLabel">
+              <PropertyRef Name="slice_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -760,25 +762,6 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
                 <ScalarProperty Name="author" ColumnName="author" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="ref_id" ColumnName="ref_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbLabel">
-            <EntityTypeMapping TypeName="CTDBModel.tbLabel">
-              <MappingFragment StoreEntitySet="tbLabel">
-                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
-                <ScalarProperty Name="scan_id" ColumnName="scan_id" />
-                <ScalarProperty Name="label_file_number" ColumnName="label_file_number" />
-                <ScalarProperty Name="label_structure" ColumnName="label_structure" />
-                <ScalarProperty Name="label_file_type" ColumnName="label_file_type" />
-                <ScalarProperty Name="label_author" ColumnName="label_author" />
-                <ScalarProperty Name="label_method" ColumnName="label_method" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="open_status" ColumnName="open_status" />
-                <ScalarProperty Name="date_in" ColumnName="date_in" />
-                <ScalarProperty Name="label_note" ColumnName="label_note" />
-                <ScalarProperty Name="slice_id" ColumnName="slice_id" />
-                <ScalarProperty Name="label_id" ColumnName="label_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -892,6 +875,26 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
                 <ScalarProperty Name="sp_note" ColumnName="sp_note" />
                 <ScalarProperty Name="species_id" ColumnName="species_id" />
                 <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbLabel">
+            <EntityTypeMapping TypeName="CTDBModel.tbLabel">
+              <MappingFragment StoreEntitySet="tbLabel">
+                <ScalarProperty Name="label_title" ColumnName="label_title" />
+                <ScalarProperty Name="sp_id" ColumnName="sp_id" />
+                <ScalarProperty Name="scan_id" ColumnName="scan_id" />
+                <ScalarProperty Name="label_file_number" ColumnName="label_file_number" />
+                <ScalarProperty Name="label_structure" ColumnName="label_structure" />
+                <ScalarProperty Name="label_file_type" ColumnName="label_file_type" />
+                <ScalarProperty Name="label_author" ColumnName="label_author" />
+                <ScalarProperty Name="label_method" ColumnName="label_method" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="open_status" ColumnName="open_status" />
+                <ScalarProperty Name="date_in" ColumnName="date_in" />
+                <ScalarProperty Name="label_note" ColumnName="label_note" />
+                <ScalarProperty Name="slice_id" ColumnName="slice_id" />
+                <ScalarProperty Name="label_id" ColumnName="label_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -42,9 +42,11 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.lbHelpTag = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.lbHelp2 = new System.Windows.Forms.TextBox();
             this.lbHelp = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnMDLabel = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.btnQuick1 = new System.Windows.Forms.Button();
             this.btnMDTag = new System.Windows.Forms.Button();
             this.btnRef = new System.Windows.Forms.Button();
@@ -54,8 +56,6 @@
             this.btnMDSpecies = new System.Windows.Forms.Button();
             this.btnMDEquipment = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.lbHelp2 = new System.Windows.Forms.TextBox();
-            this.btnExit = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -200,6 +200,15 @@
             this.tabPage7.Text = "Help";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // lbHelp2
+            // 
+            this.lbHelp2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbHelp2.Location = new System.Drawing.Point(0, 0);
+            this.lbHelp2.Multiline = true;
+            this.lbHelp2.Name = "lbHelp2";
+            this.lbHelp2.Size = new System.Drawing.Size(528, 310);
+            this.lbHelp2.TabIndex = 1;
+            // 
             // lbHelp
             // 
             this.lbHelp.AutoSize = true;
@@ -229,6 +238,7 @@
             // 
             // btnMDLabel
             // 
+            this.btnMDLabel.Enabled = false;
             this.btnMDLabel.Location = new System.Drawing.Point(249, 93);
             this.btnMDLabel.Name = "btnMDLabel";
             this.btnMDLabel.Size = new System.Drawing.Size(75, 51);
@@ -236,6 +246,16 @@
             this.btnMDLabel.Text = "Label";
             this.btnMDLabel.UseVisualStyleBackColor = true;
             this.btnMDLabel.Click += new System.EventHandler(this.btnMDLabel_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(119, 270);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(89, 44);
+            this.btnExit.TabIndex = 10;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnQuick1
             // 
@@ -334,25 +354,6 @@
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.Size = new System.Drawing.Size(872, 262);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // lbHelp2
-            // 
-            this.lbHelp2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbHelp2.Location = new System.Drawing.Point(0, 0);
-            this.lbHelp2.Multiline = true;
-            this.lbHelp2.Name = "lbHelp2";
-            this.lbHelp2.Size = new System.Drawing.Size(528, 310);
-            this.lbHelp2.TabIndex = 1;
-            // 
-            // btnExit
-            // 
-            this.btnExit.Location = new System.Drawing.Point(119, 270);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(89, 44);
-            this.btnExit.TabIndex = 10;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // CTDBForm1
             // 

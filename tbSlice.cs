@@ -35,8 +35,8 @@ namespace CTDB
         public int sp_id { get; set; }
         public int ref_id { get; set; }
     
+        public virtual tbScan tbScan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbLabel> tbLabel { get; set; }
-        public virtual tbScan tbScan { get; set; }
     }
 }

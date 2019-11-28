@@ -351,5 +351,16 @@ namespace CTDB
                 MessageBox.Show(r);
             }
         }
+
+        private void bsmAddLabel_Click(object sender, EventArgs e)
+        {
+            FormLabel fl = new FormLabel();
+            fl.SliceID = int.Parse(this.clID.Text);
+            this.Hide();
+            fl.ShowDialog();
+            this.Show();
+        }
+
+
     }
 }

@@ -72,6 +72,7 @@ namespace CTDB
             return l;
         }
 
+
         /// <summary>获得权限状态</summary>
         /// <param name="table">parameter of</param>
         /// <returns></returns>

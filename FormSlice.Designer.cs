@@ -38,6 +38,7 @@
             this.cmitExportMeta = new System.Windows.Forms.ToolStripMenuItem();
             this.cmitOpenInBrowser = new System.Windows.Forms.ToolStripMenuItem();
             this.viewScanInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addLabelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.clResultFileType = new System.Windows.Forms.ComboBox();
@@ -61,6 +62,7 @@
             this.clScan = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.bsmUpdate = new System.Windows.Forms.Button();
+            this.bsmAddLabel = new System.Windows.Forms.Button();
             this.bsmAdd = new System.Windows.Forms.Button();
             this.cscSliceNo = new System.Windows.Forms.Label();
             this.clSliceNo = new System.Windows.Forms.Label();
@@ -98,52 +100,60 @@
             this.cmitAddFile3D,
             this.cmitExportMeta,
             this.cmitOpenInBrowser,
-            this.viewScanInfoToolStripMenuItem});
+            this.viewScanInfoToolStripMenuItem,
+            this.addLabelsToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(164, 158);
             // 
             // mitDelete
             // 
             this.mitDelete.Enabled = false;
             this.mitDelete.Name = "mitDelete";
-            this.mitDelete.Size = new System.Drawing.Size(180, 22);
+            this.mitDelete.Size = new System.Drawing.Size(163, 22);
             this.mitDelete.Text = "Delete";
             this.mitDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // cmitAddFileStack
             // 
             this.cmitAddFileStack.Name = "cmitAddFileStack";
-            this.cmitAddFileStack.Size = new System.Drawing.Size(180, 22);
+            this.cmitAddFileStack.Size = new System.Drawing.Size(163, 22);
             this.cmitAddFileStack.Text = "Add Image Stack";
             this.cmitAddFileStack.Click += new System.EventHandler(this.cmitAddFileStack_Click);
             // 
             // cmitAddFile3D
             // 
             this.cmitAddFile3D.Name = "cmitAddFile3D";
-            this.cmitAddFile3D.Size = new System.Drawing.Size(180, 22);
+            this.cmitAddFile3D.Size = new System.Drawing.Size(163, 22);
             this.cmitAddFile3D.Text = "Add 3D Model";
             this.cmitAddFile3D.Click += new System.EventHandler(this.cmitAddFile3D_Click);
             // 
             // cmitExportMeta
             // 
             this.cmitExportMeta.Name = "cmitExportMeta";
-            this.cmitExportMeta.Size = new System.Drawing.Size(180, 22);
+            this.cmitExportMeta.Size = new System.Drawing.Size(163, 22);
             this.cmitExportMeta.Text = "Export Meta";
             this.cmitExportMeta.Click += new System.EventHandler(this.cmitExportMeta_Click);
             // 
             // cmitOpenInBrowser
             // 
             this.cmitOpenInBrowser.Name = "cmitOpenInBrowser";
-            this.cmitOpenInBrowser.Size = new System.Drawing.Size(180, 22);
+            this.cmitOpenInBrowser.Size = new System.Drawing.Size(163, 22);
             this.cmitOpenInBrowser.Text = "View in Browser";
             this.cmitOpenInBrowser.Click += new System.EventHandler(this.cmitOpenInBrowser_Click);
             // 
             // viewScanInfoToolStripMenuItem
             // 
             this.viewScanInfoToolStripMenuItem.Name = "viewScanInfoToolStripMenuItem";
-            this.viewScanInfoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewScanInfoToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.viewScanInfoToolStripMenuItem.Text = "View Scan Info";
             this.viewScanInfoToolStripMenuItem.Click += new System.EventHandler(this.viewScanInfoToolStripMenuItem_Click);
+            // 
+            // addLabelsToolStripMenuItem
+            // 
+            this.addLabelsToolStripMenuItem.Name = "addLabelsToolStripMenuItem";
+            this.addLabelsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.addLabelsToolStripMenuItem.Text = "Add Labels";
+            this.addLabelsToolStripMenuItem.Click += new System.EventHandler(this.bsmAddLabel_Click);
             // 
             // btnOK
             // 
@@ -179,6 +189,7 @@
             this.panel1.Controls.Add(this.clScan);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.bsmUpdate);
+            this.panel1.Controls.Add(this.bsmAddLabel);
             this.panel1.Controls.Add(this.bsmAdd);
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -381,6 +392,16 @@
             this.bsmUpdate.UseVisualStyleBackColor = true;
             this.bsmUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // bsmAddLabel
+            // 
+            this.bsmAddLabel.Location = new System.Drawing.Point(693, 87);
+            this.bsmAddLabel.Name = "bsmAddLabel";
+            this.bsmAddLabel.Size = new System.Drawing.Size(75, 38);
+            this.bsmAddLabel.TabIndex = 79;
+            this.bsmAddLabel.Text = "Add Label";
+            this.bsmAddLabel.UseVisualStyleBackColor = true;
+            this.bsmAddLabel.Click += new System.EventHandler(this.bsmAddLabel_Click);
+            // 
             // bsmAdd
             // 
             this.bsmAdd.Location = new System.Drawing.Point(774, 22);
@@ -486,5 +507,7 @@
         private System.Windows.Forms.ToolStripMenuItem cmitOpenInBrowser;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.ToolStripMenuItem viewScanInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addLabelsToolStripMenuItem;
+        private System.Windows.Forms.Button bsmAddLabel;
     }
 }
