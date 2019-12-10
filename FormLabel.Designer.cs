@@ -34,6 +34,10 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mitDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.mitClearAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoFromServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.clbTitle = new System.Windows.Forms.TextBox();
@@ -55,11 +59,13 @@
             this.clbAuthor = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
             this.bsmUpdate = new System.Windows.Forms.Button();
+            this.bsmAddAutoOnServer = new System.Windows.Forms.Button();
             this.bsmAddBatch = new System.Windows.Forms.Button();
             this.bsmAdd = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnAddBatch = new System.Windows.Forms.Button();
-            this.exportTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button2 = new System.Windows.Forms.Button();
+            this.exportMeatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -89,9 +95,11 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mitDelete,
             this.mitClearAll,
-            this.exportTableToolStripMenuItem});
+            this.exportTableToolStripMenuItem,
+            this.addToolStripMenuItem,
+            this.exportMeatToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
             // 
             // mitDelete
             // 
@@ -107,6 +115,34 @@
             this.mitClearAll.Size = new System.Drawing.Size(180, 22);
             this.mitClearAll.Text = "Clear All";
             this.mitClearAll.Click += new System.EventHandler(this.mitClearAll_Click);
+            // 
+            // exportTableToolStripMenuItem
+            // 
+            this.exportTableToolStripMenuItem.Name = "exportTableToolStripMenuItem";
+            this.exportTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportTableToolStripMenuItem.Text = "Export Table";
+            this.exportTableToolStripMenuItem.Click += new System.EventHandler(this.exportTableToolStripMenuItem_Click);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fromFolderToolStripMenuItem,
+            this.autoFromServerToolStripMenuItem});
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Text = "Add Label";
+            // 
+            // fromFolderToolStripMenuItem
+            // 
+            this.fromFolderToolStripMenuItem.Name = "fromFolderToolStripMenuItem";
+            this.fromFolderToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.fromFolderToolStripMenuItem.Text = "Batch From Local Folder";
+            // 
+            // autoFromServerToolStripMenuItem
+            // 
+            this.autoFromServerToolStripMenuItem.Name = "autoFromServerToolStripMenuItem";
+            this.autoFromServerToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.autoFromServerToolStripMenuItem.Text = "Auto From Slice on Server";
             // 
             // btnOK
             // 
@@ -140,6 +176,7 @@
             this.panel1.Controls.Add(this.clbAuthor);
             this.panel1.Controls.Add(this.label45);
             this.panel1.Controls.Add(this.bsmUpdate);
+            this.panel1.Controls.Add(this.bsmAddAutoOnServer);
             this.panel1.Controls.Add(this.bsmAddBatch);
             this.panel1.Controls.Add(this.bsmAdd);
             this.panel1.Controls.Add(this.btnOK);
@@ -168,10 +205,10 @@
             // 
             // ucFileInfo1
             // 
-            this.ucFileInfo1.Location = new System.Drawing.Point(582, 6);
+            this.ucFileInfo1.Location = new System.Drawing.Point(472, 6);
             this.ucFileInfo1.Name = "ucFileInfo1";
             this.ucFileInfo1.ParaDatasetID = 0;
-            this.ucFileInfo1.ParaTable = "";
+            this.ucFileInfo1.ParaTable = "tbLabel";
             this.ucFileInfo1.Size = new System.Drawing.Size(195, 42);
             this.ucFileInfo1.TabIndex = 114;
             this.ucFileInfo1.UpdateFile += new System.EventHandler(this.ucFileInfo1_UpdateFile);
@@ -321,6 +358,16 @@
             this.bsmUpdate.UseVisualStyleBackColor = true;
             this.bsmUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // bsmAddAutoOnServer
+            // 
+            this.bsmAddAutoOnServer.Location = new System.Drawing.Point(673, 3);
+            this.bsmAddAutoOnServer.Name = "bsmAddAutoOnServer";
+            this.bsmAddAutoOnServer.Size = new System.Drawing.Size(89, 42);
+            this.bsmAddAutoOnServer.TabIndex = 79;
+            this.bsmAddAutoOnServer.Text = "Add An AutoLabel";
+            this.bsmAddAutoOnServer.UseVisualStyleBackColor = true;
+            this.bsmAddAutoOnServer.Click += new System.EventHandler(this.bsmAddOnServer_Click);
+            // 
             // bsmAddBatch
             // 
             this.bsmAddBatch.Location = new System.Drawing.Point(673, 57);
@@ -360,12 +407,22 @@
             this.btnAddBatch.Text = "Batch Add From Folder";
             this.btnAddBatch.UseVisualStyleBackColor = true;
             // 
-            // exportTableToolStripMenuItem
+            // button2
             // 
-            this.exportTableToolStripMenuItem.Name = "exportTableToolStripMenuItem";
-            this.exportTableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exportTableToolStripMenuItem.Text = "Export Table";
-            this.exportTableToolStripMenuItem.Click += new System.EventHandler(this.exportTableToolStripMenuItem_Click);
+            this.button2.Location = new System.Drawing.Point(673, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(89, 42);
+            this.button2.TabIndex = 79;
+            this.button2.Text = "Add An AutoLabel";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.bsmAddOnServer_Click);
+            // 
+            // exportMeatToolStripMenuItem
+            // 
+            this.exportMeatToolStripMenuItem.Name = "exportMeatToolStripMenuItem";
+            this.exportMeatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportMeatToolStripMenuItem.Text = "Export Meta";
+            this.exportMeatToolStripMenuItem.Click += new System.EventHandler(this.exportMeatToolStripMenuItem_Click);
             // 
             // FormLabel
             // 
@@ -420,5 +477,11 @@
         private System.Windows.Forms.Button btnAddBatch;
         private System.Windows.Forms.ToolStripMenuItem mitClearAll;
         private System.Windows.Forms.ToolStripMenuItem exportTableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fromFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autoFromServerToolStripMenuItem;
+        private System.Windows.Forms.Button bsmAddAutoOnServer;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem exportMeatToolStripMenuItem;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections;
 using System.Data;
 using System.Linq;
@@ -234,84 +235,59 @@ namespace CTDB
                     }
         }
 
-
-
-
-        //author: walker
-        //date: 2014-01-06
-        //function: 
-        /// <summary>将dataGridView导出到csv </summary>
-        /// <param name="dataGridView"></param>
-        /// <returns></returns>
-        public static bool dataGridViewToCSV(DataGridView dataGridView)
-        {
-            if (dataGridView.Rows.Count == 0)
-            {
-                MessageBox.Show("没有数据可导出!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
-            saveFileDialog.FilterIndex = 0;
-            saveFileDialog.RestoreDirectory = true;
-            saveFileDialog.CreatePrompt = true;
-            saveFileDialog.FileName = null;
-            saveFileDialog.Title = "保存";
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                Stream stream = saveFileDialog.OpenFile();
-                StreamWriter sw = new StreamWriter(stream, System.Text.Encoding.GetEncoding(-0));
-                string strLine = "";
-                try
-                {
-                    //表头
-                    for (int i = 0; i < dataGridView.ColumnCount; i++)
-                    {
-                        if (i > 0)
-                            strLine += ",";
-                        strLine += dataGridView.Columns[i].HeaderText;
-                    }
-                    strLine.Remove(strLine.Length - 1);
-                    sw.WriteLine(strLine);
-                    strLine = "";
-                    //表的内容
-                    for (int j = 0; j < dataGridView.Rows.Count; j++)
-                    {
-                        strLine = "";
-                        int colCount = dataGridView.Columns.Count;
-                        for (int k = 0; k < colCount; k++)
-                        {
-                            if (k > 0 && k < colCount)
-                                strLine += ",";
-                            if (dataGridView.Rows[j].Cells[k].Value == null)
-                                strLine += "";
-                            else
-                            {
-                                string cell = dataGridView.Rows[j].Cells[k].Value.ToString().Trim();
-                                //防止里面含有特殊符号
-                                cell = cell.Replace("\"", "\"\"");
-                                cell = "\"" + cell + "\"";
-                                strLine += cell;
-                            }
-                        }
-                        sw.WriteLine(strLine);
-                    }
-                    sw.Close();
-                    stream.Close();
-                    MessageBox.Show("数据被导出到：" + saveFileDialog.FileName.ToString(), "导出完毕", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "导出错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return false;
-                }
-            }
-            return true;
-        }
-
         private void exportTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dataGridViewToCSV(dataGridView1);
+            CTHelper.SaveAsCSV(dataGridView1);
         }
+
+        private void bsmAddOnServer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exportMeatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(clbID.Text);
+            ExportMeta(id);
+        }
+
+        /// <summary>导出元数据方法</summary>
+        /// <param name="id">slice表的 slice_id </param>
+        static public void ExportMeta(int id)
+        {
+            try
+            {
+                List<Tuple<string, string>> ht = new List<Tuple<string, string>>();
+                CTDBEntities ct = new CTDBEntities();
+
+                tbLabel lb = ct.tbLabel.FirstOrDefault(s => s.label_id == id);
+                ht.Add(new Tuple<string, string>("Label ID", lb.label_id.ToString()));
+                ht.Add(new Tuple<string, string>("Slice ID", lb.slice_id.ToString()));
+                ht.Add(new Tuple<string, string>("Title", lb.label_title.ToString()));
+                ht.Add(new Tuple<string, string>("Author", lb.label_author.ToString()));
+                ht.Add(new Tuple<string, string>("Structure", lb.label_structure.ToString()));
+                ht.Add(new Tuple<string, string>("Method", lb.label_method.ToString()));
+                //ht.Add(new Tuple<string, string>("Note", lb.label_note.ToString()));
+
+                string f = Application.StartupPath + "\\meta.txt";
+                if (File.Exists(f)) File.Delete(f);
+                //foreach (System.Collections.DictionaryEntry item in ht)
+                foreach (Tuple<string, string> item in ht)
+                {
+                    string s = item.Item1 + "\t:\t" + item.Item2;
+                    CTHelper.AddLog(s, f);
+                }
+
+                System.Diagnostics.Process.Start(f);
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("记录有问题，导出失败\r\n" + ee.ToString());
+            }
+        }
+
+
+
+
     }
 }

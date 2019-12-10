@@ -149,6 +149,79 @@ namespace CTDB
             return r.ToArray();
         }
 
+        /// <summary>将dataGridView导出到csv </summary>
+        /// <param name="dataGridView"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// author: walker
+        /// date: 2014-01-06
+        /// </remarks>
+        public static bool SaveAsCSV(DataGridView dataGridView)
+        {
+            if (dataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("没有数据可导出!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+            saveFileDialog.FilterIndex = 0;
+            saveFileDialog.RestoreDirectory = true;
+            saveFileDialog.CreatePrompt = true;
+            saveFileDialog.FileName = null;
+            saveFileDialog.Title = "保存";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Stream stream = saveFileDialog.OpenFile();
+                StreamWriter sw = new StreamWriter(stream, System.Text.Encoding.GetEncoding(-0));
+                string strLine = "";
+                try
+                {
+                    //表头
+                    for (int i = 0; i < dataGridView.ColumnCount; i++)
+                    {
+                        if (i > 0)
+                            strLine += ",";
+                        strLine += dataGridView.Columns[i].HeaderText;
+                    }
+                    strLine.Remove(strLine.Length - 1);
+                    sw.WriteLine(strLine);
+                    strLine = "";
+                    //表的内容
+                    for (int j = 0; j < dataGridView.Rows.Count; j++)
+                    {
+                        strLine = "";
+                        int colCount = dataGridView.Columns.Count;
+                        for (int k = 0; k < colCount; k++)
+                        {
+                            if (k > 0 && k < colCount)
+                                strLine += ",";
+                            if (dataGridView.Rows[j].Cells[k].Value == null)
+                                strLine += "";
+                            else
+                            {
+                                string cell = dataGridView.Rows[j].Cells[k].Value.ToString().Trim();
+                                //防止里面含有特殊符号
+                                cell = cell.Replace("\"", "\"\"");
+                                cell = "\"" + cell + "\"";
+                                strLine += cell;
+                            }
+                        }
+                        sw.WriteLine(strLine);
+                    }
+                    sw.Close();
+                    stream.Close();
+                    MessageBox.Show("数据被导出到：" + saveFileDialog.FileName.ToString(), "导出完毕", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "导出错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false;
+                }
+            }
+            return true;
+        }
+
         /// <summary> 测试连接数据库是否成功 </summary>
         /// <param name="ConnectionString">数据库连接字符串</param>
         /// <returns></returns>
