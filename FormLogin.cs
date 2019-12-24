@@ -80,8 +80,12 @@ namespace CTDB
         {
             ArrayList l = new ArrayList();
             Guid uid = Guid.Parse(CTHelper.GetConfig("userid"));
-            if (uid.ToString() == CTHelper.LoadPara("admin.txt", "appkey3"))
-                return true; //管理员权限
+            try
+            {
+                if (uid.ToString() == CTHelper.LoadPara("admin.txt", "appkey3"))
+                    return true; //管理员权限
+            }
+            catch { }
             return false;
         }
 

@@ -57,6 +57,8 @@
             this.mitCreatedFromLabel = new System.Windows.Forms.ToolStripMenuItem();
             this.mitDBDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.updateInforToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectALLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unSelectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCheckDB = new System.Windows.Forms.Button();
@@ -350,9 +352,11 @@
             this.mitCreatedFromSlice,
             this.mitCreatedFromLabel,
             this.mitDBDelete,
-            this.updateInforToolStripMenuItem});
+            this.updateInforToolStripMenuItem,
+            this.selectALLToolStripMenuItem,
+            this.unSelectAllToolStripMenuItem});
             this.contextMenuStripDatabase.Name = "contextMenuStripDatabase";
-            this.contextMenuStripDatabase.Size = new System.Drawing.Size(179, 92);
+            this.contextMenuStripDatabase.Size = new System.Drawing.Size(179, 136);
             // 
             // mitCreatedFromSlice
             // 
@@ -383,6 +387,20 @@
             this.updateInforToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.updateInforToolStripMenuItem.Text = "Update Information";
             this.updateInforToolStripMenuItem.Click += new System.EventHandler(this.updateInforToolStripMenuItem_Click);
+            // 
+            // selectALLToolStripMenuItem
+            // 
+            this.selectALLToolStripMenuItem.Name = "selectALLToolStripMenuItem";
+            this.selectALLToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.selectALLToolStripMenuItem.Text = "Select ALL";
+            this.selectALLToolStripMenuItem.Click += new System.EventHandler(this.selectALLToolStripMenuItem_Click);
+            // 
+            // unSelectAllToolStripMenuItem
+            // 
+            this.unSelectAllToolStripMenuItem.Name = "unSelectAllToolStripMenuItem";
+            this.unSelectAllToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.unSelectAllToolStripMenuItem.Text = "UnSelect All";
+            this.unSelectAllToolStripMenuItem.Click += new System.EventHandler(this.unSelectAllToolStripMenuItem_Click);
             // 
             // panel2
             // 
@@ -629,5 +647,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripMenuItem updateInforToolStripMenuItem;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem selectALLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unSelectAllToolStripMenuItem;
     }
 }

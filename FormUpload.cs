@@ -211,9 +211,11 @@ namespace CTDB
                 string md5 = CTHelper.GetMD5Hash(fileDes);
                 string fn = md5 + System.IO.Path.GetExtension(fileDes);
 
-                //begin to upload开始上传
+                /////////begin to upload开始上传
                 if (File.Exists(fileDes))
                     addFile(fileDes, fileSrc, ParaTable, ParaDatasetID); /////核心上传函数
+                ///////////////////
+
                 File.Delete(fileDes);
                 this.Enabled = true;
                 Application.DoEvents();
@@ -238,12 +240,16 @@ namespace CTDB
             //if (MessageBox.Show("Delete " + lboxDB.SelectedItems.Count.ToString() + " files", "Alert", MessageBoxButtons.YesNo) == DialogResult.Yes)
             if (CTHelper.AlertYes("Delete " + lboxDB.SelectedItems.Count + " files"))
                 using (var db = new CTDBEntities())
+                {
+                    note(lboxDB.Items.Count);
                     foreach (tbFile f in lboxDB.SelectedItems)
                     {
                         var student = db.tbFile.FirstOrDefault(s => s.f_id == f.f_id);
                         db.tbFile.Remove(student);    //删除
                         db.SaveChanges();
+                        notep();
                     }
+                }
             refreshdb();
         }
 
@@ -260,6 +266,7 @@ namespace CTDB
             {
                 //upload to server
                 this.Enabled = false;
+                //核心上传
                 if (checkUploadFile.Checked)
                     r = CTHelper.UploadAPI(f, dsid.ToString(), "upload", para_table, "iozct", UserID);
                 this.Enabled = true;
@@ -466,7 +473,17 @@ namespace CTDB
 
         }
 
+        private void selectALLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lboxDB.SelectedItems.Clear();
+            for (int i = 0; i < lboxDB.Items.Count; i++)
+                lboxDB.SelectedIndices.Add(i);
+        }
 
+        private void unSelectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lboxDB.SelectedItems.Clear();
+        }
 
     }
 }
