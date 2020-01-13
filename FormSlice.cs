@@ -6,6 +6,8 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 
+using System.Xml;
+
 namespace CTDB
 {
     public partial class FormSlice : Form
@@ -30,6 +32,7 @@ namespace CTDB
                 tbScan scan = ct.tbScan.FirstOrDefault(s => s.scan_id == slice.scan_id);
                 //ht.Add(new Tuple<string, string>("Scan ID", scan.scan_id.ToString()));
                 ht.Add(new Tuple<string, string>("Scan Voltage", scan.scan_para_SourceVoltage.ToString()));
+                ht.Add(new Tuple<string, string>("Scan Power", scan.scan_para_SourcePower.ToString()));
                 ht.Add(new Tuple<string, string>("Scan Binning", scan.scan_para_CameraBinning.ToString()));
                 ht.Add(new Tuple<string, string>("Scan Lens", scan.scan_para_LensMultiple.ToString()));
                 ht.Add(new Tuple<string, string>("Scan Exposure", scan.scan_para_Exposure.ToString()));
@@ -76,6 +79,86 @@ namespace CTDB
                 MessageBox.Show("记录有问题，导出失败\r\n" + ee.ToString());
             }
         }
+        static XmlElement addnode(XmlDocument xmldoc, string name, string vv)
+        {
+            XmlNode xn = xmldoc.CreateNode(XmlNodeType.Text, name, "");
+            xn.InnerText = vv;
+            XmlElement xe = xmldoc.CreateElement(name);
+            xe.AppendChild(xn);
+            return xe;
+        }
+        static public string ExportPIDXML(int id)
+        {
+            string r = "";
+            try
+            {
+                //https://blog.csdn.net/xjj51296646/article/details/4241548
+                XmlDocument xmldoc = new XmlDocument();
+                //加入XML的声明段落,<?xml version="1.0" encoding="gb2312"?>
+                XmlDeclaration xmldecl = xmldoc.CreateXmlDeclaration("1.0", "UTF-8", null);
+                xmldoc.AppendChild(xmldecl);
+                //加入一个根元素
+                XmlElement xmlroot = xmldoc.CreateElement("", "pid", "");
+                xmlroot.SetAttribute("type", "DATASET");
+                xmldoc.AppendChild(xmlroot);
+
+                XmlElement xmlroot2 = xmldoc.CreateElement("", "metadatas", "");
+                xmlroot.AppendChild(xmlroot2);
+
+                XmlElement xmlmeta = xmldoc.CreateElement("", "metadata", "");
+                xmlmeta.SetAttribute("type", "Metadata");
+                xmlroot2.AppendChild(xmlmeta);
+
+                List<Tuple<string, string>> ht = new List<Tuple<string, string>>();
+                CTDBEntities ct = new CTDBEntities();
+                tbSlice slice = ct.tbSlice.FirstOrDefault(s => s.slice_id == id);
+                tbScan scan = ct.tbScan.FirstOrDefault(s => s.scan_id == slice.scan_id);
+                string part = scan.scan_specimen_Body;
+                tbSpecimen sp = ct.tbSpecimen.FirstOrDefault(s => s.sp_id == slice.sp_id);
+                tbSpecies species = ct.tbSpecies.FirstOrDefault(s => s.species_id == sp.species_id);
+                string spname = species.species_latin;
+
+
+                string pid = "21.86116.3/CT.slice." + slice.slice_id.ToString();
+                xmlmeta.AppendChild(addnode(xmldoc, "pid", pid));
+                string url = "http://ct.especies.cn/slice/info/" + slice.slice_id.ToString();
+                xmlmeta.AppendChild(addnode(xmldoc, "url", url));
+
+                string funding = "the Strategic Priority Research Program of the Chinese Academy of Sciences(Grant No. XDA19050203)";
+                xmlmeta.AppendChild(addnode(xmldoc, "funding", funding));
+                xmlmeta.AppendChild(addnode(xmldoc, "copyright", "CC BY 4.0"));
+
+                string title_zh = spname + " " + part + " 显微CT扫描和标注数据";
+                xmlmeta.AppendChild(addnode(xmldoc, "title_zh", title_zh));
+                string title_en = "Micro-CT Slice and Label Data of " + spname + " " + part;
+                xmlmeta.AppendChild(addnode(xmldoc, "title_en", title_en));
+
+                string description_zh = title_zh;
+                xmlmeta.AppendChild(addnode(xmldoc, "description_zh", description_zh));
+                string description_en = title_en;
+                xmlmeta.AppendChild(addnode(xmldoc, "description_en", description_en));
+
+                string keyword_zh = spname + ";显微CT;结构标注";
+                xmlmeta.AppendChild(addnode(xmldoc, "keyword_zh", keyword_zh));
+                string keyword_en = spname + ";Micro CT;structural label";
+                xmlmeta.AppendChild(addnode(xmldoc, "keyword_en", keyword_en));
+
+                xmlmeta.AppendChild(addnode(xmldoc, "resource_type", "采集数据"));
+                xmlmeta.AppendChild(addnode(xmldoc, "publisher_zh", "动物科学数据中心"));
+                xmlmeta.AppendChild(addnode(xmldoc, "publisher_en", "Scientific Data Center of Zoology"));
+
+                string f = Application.StartupPath + "\\meta.xml";
+                if (File.Exists(f)) File.Delete(f);
+                xmldoc.Save(f);
+                System.Diagnostics.Process.Start(f);
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show("记录有问题，导出失败\r\n" + ee.ToString());
+            }
+            return r;
+        }
+
         /// <summary>浏览器看slice资源信息</summary>
         /// <param name="slice_id"></param>
         static public void OpenSliceInBrowser(int slice_id)
@@ -157,6 +240,17 @@ namespace CTDB
                     mitDelete.Enabled = dataGridView1.Rows.Count > 0;
                 }
             }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int id = ((dataGridView1.DataSource as ArrayList)[e.RowIndex] as tbSlice).slice_id;
+                this.clID.Text = id.ToString();
+                bsmAddLabel_Click(sender, null);
+            }
+
         }
         void setDBValue(tbSlice s)
         {
@@ -314,16 +408,6 @@ namespace CTDB
             refreshDatagridview(id.ToString());
         }
 
-        private void cmitExportMeta_Click(object sender, EventArgs e)
-        {
-            int id = int.Parse(clID.Text);
-            ExportMeta(id);
-        }
-        private void cmitOpenInBrowser_Click(object sender, EventArgs e)
-        {
-            int id = int.Parse(clID.Text);
-            OpenSliceInBrowser(id);
-        }
 
         private void lbComputeResolution_DoubleClick(object sender, EventArgs e)
         {
@@ -360,6 +444,24 @@ namespace CTDB
             fl.ShowDialog();
             this.Show();
         }
+
+        private void cmitExportPIDXML_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(clID.Text);
+            ExportPIDXML(id);
+        }
+        private void cmitExportMeta_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(clID.Text);
+            ExportMeta(id);
+        }
+        private void cmitOpenInBrowser_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(clID.Text);
+            OpenSliceInBrowser(id);
+        }
+
+
 
 
     }

@@ -5,10 +5,34 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 namespace CTDB
 {
     public partial class FormLabel : Form
     {
+        /// <summary>导出元数据方法</summary>
+        /// <param name="id">structure的解析</param>
+        static public string ParseStructure(string xx)
+        {
+            string s = xx.ToLower();
+            if (s.Contains("capsule")) return "Capsule";
+            if (s.Contains("antennae")) return "Antennae";
+            if (s.Contains("labia")) return "Labia";
+            if (s.Contains("maxilla")) return "Maxilla";
+            if (s.Contains("labrum")) return "Labrum";
+            if (s.Contains("mentum")) return "Mentum";
+            if (s.Contains("nerv")) return "Nervous";
+            if (s.Contains("digest")) return "Digest";
+
+            if (Regex.IsMatch(s, "m[0-9]")) return "Muscle";
+            if (Regex.IsMatch(s, "mus[0-9]")) return "Muscle";
+            if (Regex.IsMatch(s, "c[0-9]")) return "Coxa";
+            if (Regex.IsMatch(s, "TR[0-9]")) return "Thorax";
+            if (Regex.IsMatch(s, "T[0-9]")) return "Trochantin";
+
+            return "Unknown";
+        }
+
         public FormLabel() { InitializeComponent(); }
         private void FormLabel_Load(object sender, EventArgs e)
         {
@@ -60,6 +84,7 @@ namespace CTDB
 
 
             dataGridView1.DataSource = LoadLabelByID();
+            FormLogin.SetColumn(dataGridView1, "label_id|label_title|label_structure|label_note|label_author");
             //FormLogin.LoadData(dataGridView1, "tbLabel", "label_id|slice_id|label_structure|label_note|label_file_number|Abstract|UserId");
         }
 
@@ -75,13 +100,14 @@ namespace CTDB
             s.label_structure = clbStructure.Text;
             s.label_method = clbMethod.Text;
             s.label_title = clbTitle.Text;
+            s.label_srcfolder = clbSrcFolder.Text;
 
             s.label_note = clbNote.Text;
             s.open_status = int.Parse(clbOpenStatus.SelectedValue.ToString());
             s.date_in = DateTime.Now;
             s.UserId = Guid.Parse(CTHelper.GetConfig("userid"));
-
         }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var s = new tbLabel();
@@ -142,6 +168,7 @@ namespace CTDB
                     clbStructure.Text = s.label_structure;
                     clbMethod.Text = s.label_method;
                     clbTitle.Text = s.label_title;
+                    clbSrcFolder.Text = s.label_srcfolder;
 
                     CTHelper.setControl(clbOpenStatus, s.open_status);
 
@@ -192,16 +219,18 @@ namespace CTDB
                 string[] fds = Directory.GetDirectories(fd.SelectedPath);
                 for (int i = 0; i < fds.Length; i++)
                 {
-                    clbNote.Text = fds[i];
+                    //clbNote.Text = fds[i];
+                    clbSrcFolder.Text = fds[i];
                     fds[i] = fds[i].Replace(fd.SelectedPath + "\\", "");
                     clbTitle.Text = fds[i];
 
                     var s = new tbLabel();
                     setDBValue(s);
+
+                    s.label_structure = ParseStructure(s.label_title);
                     CTDBEntities ct = new CTDBEntities();
                     ct.tbLabel.Add(s);
                     ct.SaveChanges();   //将修改保存到数据库中
-
                 }
 
                 MessageBox.Show(fds.Length + " OK");
@@ -285,6 +314,45 @@ namespace CTDB
                 MessageBox.Show("记录有问题，导出失败\r\n" + ee.ToString());
             }
         }
+
+        private void mitExportRenameFolder_Click(object sender, EventArgs e)
+        {
+            CTHelper.SaveAsCSV(dataGridView1, "label_id|label_note");
+        }
+        private void mitExportZipFileForServerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ArrayList sl = dataGridView1.DataSource as ArrayList;
+            if (sl.Count > 0)
+                if (MessageBox.Show("确认打包" + sl.Count + " records?", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    string fd = CTHelper.CommonPath() + "\\ctdbr";
+                    if (!Directory.Exists(fd)) Directory.CreateDirectory(fd);
+                    progressBar1.Visible = true;
+                    progressBar1.Maximum = sl.Count;
+                    progressBar1.Value = 0;
+                    using (var db = new CTDBEntities())
+                        foreach (tbLabel ts in sl)
+                        {
+                            progressBar1.Value++;
+                            try
+                            {
+                                //MessageBox.Show(ts.label_id.ToString());
+                                tbLabel lb = db.tbLabel.FirstOrDefault(s => s.label_id == ts.label_id);
+                                string src = lb.label_srcfolder;
+                                string des = fd + "\\" + lb.label_id + ".zip";
+
+                                if (File.Exists(des))
+                                    continue;
+                                CTHelper.ZipDirectory(src, des);
+                                System.Threading.Thread.Sleep(500);
+                            }
+                            catch { }
+                        }
+                    progressBar1.Visible = false;
+                    System.Diagnostics.Process.Start(fd);
+                }
+        }
+
 
 
 

@@ -89,7 +89,12 @@ namespace CTDB
             return false;
         }
 
-        public FormLogin() { InitializeComponent(); }
+        public FormLogin()
+        {
+            InitializeComponent();
+
+            
+        }
         public string userid { get; set; }
 
 

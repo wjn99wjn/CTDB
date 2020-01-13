@@ -59,6 +59,7 @@
           <Property Name="scan_id" Type="int" Nullable="false" />
           <Property Name="sp_id" Type="int" Nullable="false" />
           <Property Name="label_title" Type="nvarchar" MaxLength="100" />
+          <Property Name="label_srcfolder" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="tbRef">
           <Key>
@@ -652,6 +653,7 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
           <Property Name="scan_id" Type="Int32" Nullable="false" />
           <Property Name="sp_id" Type="Int32" Nullable="false" />
           <Property Name="label_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="label_srcfolder" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tbSlice" Relationship="CTDBModel.FK_tbLabel_tbSlice" FromRole="tbLabel" ToRole="tbSlice" />
         </EntityType>
         <Association Name="FK_tbLabel_tbSlice">
@@ -881,6 +883,7 @@ warning 6002: The table/view 'CTDB.dbo.vQuick' does not have a primary key defin
           <EntitySetMapping Name="tbLabel">
             <EntityTypeMapping TypeName="CTDBModel.tbLabel">
               <MappingFragment StoreEntitySet="tbLabel">
+                <ScalarProperty Name="label_srcfolder" ColumnName="label_srcfolder" />
                 <ScalarProperty Name="label_title" ColumnName="label_title" />
                 <ScalarProperty Name="sp_id" ColumnName="sp_id" />
                 <ScalarProperty Name="scan_id" ColumnName="scan_id" />

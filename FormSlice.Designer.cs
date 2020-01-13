@@ -35,7 +35,6 @@
             this.mitDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.cmitAddFileStack = new System.Windows.Forms.ToolStripMenuItem();
             this.cmitAddFile3D = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmitExportMeta = new System.Windows.Forms.ToolStripMenuItem();
             this.cmitOpenInBrowser = new System.Windows.Forms.ToolStripMenuItem();
             this.viewScanInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addLabelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +67,10 @@
             this.clSliceNo = new System.Windows.Forms.Label();
             this.clFileType = new System.Windows.Forms.ComboBox();
             this.label43 = new System.Windows.Forms.Label();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.metaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pidXmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -90,6 +93,7 @@
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.Size = new System.Drawing.Size(872, 404);
             this.dataGridView1.TabIndex = 45;
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // contextMenuStrip1
@@ -98,10 +102,10 @@
             this.mitDelete,
             this.cmitAddFileStack,
             this.cmitAddFile3D,
-            this.cmitExportMeta,
             this.cmitOpenInBrowser,
             this.viewScanInfoToolStripMenuItem,
-            this.addLabelsToolStripMenuItem});
+            this.addLabelsToolStripMenuItem,
+            this.exportToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(164, 158);
             // 
@@ -126,13 +130,6 @@
             this.cmitAddFile3D.Size = new System.Drawing.Size(163, 22);
             this.cmitAddFile3D.Text = "Add 3D Model";
             this.cmitAddFile3D.Click += new System.EventHandler(this.cmitAddFile3D_Click);
-            // 
-            // cmitExportMeta
-            // 
-            this.cmitExportMeta.Name = "cmitExportMeta";
-            this.cmitExportMeta.Size = new System.Drawing.Size(163, 22);
-            this.cmitExportMeta.Text = "Export Meta";
-            this.cmitExportMeta.Click += new System.EventHandler(this.cmitExportMeta_Click);
             // 
             // cmitOpenInBrowser
             // 
@@ -279,7 +276,7 @@
             this.clCutMethod.FormattingEnabled = true;
             this.clCutMethod.Location = new System.Drawing.Point(156, 150);
             this.clCutMethod.Name = "clCutMethod";
-            this.clCutMethod.Size = new System.Drawing.Size(149, 20);
+            this.clCutMethod.Size = new System.Drawing.Size(204, 20);
             this.clCutMethod.TabIndex = 113;
             // 
             // clOpenStatus
@@ -448,6 +445,36 @@
             this.label43.TabIndex = 106;
             this.label43.Text = "Resolution (µm)";
             // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.metaToolStripMenuItem,
+            this.tableToolStripMenuItem,
+            this.pidXmlToolStripMenuItem});
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.exportToolStripMenuItem.Text = "Export";
+            // 
+            // metaToolStripMenuItem
+            // 
+            this.metaToolStripMenuItem.Name = "metaToolStripMenuItem";
+            this.metaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.metaToolStripMenuItem.Text = "Meta";
+            this.metaToolStripMenuItem.Click += new System.EventHandler(this.cmitExportMeta_Click);
+            // 
+            // tableToolStripMenuItem
+            // 
+            this.tableToolStripMenuItem.Name = "tableToolStripMenuItem";
+            this.tableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tableToolStripMenuItem.Text = "Table";
+            // 
+            // pidXmlToolStripMenuItem
+            // 
+            this.pidXmlToolStripMenuItem.Name = "pidXmlToolStripMenuItem";
+            this.pidXmlToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pidXmlToolStripMenuItem.Text = "Pid_Xml";
+            this.pidXmlToolStripMenuItem.Click += new System.EventHandler(this.cmitExportPIDXML_Click);
+            // 
             // FormSlice
             // 
             this.AcceptButton = this.btnOK;
@@ -498,7 +525,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label cscSliceNo;
         private System.Windows.Forms.Label clSliceNo;
-        private System.Windows.Forms.ToolStripMenuItem cmitExportMeta;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cscRef;
         private System.Windows.Forms.Label label3;
@@ -509,5 +535,9 @@
         private System.Windows.Forms.ToolStripMenuItem viewScanInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addLabelsToolStripMenuItem;
         private System.Windows.Forms.Button bsmAddLabel;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem metaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pidXmlToolStripMenuItem;
     }
 }

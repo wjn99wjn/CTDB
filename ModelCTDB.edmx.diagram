@@ -19,7 +19,7 @@
         <AssociationConnector Association="CTDBModel.FK_tbScan_tbSpecimen" />
         <AssociationConnector Association="CTDBModel.FK_tbSlice_tbScan" />
         <AssociationConnector Association="CTDBModel.FK_tbSpecimen_tbSpecies" />
-        <EntityTypeShape EntityType="CTDBModel.tbLabel" Width="1.5" PointX="7.625" PointY="1.625" />
+        <EntityTypeShape EntityType="CTDBModel.tbLabel" Width="1.5" PointX="7.625" PointY="1.125" />
         <AssociationConnector Association="CTDBModel.FK_tbLabel_tbSlice" />
         </Diagram>
     </edmx:Diagrams>

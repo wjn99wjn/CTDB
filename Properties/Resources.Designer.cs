@@ -68,20 +68,21 @@ namespace CTDB.Properties {
         ///
         ///（二） 主要流程
         ///   主要数据表格的及其操作如下列清单所示。
-        ///   1 &quot;Species&quot; -&gt; 添加、删除、更改&quot;物种&quot;信息.
-        ///   2 &quot;Specimen&quot; -&gt; 添加、删除、更改&quot;标本&quot;信息.
-        ///   3 &quot;Equipment&quot; -&gt; 添加、删除、更改&quot;设备&quot;信息.
-        ///   4 &quot;Scan&quot; -&gt; 添加、删除、更改&quot;扫描&quot;信息;上传扫描源文件.
-        ///   5 &quot;Slice&quot; -&gt; 添加、删除、更改&quot;切片&quot;信息;上传切片文件.
-        ///   6 &quot;Label&quot; -&gt; 添加、删除、更改&quot;标记&quot;信息.
-        ///   7 &quot;Example&quot; -&gt; 添加、删除、更改&quot;示例&quot;信息;上传、删除示例文件.
-        ///   8 &quot;Tag&quot; -&gt; 添加、删除、更改&quot;术语/标签&quot;信息.
+        ///   1 &quot;Equipment&quot; -&gt; 添加、删除、更改&quot;设备&quot;信息.
+        ///   2 &quot;Species&quot; -&gt; 添加、删除、更改&quot;物种&quot;信息.
+        ///   3 &quot;Tag&quot; -&gt; 添加、删除、更改&quot;术语/标签&quot;信息.
+        ///   4 &quot;Source/Ref&quot; -&gt; 添加、删除、更改&quot;参考文献&quot;信息.
+        ///
+        ///   5 &quot;Specimen&quot; -&gt; 添加、删除、更改&quot;标本&quot;信息.
+        ///   6 &quot;Scan&quot; -&gt; 添加、删除、更改&quot;扫描&quot;信息;上传扫描源文件.
+        ///   7 &quot;Slice&quot; -&gt; 添加、删除、更改&quot;切片&quot;信息;上传切片文件.
+        ///   8 &quot;Label&quot; -&gt; 添加、删除、更改&quot;标记&quot;信息.
+        ///   
+        ///   9 &quot;Quick&quot; -&gt; 一站式添加5-8数据.
+        ///   0 &quot;File&quot; -&gt; 添加、删除5-8中各种附件，包括图像、模型、视频各种文件.
         ///
         ///（三） 注意
-        ///   &quot;Scan&quot; 是最核心数据所在，在此进入扫描信息管理前需要建立好“标本”和设备信息。
-        ///   &quot;Specimen&quot;管理之前需要完善“物种”信息。
-        ///   &quot;Example&quot; 管理之前需要完善“标本”信息。
-        ///  [rest of string was truncated]&quot;;.
+        ///   &quot;Scan&quot; 是最核心数据所在，在此进入扫描信息管理前需 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string help_ct {
             get {
@@ -150,7 +151,9 @@ namespace CTDB.Properties {
         ///
         ///
         ///标签管理：
-        ///管理 数据库一些枚举型的数据标签，包括一些固定方法、术语等标准信息数据，用于组织元数据。
+        ///管理 数据库一些枚举型的数据标签
+        ///包括一些固定方法、术语等标准信息数据
+        ///用于组织元数据
         ///
         ///.
         /// </summary>

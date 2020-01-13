@@ -49,8 +49,10 @@
             this.cscVerticalObjectPosition = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cscScanDate = new System.Windows.Forms.TextBox();
             this.cscSliceNo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
@@ -88,7 +90,7 @@
             this.cscCamera = new System.Windows.Forms.ComboBox();
             this.cscSourceType = new System.Windows.Forms.ComboBox();
             this.cscSourceCurrent = new System.Windows.Forms.TextBox();
-            this.csmSourcePower = new System.Windows.Forms.TextBox();
+            this.cscSourcePower = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -101,8 +103,7 @@
             this.bsmAdd = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.cscScanDate = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.csmSourcePower = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -328,6 +329,14 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Basic Information";
             // 
+            // cscScanDate
+            // 
+            this.cscScanDate.Location = new System.Drawing.Point(77, 116);
+            this.cscScanDate.Name = "cscScanDate";
+            this.cscScanDate.Size = new System.Drawing.Size(121, 21);
+            this.cscScanDate.TabIndex = 149;
+            this.cscScanDate.Text = "2015-2-20";
+            // 
             // cscSliceNo
             // 
             this.cscSliceNo.AutoSize = true;
@@ -345,6 +354,17 @@
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 147;
             this.label2.Text = "SliceCount";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(178, 91);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 145;
+            this.label5.Tag = "Camera";
+            this.label5.Text = "Begin Time";
+            this.label5.Visible = false;
             // 
             // label47
             // 
@@ -667,7 +687,7 @@
             this.groupBox1.Controls.Add(this.cscCamera);
             this.groupBox1.Controls.Add(this.cscSourceType);
             this.groupBox1.Controls.Add(this.cscSourceCurrent);
-            this.groupBox1.Controls.Add(this.csmSourcePower);
+            this.groupBox1.Controls.Add(this.cscSourcePower);
             this.groupBox1.Controls.Add(this.label38);
             this.groupBox1.Controls.Add(this.label27);
             this.groupBox1.Controls.Add(this.label3);
@@ -706,15 +726,15 @@
             this.cscSourceCurrent.Name = "cscSourceCurrent";
             this.cscSourceCurrent.Size = new System.Drawing.Size(55, 21);
             this.cscSourceCurrent.TabIndex = 114;
-            this.cscSourceCurrent.Text = "250";
+            this.cscSourceCurrent.Text = "133";
             // 
-            // csmSourcePower
+            // cscSourcePower
             // 
-            this.csmSourcePower.Location = new System.Drawing.Point(92, 125);
-            this.csmSourcePower.Name = "csmSourcePower";
-            this.csmSourcePower.Size = new System.Drawing.Size(55, 21);
-            this.csmSourcePower.TabIndex = 144;
-            this.csmSourcePower.Text = "250";
+            this.cscSourcePower.Location = new System.Drawing.Point(92, 125);
+            this.cscSourcePower.Name = "cscSourcePower";
+            this.cscSourcePower.Size = new System.Drawing.Size(55, 21);
+            this.cscSourcePower.TabIndex = 144;
+            this.cscSourcePower.Text = "8";
             // 
             // label38
             // 
@@ -767,7 +787,7 @@
             this.cscSourceVoltage.Name = "cscSourceVoltage";
             this.cscSourceVoltage.Size = new System.Drawing.Size(55, 21);
             this.cscSourceVoltage.TabIndex = 112;
-            this.cscSourceVoltage.Text = "40";
+            this.cscSourceVoltage.Text = "60";
             // 
             // bsmUpdate
             // 
@@ -828,24 +848,13 @@
             this.comboBox1.Size = new System.Drawing.Size(156, 20);
             this.comboBox1.TabIndex = 145;
             // 
-            // cscScanDate
+            // csmSourcePower
             // 
-            this.cscScanDate.Location = new System.Drawing.Point(77, 116);
-            this.cscScanDate.Name = "cscScanDate";
-            this.cscScanDate.Size = new System.Drawing.Size(121, 21);
-            this.cscScanDate.TabIndex = 149;
-            this.cscScanDate.Text = "2015-2-20";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(178, 91);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
-            this.label5.TabIndex = 145;
-            this.label5.Tag = "Camera";
-            this.label5.Text = "Begin Time";
-            this.label5.Visible = false;
+            this.csmSourcePower.Location = new System.Drawing.Point(92, 125);
+            this.csmSourcePower.Name = "csmSourcePower";
+            this.csmSourcePower.Size = new System.Drawing.Size(55, 21);
+            this.csmSourcePower.TabIndex = 144;
+            this.csmSourcePower.Text = "8";
             // 
             // FormScan
             // 
@@ -922,7 +931,7 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.TextBox cscRotationStep;
         private System.Windows.Forms.TextBox cscSourceCurrent;
-        private System.Windows.Forms.TextBox csmSourcePower;
+        private System.Windows.Forms.TextBox cscSourcePower;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label3;
@@ -952,5 +961,6 @@
         private System.Windows.Forms.Button bsmAddSlice;
         private System.Windows.Forms.TextBox cscScanDate;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox csmSourcePower;
     }
 }

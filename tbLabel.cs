@@ -28,6 +28,7 @@ namespace CTDB
         public int scan_id { get; set; }
         public int sp_id { get; set; }
         public string label_title { get; set; }
+        public string label_srcfolder { get; set; }
     
         public virtual tbSlice tbSlice { get; set; }
     }

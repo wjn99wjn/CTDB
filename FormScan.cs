@@ -87,6 +87,7 @@ namespace CTDB
                 cscCamera.Text = s.scan_para_Camera;
                 cscSourceVoltage.Text = s.scan_para_SourceVoltage.ToString();
                 cscSourceCurrent.Text = s.scan_para_SourceCurrent.ToString();
+                cscSourcePower.Text = s.scan_para_SourcePower.ToString();
 
                 cscCamera2Source.Text = s.scan_para_Camera2Source.ToString();
                 cscObejct2Souce.Text = s.scan_para_Object2Source.ToString();
@@ -144,6 +145,7 @@ namespace CTDB
             s.scan_para_Camera = cscCamera.Text;
             s.scan_para_SourceVoltage = getValueDouble(cscSourceVoltage.Text);
             s.scan_para_SourceCurrent = getValueDouble(cscSourceCurrent.Text);
+            s.scan_para_SourcePower = getValueDouble(cscSourcePower.Text);
 
             s.scan_para_Camera2Source = getValueDouble(cscCamera2Source.Text);
             s.scan_para_Object2Source = getValueDouble(cscObejct2Souce.Text);

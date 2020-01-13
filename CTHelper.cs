@@ -12,6 +12,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using ICSharpCode.SharpZipLib.Core;
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace CTDB
 {
@@ -207,6 +209,72 @@ namespace CTDB
                                 strLine += cell;
                             }
                         }
+                        sw.WriteLine(strLine);
+                    }
+                    sw.Close();
+                    stream.Close();
+                    MessageBox.Show("数据被导出到：" + saveFileDialog.FileName.ToString(), "导出完毕", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "导出错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false;
+                }
+            }
+            return true;
+        }
+        public static bool SaveAsCSV(DataGridView dgv, string cols)
+        {
+            if (dgv.Rows.Count == 0)
+            {
+                MessageBox.Show("没有数据可导出!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+            saveFileDialog.FilterIndex = 0;
+            saveFileDialog.RestoreDirectory = true;
+            saveFileDialog.CreatePrompt = true;
+            saveFileDialog.FileName = null;
+            saveFileDialog.Title = "保存";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Stream stream = saveFileDialog.OpenFile();
+                StreamWriter sw = new StreamWriter(stream, System.Text.Encoding.GetEncoding(-0));
+                string strLine = "";
+                try
+                {
+                    //表头
+
+                    for (int i = 0; i < dgv.ColumnCount; i++)
+                        if (cols.Contains(dgv.Columns[i].HeaderText))
+                            strLine += dgv.Columns[i].HeaderText + ",";
+                    strLine.TrimEnd(',');
+                    strLine.Remove(strLine.Length - 1);
+                    sw.WriteLine(strLine);
+                    strLine = "";
+                    //表的内容
+                    for (int j = 0; j < dgv.Rows.Count; j++)
+                    {
+                        strLine = "";
+                        int colCount = dgv.Columns.Count;
+                        for (int k = 0; k < colCount; k++)
+                            if (cols.Contains(dgv.Columns[k].HeaderText))
+                            {
+                                //if (k > 0 && k < colCount)                                    strLine += ",";
+                                if (dgv.Rows[j].Cells[k].Value == null)
+                                    strLine += "";
+                                else
+                                {
+                                    string cell = dgv.Rows[j].Cells[k].Value.ToString().Trim();
+                                    //防止里面含有特殊符号
+                                    cell = cell.Replace("\"", "\"\"");
+                                    cell = "\"" + cell + "\"";
+                                    strLine += cell;
+                                }
+                                strLine += ",";
+                            }
+                        strLine.TrimEnd(',');
                         sw.WriteLine(strLine);
                     }
                     sw.Close();
@@ -1013,7 +1081,66 @@ namespace CTDB
             return br;
         }
 
+        /// <summary>压缩文件夹</summary>        
+        /// <param name="dirPath">压缩文件夹的路径</param>        
+        /// <param name="fileName">生成的zip文件路径</param>        
+        /// <param name="level">压缩级别 0 - 9 0是存储级别 9是最大压缩</param>        
+        /// <param name="bufferSize">读取文件的缓冲区大小</param>       
+        public static void ZipDirectory(string dirPath, string fileName, int level = 6, int bufferSize = 1024)
+        {
+            if (File.Exists(fileName)) File.Delete(fileName);
 
+            byte[] buffer = new byte[bufferSize];
+            using (ZipOutputStream s = new ZipOutputStream(File.Create(fileName)))
+            {
+                s.SetLevel(level);
+                ZipDirectory(dirPath, dirPath, s, buffer);
+                s.Finish();
+                s.Close();
+            }
+        }
+        /// <summary> 压缩文件夹  </summary>        
+        /// <param name="root">压缩文件夹路径</param>       
+        /// <param name="path">压缩文件夹内当前要压缩的文件夹路径</param>   
+        /// <param name="s"></param>        
+        /// <param name="buffer">读取文件的缓冲区大小</param>        
+        private static void ZipDirectory(string root, string path, ZipOutputStream s, byte[] buffer)
+        {
+            root = root.TrimEnd('/') + "//";
+            string[] fileNames = Directory.GetFiles(path);
+            string[] dirNames = Directory.GetDirectories(path);
+            string relativePath = path.Replace(root, "");
+            if (relativePath != "")
+            {
+                relativePath = relativePath.Replace("//", "/") + "/";
+            }
+            int sourceBytes;
+            foreach (string file in fileNames)
+            {
+                //ZipEntry entry = new ZipEntry(relativePath + Path.GetFileName(file));
+                string ename = file.Replace(root.TrimEnd('/'), "");
+                ZipEntry entry = new ZipEntry(ename);
+                entry.DateTime = DateTime.Now;
+                s.PutNextEntry(entry);
+                using (FileStream fs = File.OpenRead(file))
+                {
+                    do
+                    {
+                        sourceBytes = fs.Read(buffer, 0, buffer.Length);
+                        s.Write(buffer, 0, sourceBytes);
+                    } while (sourceBytes > 0);
+                }
+            }
+            foreach (string dirName in dirNames)
+            {
+                string relativeDirPath = dirName.Replace(root, "");
+                //string ename = relativeDirPath.Replace("//", "/") + "/";
+                string ename = relativeDirPath.Replace(root.TrimEnd('/'), "") + "/";
+                ZipEntry entry = new ZipEntry(ename);
+                s.PutNextEntry(entry);
+                ZipDirectory(root, dirName, s, buffer);
+            }
+        }
 
         //定义API函数
         [DllImport("kernel32.dll")]
